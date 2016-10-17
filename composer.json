@@ -44,7 +44,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Bukashk0zzz\\YmlGenerator\\Tests\\": "Tests/"
+            "Bukashk0zzz\\YmlGenerator\\Tests\\": "tests/"
         }
     }
 }
