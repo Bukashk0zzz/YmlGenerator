@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Bukashk0zzz\YmlGenerator\Models\Offer;
+namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
 /**
  * Class OfferCustom

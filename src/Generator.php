@@ -11,11 +11,11 @@
 
 namespace Bukashk0zzz\YmlGenerator;
 
-use Bukashk0zzz\YmlGenerator\Models\Category;
-use Bukashk0zzz\YmlGenerator\Models\Currency;
-use Bukashk0zzz\YmlGenerator\Models\Offer\OfferInterface;
-use Bukashk0zzz\YmlGenerator\Models\Offer\OfferParam;
-use Bukashk0zzz\YmlGenerator\Models\ShopInfo;
+use Bukashk0zzz\YmlGenerator\Model\Category;
+use Bukashk0zzz\YmlGenerator\Model\Currency;
+use Bukashk0zzz\YmlGenerator\Model\Offer\OfferInterface;
+use Bukashk0zzz\YmlGenerator\Model\Offer\OfferParam;
+use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
 
 /**
  * Class Generator
@@ -124,20 +124,83 @@ class Generator
     }
 
     /**
+     * @param Currency $currency
+     */
+    protected function addCurrency(Currency $currency)
+    {
+        $this->writer->startElement('currency');
+        $this->writer->writeAttribute('id', $currency->getId());
+        $this->writer->writeAttribute('rate', $currency->getRate());
+        $this->writer->endElement();
+    }
+
+    /**
+     * @param Category $category
+     */
+    protected function addCategory(Category $category)
+    {
+        $this->writer->startElement('category');
+        $this->writer->writeAttribute('id', $category->getId());
+
+        if ($category->getParentId() !== null) {
+            $this->writer->writeAttribute('parentId', $category->getParentId());
+        }
+
+        $this->writer->text($category->getName());
+        $this->writer->fullEndElement();
+    }
+
+    /**
+     * @param OfferInterface $offer
+     */
+    protected function addOffer(OfferInterface $offer)
+    {
+        $this->writer->startElement('offer');
+        $this->writer->writeAttribute('id', $offer->getId());
+        $this->writer->writeAttribute('available', $offer->isAvailable() ? 'true' : 'false');
+
+        if ($offer->getType() !== null) {
+            $this->writer->writeAttribute('type', $offer->getType());
+        }
+
+        foreach ($offer->toArray() as $name => $value) {
+            if ($value !== null) {
+                if (is_bool($value)) {
+                    $value = $value ? 'true' : 'false';
+                }
+                $this->writer->writeElement($name, $value);
+            }
+        }
+
+        /** @var OfferParam $param */
+        foreach ($offer->getParams() as $param) {
+            if ($param instanceof OfferParam) {
+                $this->writer->startElement('param');
+
+                $this->writer->writeAttribute('name', $param->getName());
+                if ($param->getUnit()) {
+                    $this->writer->writeAttribute('unit', $param->getUnit());
+                }
+                $this->writer->text($param->getValue());
+
+                $this->writer->endElement();
+            }
+        }
+        $this->writer->fullEndElement();
+    }
+
+    /**
      * Adds <currencies> element. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#currencies)
      * @param array $currencies
      */
-    protected function addCurrencies(array $currencies)
+    private function addCurrencies(array $currencies)
     {
         $this->writer->startElement('currencies');
 
         /** @var Currency $currency */
         foreach ($currencies as $currency) {
             if ($currency instanceof Currency) {
-                $this->writer->startElement('currency');
-                $this->writer->writeAttribute('id', $currency->getId());
-                $this->writer->writeAttribute('rate', $currency->getRate());
-                $this->writer->endElement();
+                $this->addCurrency($currency);
             }
         }
 
@@ -148,22 +211,14 @@ class Generator
      * Adds <categories> element. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#categories)
      * @param array $categories
      */
-    protected function addCategories(array $categories)
+    private function addCategories(array $categories)
     {
         $this->writer->startElement('categories');
 
         /** @var Category $category */
         foreach ($categories as $category) {
             if ($category instanceof Category) {
-                $this->writer->startElement('category');
-                $this->writer->writeAttribute('id', $category->getId());
-
-                if ($category->getParentId() !== null) {
-                    $this->writer->writeAttribute('parentId', $category->getParentId());
-                }
-
-                $this->writer->text($category->getName());
-                $this->writer->fullEndElement();
+                $this->addCategory($category);
             }
         }
 
@@ -174,45 +229,14 @@ class Generator
      * Adds <offers> element. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#offers)
      * @param array $offers
      */
-    protected function addOffers(array $offers)
+    private function addOffers(array $offers)
     {
         $this->writer->startElement('offers');
 
         /** @var OfferInterface $offer */
         foreach ($offers as $offer) {
             if ($offer instanceof OfferInterface) {
-                $this->writer->startElement('offer');
-                $this->writer->writeAttribute('id', $offer->getId());
-                $this->writer->writeAttribute('available', $offer->isAvailable() ? 'true' : 'false');
-
-                if ($offer->getType() !== null) {
-                    $this->writer->writeAttribute('type', $offer->getType());
-                }
-
-                foreach ($offer->toArray() as $name => $value) {
-                    if ($value !== null) {
-                        if (is_bool($value)) {
-                            $value = $value ? 'true':'false';
-                        }
-                        $this->writer->writeElement($name, $value);
-                    }
-                }
-
-                /** @var OfferParam $param */
-                foreach ($offer->getParams() as $param) {
-                    if ($param instanceof OfferParam) {
-                        $this->writer->startElement('param');
-
-                        $this->writer->writeAttribute('name', $param->getName());
-                        if ($param->getUnit()) {
-                            $this->writer->writeAttribute('unit', $param->getUnit());
-                        }
-                        $this->writer->text($param->getValue());
-
-                        $this->writer->endElement();
-                    }
-                }
-                $this->writer->fullEndElement();
+                $this->addOffer($offer);
             }
         }
 
