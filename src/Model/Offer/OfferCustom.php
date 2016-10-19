@@ -16,7 +16,7 @@ namespace Bukashk0zzz\YmlGenerator\Model\Offer;
  *
  * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
-class OfferCustom extends OfferSimple
+class OfferCustom extends AbstractOffer
 {
     /**
      * @var string
@@ -26,52 +26,29 @@ class OfferCustom extends OfferSimple
     /**
      * @var string
      */
-    private $model;
+    private $vendor;
 
     /**
      * @var string
      */
-    private $salesNotes;
+    private $vendorCode;
 
     /**
-     * @var bool
+     * @var string
      */
-    private $manufacturerWarranty;
-
-    /**
-     * @var bool
-     */
-    private $downloadable;
-
-    /**
-     * @var array
-     */
-    private $params;
+    private $model;
 
     /**
      * @return array
      */
     public function toArray()
     {
-        return [
-            'url' => $this->getUrl(),
-            'price' => $this->getPrice(),
-            'currencyId' => $this->getCurrencyId(),
-            'categoryId' => $this->getCategoryId(),
-
-            'delivery' => $this->isDelivery(),
-            'local_delivery_cost' => $this->getLocalDeliveryCost(),
+        return array_merge($this->getHeaderOptions(), [
             'typePrefix' => $this->getTypePrefix(),
             'vendor' => $this->getVendor(),
             'vendorCode' => $this->getVendorCode(),
             'model' => $this->getModel(),
-            'description' => $this->getDescription(),
-            'sales_notes' => $this->getSalesNotes(),
-            'manufacturer_warranty' => $this->isManufacturerWarranty(),
-            'country_of_origin' => $this->getCountryOfOrigin(),
-            'downloadable' => $this->isDownloadable(),
-            'adult' => $this->isAdult(),
-        ];
+        ], $this->getFooterOptions());
     }
 
     /**
@@ -123,75 +100,37 @@ class OfferCustom extends OfferSimple
     /**
      * @return string
      */
-    public function getSalesNotes()
+    public function getVendor()
     {
-        return $this->salesNotes;
+        return $this->vendor;
     }
 
     /**
-     * @param string $salesNotes
+     * @param string $vendor
      * @return $this
      */
-    public function setSalesNotes($salesNotes)
+    public function setVendor($vendor)
     {
-        $this->salesNotes = $salesNotes;
+        $this->vendor = $vendor;
 
         return $this;
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function isManufacturerWarranty()
+    public function getVendorCode()
     {
-        return $this->manufacturerWarranty;
+        return $this->vendorCode;
     }
 
     /**
-     * @param boolean $manufacturerWarranty
+     * @param string $vendorCode
      * @return $this
      */
-    public function setManufacturerWarranty($manufacturerWarranty)
+    public function setVendorCode($vendorCode)
     {
-        $this->manufacturerWarranty = $manufacturerWarranty;
-
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isDownloadable()
-    {
-        return $this->downloadable;
-    }
-
-    /**
-     * @param boolean $downloadable
-     * @return $this
-     */
-    public function setDownloadable($downloadable)
-    {
-        $this->downloadable = $downloadable;
-
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getParams()
-    {
-        return $this->params;
-    }
-
-    /**
-     * @param OfferParam $param
-     * @return $this
-     */
-    public function addParam(OfferParam $param)
-    {
-        $this->params[] = $param;
+        $this->vendorCode = $vendorCode;
 
         return $this;
     }

@@ -31,41 +31,21 @@ class OfferCustomGeneratorTest extends AbstractGeneratorTest
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
-    protected function createOffers()
+    protected function createOffer()
     {
-        $offers = [];
-        foreach (range(1, 5) as $offer) {
-            $offers[] = (new OfferCustom())
-                ->setId($offer)
-                ->setAvailable($this->faker->boolean)
-                ->setUrl($this->faker->url)
-                ->setPrice($this->faker->numberBetween(1, 9999))
-                ->setCurrencyId('UAH')
-                ->setCategoryId($offer)
-                ->setName($this->faker->name)
-                ->setDelivery($this->faker->boolean)
-                ->setLocalDeliveryCost($this->faker->numberBetween(1, 9999))
-                ->setVendor($this->faker->company)
-                ->setVendorCode($this->faker->companySuffix)
-                ->setDescription($this->faker->sentence)
-                ->setCountryOfOrigin('Украина')
-                ->setAdult($this->faker->boolean)
-                ->setTypePrefix($this->faker->colorName)
-                ->setModel($this->faker->userName)
-                ->setSalesNotes($this->faker->text(45))
-                ->setManufacturerWarranty($this->faker->boolean)
-                ->setDownloadable($this->faker->boolean)
-                ->addParam(
-                    (new OfferParam())
-                        ->setName($this->faker->name)
-                        ->setUnit($this->faker->text(5))
-                        ->setValue($this->faker->text(10))
-                )
-            ;
-        }
-
-        return $offers;
+        return (new OfferCustom())
+            ->setTypePrefix($this->faker->colorName)
+            ->setVendor($this->faker->company)
+            ->setVendorCode($this->faker->companySuffix)
+            ->setModel($this->faker->userName)
+            ->addParam(
+                (new OfferParam())
+                    ->setName($this->faker->name)
+                    ->setUnit($this->faker->text(5))
+                    ->setValue($this->faker->text(10))
+            )
+        ;
     }
 }

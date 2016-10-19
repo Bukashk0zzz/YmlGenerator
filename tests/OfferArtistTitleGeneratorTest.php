@@ -11,21 +11,21 @@
 
 namespace Bukashk0zzz\YmlGenerator\Tests;
 
-use Bukashk0zzz\YmlGenerator\Model\Offer\OfferSimple;
+use Bukashk0zzz\YmlGenerator\Model\Offer\OfferArtistTitle;
 
 /**
  * Generator test
  *
  * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
-class OfferSimpleGeneratorTest extends AbstractGeneratorTest
+class OfferArtistTitleGeneratorTest extends AbstractGeneratorTest
 {
     /**
      * Test generate
      */
     public function testGenerate()
     {
-        $this->offerType = 'Simple';
+        $this->offerType = 'ArtistTitle';
         $this->runGeneratorTest();
     }
 
@@ -34,10 +34,11 @@ class OfferSimpleGeneratorTest extends AbstractGeneratorTest
      */
     protected function createOffer()
     {
-        return (new OfferSimple())
-            ->setName($this->faker->name)
-            ->setVendor($this->faker->company)
-            ->setVendorCode($this->faker->companySuffix)
+        return (new OfferArtistTitle())
+            ->setArtist($this->faker->name)
+            ->setTitle($this->faker->name)
+            ->setYear($this->faker->numberBetween(1, 9999))
+            ->setMedia($this->faker->name)
         ;
     }
 }

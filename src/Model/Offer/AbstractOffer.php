@@ -49,11 +49,78 @@ abstract class AbstractOffer implements OfferInterface
     private $categoryId;
 
     /**
+     * @var bool
+     */
+    private $adult;
+
+    /**
+     * @var string
+     */
+    private $salesNotes;
+
+    /**
+     * @var bool
+     */
+    private $manufacturerWarranty;
+
+    /**
+     * @var bool
+     */
+    private $downloadable;
+
+    /**
+     * @var bool
+     */
+    private $delivery;
+
+    /**
+     * @var float
+     */
+    private $localDeliveryCost;
+
+    /**
+     * @var string
+     */
+    private $description;
+
+    /**
+     * @var string
+     */
+    private $countryOfOrigin;
+
+    /**
+     * @var array
+     */
+    private $params = [];
+
+    /**
      * @return array
      */
-    public function getParams()
+    public function getHeaderOptions()
     {
-        return [];
+        return [
+            'url' => $this->getUrl(),
+            'price' => $this->getPrice(),
+            'currencyId' => $this->getCurrencyId(),
+            'categoryId' => $this->getCategoryId(),
+            'delivery' => $this->isDelivery(),
+            'local_delivery_cost' => $this->getLocalDeliveryCost(),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getFooterOptions()
+    {
+        return [
+            'description' => $this->getDescription(),
+            'sales_notes' => $this->getSalesNotes(),
+            'manufacturer_warranty' => $this->isManufacturerWarranty(),
+            'country_of_origin' => $this->getCountryOfOrigin(),
+            'downloadable' => $this->isDownloadable(),
+            'adult' => $this->isAdult(),
+        ];
     }
 
     /**
@@ -166,6 +233,177 @@ abstract class AbstractOffer implements OfferInterface
     public function setCategoryId($categoryId)
     {
         $this->categoryId = $categoryId;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isAdult()
+    {
+        return $this->adult;
+    }
+
+    /**
+     * @param boolean $adult
+     * @return $this
+     */
+    public function setAdult($adult)
+    {
+        $this->adult = $adult;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSalesNotes()
+    {
+        return $this->salesNotes;
+    }
+
+    /**
+     * @param string $salesNotes
+     * @return $this
+     */
+    public function setSalesNotes($salesNotes)
+    {
+        $this->salesNotes = $salesNotes;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isManufacturerWarranty()
+    {
+        return $this->manufacturerWarranty;
+    }
+
+    /**
+     * @param boolean $manufacturerWarranty
+     * @return $this
+     */
+    public function setManufacturerWarranty($manufacturerWarranty)
+    {
+        $this->manufacturerWarranty = $manufacturerWarranty;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isDownloadable()
+    {
+        return $this->downloadable;
+    }
+
+    /**
+     * @param boolean $downloadable
+     * @return $this
+     */
+    public function setDownloadable($downloadable)
+    {
+        $this->downloadable = $downloadable;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isDelivery()
+    {
+        return $this->delivery;
+    }
+
+    /**
+     * @param boolean $delivery
+     * @return $this
+     */
+    public function setDelivery($delivery)
+    {
+        $this->delivery = $delivery;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLocalDeliveryCost()
+    {
+        return $this->localDeliveryCost;
+    }
+
+    /**
+     * @param float $localDeliveryCost
+     * @return $this
+     */
+    public function setLocalDeliveryCost($localDeliveryCost)
+    {
+        $this->localDeliveryCost = $localDeliveryCost;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     * @return $this
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountryOfOrigin()
+    {
+        return $this->countryOfOrigin;
+    }
+
+    /**
+     * @param string $countryOfOrigin
+     * @return $this
+     */
+    public function setCountryOfOrigin($countryOfOrigin)
+    {
+        $this->countryOfOrigin = $countryOfOrigin;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    /**
+     * @param OfferParam $param
+     * @return $this
+     */
+    public function addParam(OfferParam $param)
+    {
+        $this->params[] = $param;
 
         return $this;
     }

@@ -12,11 +12,11 @@
 namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
 /**
- * Class OfferSimple
+ * Class OfferEventTicket
  *
  * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
-class OfferSimple extends AbstractOffer
+class OfferEventTicket extends AbstractOffer
 {
     /**
      * @var string
@@ -26,12 +26,22 @@ class OfferSimple extends AbstractOffer
     /**
      * @var string
      */
-    private $vendor;
+    private $place;
 
     /**
      * @var string
      */
-    private $vendorCode;
+    private $date;
+
+    /**
+     * @var int
+     */
+    private $premiere;
+
+    /**
+     * @var int
+     */
+    private $kids;
 
     /**
      * @return array
@@ -40,8 +50,10 @@ class OfferSimple extends AbstractOffer
     {
         return array_merge($this->getHeaderOptions(), [
             'name' => $this->getName(),
-            'vendor' => $this->getVendor(),
-            'vendorCode' => $this->getVendorCode(),
+            'place' => $this->getPlace(),
+            'date' => $this->getDate(),
+            'is_premiere' => $this->getPremiere(),
+            'is_kids' => $this->getKids(),
         ], $this->getFooterOptions());
     }
 
@@ -50,7 +62,7 @@ class OfferSimple extends AbstractOffer
      */
     public function getType()
     {
-        return null;
+        return 'event-ticket';
     }
 
     /**
@@ -75,18 +87,18 @@ class OfferSimple extends AbstractOffer
     /**
      * @return string
      */
-    public function getVendor()
+    public function getPlace()
     {
-        return $this->vendor;
+        return $this->place;
     }
 
     /**
-     * @param string $vendor
+     * @param string $place
      * @return $this
      */
-    public function setVendor($vendor)
+    public function setPlace($place)
     {
-        $this->vendor = $vendor;
+        $this->place = $place;
 
         return $this;
     }
@@ -94,18 +106,56 @@ class OfferSimple extends AbstractOffer
     /**
      * @return string
      */
-    public function getVendorCode()
+    public function getDate()
     {
-        return $this->vendorCode;
+        return $this->date;
     }
 
     /**
-     * @param string $vendorCode
+     * @param string $date
      * @return $this
      */
-    public function setVendorCode($vendorCode)
+    public function setDate($date)
     {
-        $this->vendorCode = $vendorCode;
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPremiere()
+    {
+        return $this->premiere;
+    }
+
+    /**
+     * @param int $premiere
+     * @return $this
+     */
+    public function setPremiere($premiere)
+    {
+        $this->premiere = $premiere;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getKids()
+    {
+        return $this->kids;
+    }
+
+    /**
+     * @param int $kids
+     * @return $this
+     */
+    public function setKids($kids)
+    {
+        $this->kids = $kids;
 
         return $this;
     }

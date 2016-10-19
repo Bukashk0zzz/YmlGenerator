@@ -56,9 +56,9 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
     protected $offerType;
 
     /**
-     * @return array
+     * @return \Bukashk0zzz\YmlGenerator\Model\Offer\AbstractOffer
      */
-    abstract protected function createOffers();
+    abstract protected function createOffer();
 
     /**
      * Test setup
@@ -174,5 +174,34 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
         ;
 
         return $categories;
+    }
+
+    /**
+     * @return array
+     */
+    private function createOffers()
+    {
+        $offers = [];
+        foreach (range(1, 2) as $id) {
+            $offers[] = $this
+                ->createOffer()
+                ->setId($id)
+                ->setAvailable($this->faker->boolean)
+                ->setUrl($this->faker->url)
+                ->setPrice($this->faker->numberBetween(1, 9999))
+                ->setCurrencyId('UAH')
+                ->setCategoryId($id)
+                ->setDelivery($this->faker->boolean)
+                ->setLocalDeliveryCost($this->faker->numberBetween(1, 9999))
+                ->setDescription($this->faker->sentence)
+                ->setSalesNotes($this->faker->text(45))
+                ->setManufacturerWarranty($this->faker->boolean)
+                ->setCountryOfOrigin('Украина')
+                ->setDownloadable($this->faker->boolean)
+                ->setAdult($this->faker->boolean)
+            ;
+        }
+
+        return $offers;
     }
 }

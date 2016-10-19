@@ -11,21 +11,21 @@
 
 namespace Bukashk0zzz\YmlGenerator\Tests;
 
-use Bukashk0zzz\YmlGenerator\Model\Offer\OfferSimple;
+use Bukashk0zzz\YmlGenerator\Model\Offer\OfferEventTicket;
 
 /**
  * Generator test
  *
  * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
-class OfferSimpleGeneratorTest extends AbstractGeneratorTest
+class OfferEventTicketGeneratorTest extends AbstractGeneratorTest
 {
     /**
      * Test generate
      */
     public function testGenerate()
     {
-        $this->offerType = 'Simple';
+        $this->offerType = 'EventTicket';
         $this->runGeneratorTest();
     }
 
@@ -34,10 +34,12 @@ class OfferSimpleGeneratorTest extends AbstractGeneratorTest
      */
     protected function createOffer()
     {
-        return (new OfferSimple())
+        return (new OfferEventTicket())
             ->setName($this->faker->name)
-            ->setVendor($this->faker->company)
-            ->setVendorCode($this->faker->companySuffix)
+            ->setPlace($this->faker->name)
+            ->setDate($this->faker->date('d/m/y'))
+            ->setPremiere($this->faker->numberBetween(0, 1))
+            ->setKids($this->faker->numberBetween(0, 1))
         ;
     }
 }

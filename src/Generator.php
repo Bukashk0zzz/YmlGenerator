@@ -164,28 +164,10 @@ class Generator
         }
 
         foreach ($offer->toArray() as $name => $value) {
-            if ($value !== null) {
-                if (is_bool($value)) {
-                    $value = $value ? 'true' : 'false';
-                }
-                $this->writer->writeElement($name, $value);
-            }
+            $this->addOfferElement($name, $value);
         }
+        $this->addOfferParams($offer);
 
-        /** @var OfferParam $param */
-        foreach ($offer->getParams() as $param) {
-            if ($param instanceof OfferParam) {
-                $this->writer->startElement('param');
-
-                $this->writer->writeAttribute('name', $param->getName());
-                if ($param->getUnit()) {
-                    $this->writer->writeAttribute('unit', $param->getUnit());
-                }
-                $this->writer->text($param->getValue());
-
-                $this->writer->endElement();
-            }
-        }
         $this->writer->fullEndElement();
     }
 
@@ -241,5 +223,54 @@ class Generator
         }
 
         $this->writer->fullEndElement();
+    }
+
+    /**
+     * @param OfferInterface $offer
+     */
+    private function addOfferParams(OfferInterface $offer)
+    {
+        /** @var OfferParam $param */
+        foreach ($offer->getParams() as $param) {
+            if ($param instanceof OfferParam) {
+                $this->writer->startElement('param');
+
+                $this->writer->writeAttribute('name', $param->getName());
+                if ($param->getUnit()) {
+                    $this->writer->writeAttribute('unit', $param->getUnit());
+                }
+                $this->writer->text($param->getValue());
+
+                $this->writer->endElement();
+            }
+        }
+    }
+
+    /**
+     * @param string $name
+     * @param mixed  $value
+     * @return bool
+     */
+    private function addOfferElement($name, $value)
+    {
+        if ($value === null) {
+            return false;
+        }
+
+        if (is_array($value)) {
+            /** @var string $v */
+            foreach ((array) $value as $v) {
+                $this->writer->writeElement($name, $v);
+            }
+
+            return true;
+        }
+
+        if (is_bool($value)) {
+            $value = $value ? 'true' : 'false';
+        }
+        $this->writer->writeElement($name, $value);
+
+        return true;
     }
 }
