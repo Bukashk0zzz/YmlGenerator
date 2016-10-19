@@ -37,7 +37,7 @@ class OfferSimpleGeneratorTest extends AbstractGeneratorTest
         return (new OfferSimple())
             ->setName($this->faker->name)
             ->setVendor($this->faker->company)
-            ->setVendorCode($this->faker->companySuffix)
+            ->setVendorCode(null)
         ;
     }
 }

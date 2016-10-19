@@ -123,7 +123,8 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
         return (new Settings())
             ->setOutputFile(tempnam(sys_get_temp_dir(), 'YMLGeneratorTest'))
             ->setEncoding('utf-8')
-            ->setIndentString("\t");
+            ->setIndentString("\t")
+        ;
     }
 
     /**

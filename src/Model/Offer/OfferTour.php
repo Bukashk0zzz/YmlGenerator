@@ -74,26 +74,6 @@ class OfferTour extends AbstractOffer
     private $transport;
 
     /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return array_merge($this->getHeaderOptions(), [
-            'worldRegion' => $this->getWorldRegion(),
-            'country' => $this->getCountry(),
-            'region' => $this->getRegion(),
-            'days' => $this->getDays(),
-            'dataTour' => $this->getDataTour(),
-            'name' => $this->getName(),
-            'hotel_stars' => $this->getHotelStars(),
-            'room' => $this->getRoom(),
-            'meal' => $this->getMeal(),
-            'included' => $this->getIncluded(),
-            'transport' => $this->getTransport(),
-        ], $this->getFooterOptions());
-    }
-
-    /**
      * @return string
      */
     public function getType()
@@ -186,7 +166,7 @@ class OfferTour extends AbstractOffer
     }
 
     /**
-     * @param array $dataTour
+     * @param string $dataTour
      * @return $this
      */
     public function addDataTour($dataTour)
@@ -308,5 +288,25 @@ class OfferTour extends AbstractOffer
         $this->transport = $transport;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            'worldRegion' => $this->getWorldRegion(),
+            'country' => $this->getCountry(),
+            'region' => $this->getRegion(),
+            'days' => $this->getDays(),
+            'dataTour' => $this->getDataTour(),
+            'name' => $this->getName(),
+            'hotel_stars' => $this->getHotelStars(),
+            'room' => $this->getRoom(),
+            'meal' => $this->getMeal(),
+            'included' => $this->getIncluded(),
+            'transport' => $this->getTransport(),
+        ];
     }
 }

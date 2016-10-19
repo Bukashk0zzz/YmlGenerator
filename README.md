@@ -12,7 +12,17 @@
 About
 -----
 [YML (Yandex Market Language)](https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml) generator.
-Uses standard XMLWriter for generating YML file.
+Uses standard XMLWriter for generating YML file. 
+Not required any other library you just need PHP 5.5.0 or >= version.
+
+Generator supports this offer types:
+- OfferCustom [(vendor.model)](https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#vendor-model)
+- OfferBook [(book)](https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#book)
+- OfferAudiobook [(audiobook)](https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#audiobook)
+- OfferArtistTitle [(artist.title)](https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#artist-title)
+- OfferTour [(tour)](https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#tour)
+- OfferEventTicket [(event-ticket)](https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#event-ticket)
+- OfferSimple [(empty)](https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#base)
 
 Installation
 ------------
@@ -37,6 +47,58 @@ Usage example
 ```php
 <?php
 
+use Bukashk0zzz\YmlGenerator\Model\Offer\OfferSimple;
+use Bukashk0zzz\YmlGenerator\Model\Category;
+use Bukashk0zzz\YmlGenerator\Model\Currency;
+use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
+use Bukashk0zzz\YmlGenerator\Settings;
+use Bukashk0zzz\YmlGenerator\Generator;
+
+$file = tempnam(sys_get_temp_dir(), 'YMLGenerator');
+$settings = (new Settings())
+    ->setOutputFile($file)
+;
+
+// Creating ShopInfo object (https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#shop)
+$shopInfo = (new ShopInfo())
+    ->setName('BestShop')
+    ->setCompany('Best online seller Inc.')
+    ->setUrl('http://www.best.seller.com/')
+;
+
+// Creating currencies array (https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#currencies)
+$currencies = [];
+$currencies[] = (new Currency())
+    ->setId('USD')
+    ->setRate(1)
+;
+
+// Creating categories array (https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#categories)
+$categories = [];
+$categories[] = (new Category())
+    ->setId(1)
+    ->setName($this->faker->name)
+;
+
+// Creating offers array (https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#offers)
+$offers = [];
+$offers[] = (new OfferSimple())
+    ->setId(12346)
+    ->setAvailable(true)
+    ->setUrl('http://www.best.seller.com/product_page.php?pid=12348')
+    ->setPrice($this->faker->numberBetween(1, 9999))
+    ->setCurrencyId('USD')
+    ->setCategoryId(1)
+    ->setDelivery(false)
+    ->setName('Best product ever')
+;
+
+(new Generator($settings))->generate(
+    $shopInfo,
+    $currencies,
+    $categories,
+    $offers
+);
 ```
 
 Copyright / License

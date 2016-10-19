@@ -39,19 +39,6 @@ class OfferArtistTitle extends AbstractOffer
     private $media;
 
     /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return array_merge($this->getHeaderOptions(), [
-            'artist' => $this->getArtist(),
-            'title' => $this->getTitle(),
-            'year' => $this->getYear(),
-            'media' => $this->getMedia(),
-        ], $this->getFooterOptions());
-    }
-
-    /**
      * @return string
      */
     public function getType()
@@ -133,5 +120,18 @@ class OfferArtistTitle extends AbstractOffer
         $this->media = $media;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            'artist' => $this->getArtist(),
+            'title' => $this->getTitle(),
+            'year' => $this->getYear(),
+            'media' => $this->getMedia(),
+        ];
     }
 }

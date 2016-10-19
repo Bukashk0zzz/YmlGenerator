@@ -96,31 +96,9 @@ abstract class AbstractOffer implements OfferInterface
     /**
      * @return array
      */
-    public function getHeaderOptions()
+    public function toArray()
     {
-        return [
-            'url' => $this->getUrl(),
-            'price' => $this->getPrice(),
-            'currencyId' => $this->getCurrencyId(),
-            'categoryId' => $this->getCategoryId(),
-            'delivery' => $this->isDelivery(),
-            'local_delivery_cost' => $this->getLocalDeliveryCost(),
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public function getFooterOptions()
-    {
-        return [
-            'description' => $this->getDescription(),
-            'sales_notes' => $this->getSalesNotes(),
-            'manufacturer_warranty' => $this->isManufacturerWarranty(),
-            'country_of_origin' => $this->getCountryOfOrigin(),
-            'downloadable' => $this->isDownloadable(),
-            'adult' => $this->isAdult(),
-        ];
+        return array_merge($this->getHeaderOptions(), $this->getOptions(), $this->getFooterOptions());
     }
 
     /**
@@ -406,5 +384,40 @@ abstract class AbstractOffer implements OfferInterface
         $this->params[] = $param;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    abstract protected function getOptions();
+
+    /**
+     * @return array
+     */
+    private function getHeaderOptions()
+    {
+        return [
+            'url' => $this->getUrl(),
+            'price' => $this->getPrice(),
+            'currencyId' => $this->getCurrencyId(),
+            'categoryId' => $this->getCategoryId(),
+            'delivery' => $this->isDelivery(),
+            'local_delivery_cost' => $this->getLocalDeliveryCost(),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    private function getFooterOptions()
+    {
+        return [
+            'description' => $this->getDescription(),
+            'sales_notes' => $this->getSalesNotes(),
+            'manufacturer_warranty' => $this->isManufacturerWarranty(),
+            'country_of_origin' => $this->getCountryOfOrigin(),
+            'downloadable' => $this->isDownloadable(),
+            'adult' => $this->isAdult(),
+        ];
     }
 }

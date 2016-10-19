@@ -39,19 +39,6 @@ class OfferCustom extends AbstractOffer
     private $model;
 
     /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return array_merge($this->getHeaderOptions(), [
-            'typePrefix' => $this->getTypePrefix(),
-            'vendor' => $this->getVendor(),
-            'vendorCode' => $this->getVendorCode(),
-            'model' => $this->getModel(),
-        ], $this->getFooterOptions());
-    }
-
-    /**
      * @return string
      */
     public function getType()
@@ -133,5 +120,18 @@ class OfferCustom extends AbstractOffer
         $this->vendorCode = $vendorCode;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            'typePrefix' => $this->getTypePrefix(),
+            'vendor' => $this->getVendor(),
+            'vendorCode' => $this->getVendorCode(),
+            'model' => $this->getModel(),
+        ];
     }
 }

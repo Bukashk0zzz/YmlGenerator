@@ -44,20 +44,6 @@ class OfferEventTicket extends AbstractOffer
     private $kids;
 
     /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return array_merge($this->getHeaderOptions(), [
-            'name' => $this->getName(),
-            'place' => $this->getPlace(),
-            'date' => $this->getDate(),
-            'is_premiere' => $this->getPremiere(),
-            'is_kids' => $this->getKids(),
-        ], $this->getFooterOptions());
-    }
-
-    /**
      * @return string
      */
     public function getType()
@@ -158,5 +144,19 @@ class OfferEventTicket extends AbstractOffer
         $this->kids = $kids;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            'name' => $this->getName(),
+            'place' => $this->getPlace(),
+            'date' => $this->getDate(),
+            'is_premiere' => $this->getPremiere(),
+            'is_kids' => $this->getKids(),
+        ];
     }
 }

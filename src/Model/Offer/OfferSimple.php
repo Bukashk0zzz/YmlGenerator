@@ -34,18 +34,6 @@ class OfferSimple extends AbstractOffer
     private $vendorCode;
 
     /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return array_merge($this->getHeaderOptions(), [
-            'name' => $this->getName(),
-            'vendor' => $this->getVendor(),
-            'vendorCode' => $this->getVendorCode(),
-        ], $this->getFooterOptions());
-    }
-
-    /**
      * @return string
      */
     public function getType()
@@ -108,5 +96,17 @@ class OfferSimple extends AbstractOffer
         $this->vendorCode = $vendorCode;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            'name' => $this->getName(),
+            'vendor' => $this->getVendor(),
+            'vendorCode' => $this->getVendorCode(),
+        ];
     }
 }
