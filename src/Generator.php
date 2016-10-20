@@ -95,6 +95,8 @@ class Generator
     protected function addHeader()
     {
         $this->writer->startDocument('1.0', $this->settings->getEncoding());
+        $this->writer->startDtd('yml_catalog', null, 'shops.dtd');
+        $this->writer->endDtd();
         $this->writer->startElement('yml_catalog');
         $this->writer->writeAttribute('date', date('Y-m-d H:i'));
         $this->writer->startElement('shop');

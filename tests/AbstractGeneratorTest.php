@@ -101,7 +101,7 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
 
         $creator = new \DOMImplementation();
         $ymlFileWithDtd = $creator->createDocument(null, null, $creator->createDocumentType($root, null, $systemId));
-        $ymlFileWithDtd->encoding = 'utf-8';
+        $ymlFileWithDtd->encoding = 'windows-1251';
 
         $oldNode = $ymlFile->getElementsByTagName($root)->item(0);
         $newNode = $ymlFileWithDtd->importNode($oldNode, true);
