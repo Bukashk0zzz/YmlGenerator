@@ -80,7 +80,7 @@ class Generator
             $this->addFooter();
 
             if (null !== $this->settings->getOutputFile()) {
-                rename($this->tmpFile, $this->settings->getOutputFile());
+                copy($this->tmpFile, $this->settings->getOutputFile());
             }
 
             return true;
