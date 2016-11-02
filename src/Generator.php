@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Bukashk0zzzYmlGenerator
+ * This file is part of the blainerohmerYmlGenerator
  *
  * (c) Denis Golubovskiy <bukashk0zzz@gmail.com>
  *
@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Bukashk0zzz\YmlGenerator;
+namespace blainerohmer\YmlGenerator;
 
-use Bukashk0zzz\YmlGenerator\Model\Category;
-use Bukashk0zzz\YmlGenerator\Model\Currency;
-use Bukashk0zzz\YmlGenerator\Model\Offer\OfferInterface;
-use Bukashk0zzz\YmlGenerator\Model\Offer\OfferParam;
-use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
+use blainerohmer\YmlGenerator\Model\Category;
+use blainerohmer\YmlGenerator\Model\Currency;
+use blainerohmer\YmlGenerator\Model\Offer\OfferInterface;
+use blainerohmer\YmlGenerator\Model\Offer\OfferParam;
+use blainerohmer\YmlGenerator\Model\ShopInfo;
 
 /**
  * Class Generator
