@@ -343,7 +343,9 @@ abstract class AbstractOffer implements OfferInterface
      */
     public function setDescription($description)
     {
-        $this->description = $description;
+        if ($description != '') {
+            $this->description = $description;
+        }
 
         return $this;
     }
@@ -362,8 +364,10 @@ abstract class AbstractOffer implements OfferInterface
      */
     public function setCountryOfOrigin($countryOfOrigin)
     {
-        $this->countryOfOrigin = $countryOfOrigin;
-
+        if ($countryOfOrigin != '') {
+            $this->countryOfOrigin = $countryOfOrigin;
+        }
+        
         return $this;
     }
 

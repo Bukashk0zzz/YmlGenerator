@@ -60,7 +60,9 @@ class OfferCustom extends AbstractOffer
      */
     public function setTypePrefix($typePrefix)
     {
-        $this->typePrefix = $typePrefix;
+        if ($typePrefix != '') {
+            $this->typePrefix = $typePrefix;
+        }
 
         return $this;
     }
@@ -79,7 +81,9 @@ class OfferCustom extends AbstractOffer
      */
     public function setModel($model)
     {
-        $this->model = $model;
+        if ($model != '') {
+            $this->model = $model;
+        }
 
         return $this;
     }
@@ -98,7 +102,9 @@ class OfferCustom extends AbstractOffer
      */
     public function setVendor($vendor)
     {
-        $this->vendor = $vendor;
+        if ($vendor != '') {
+            $this->vendor = $vendor;
+        }
 
         return $this;
     }
@@ -117,7 +123,9 @@ class OfferCustom extends AbstractOffer
      */
     public function setVendorCode($vendorCode)
     {
-        $this->vendorCode = $vendorCode;
+        if ($vendorCode != '') {
+            $this->vendorCode = $vendorCode;
+        }
 
         return $this;
     }
