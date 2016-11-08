@@ -85,7 +85,9 @@ class Delivery
      */
     public function setOrderBefore($order_before)
     {
-        $this->order_before = $order_before;
+        if ($order_before != '') {
+            $this->order_before = $order_before;
+        }
 
         return $this;
     }
