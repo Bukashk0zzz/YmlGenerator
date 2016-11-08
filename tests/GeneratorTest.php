@@ -30,7 +30,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
     public function testExceptionForIncompatibleAnnotations()
     {
         (new Generator((new Settings())->setOutputFile('')))
-            ->generate(new ShopInfo(), [], [], [])
+            ->generate(new ShopInfo(), [], [], [], [])
         ;
     }
 }

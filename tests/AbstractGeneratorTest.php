@@ -15,6 +15,7 @@ use Faker\Factory as Faker;
 use blainerohmer\YmlGenerator\Model\Category;
 use blainerohmer\YmlGenerator\Model\Currency;
 use blainerohmer\YmlGenerator\Model\ShopInfo;
+use blainerohmer\YmlGenerator\Model\Delivery;
 use blainerohmer\YmlGenerator\Settings;
 use blainerohmer\YmlGenerator\Generator;
 
@@ -51,6 +52,11 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
     protected $categories;
 
     /**
+     * @var array
+     */
+    protected $deliveries;
+
+    /**
      * @var string
      */
     protected $offerType;
@@ -71,6 +77,7 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->shopInfo = $this->createShopInfo();
         $this->currencies = $this->createCurrencies();
         $this->categories = $this->createCategories();
+        $this->deliveries = $this->createDeliveries();
     }
 
     /**
@@ -80,6 +87,7 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
     {
         static::assertTrue((new Generator($this->settings))->generate(
             $this->shopInfo,
+            $this->deliveries,
             $this->currencies,
             $this->categories,
             $this->createOffers()
@@ -175,6 +183,26 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
         ;
 
         return $categories;
+    }
+
+    /**
+     * @return array
+     */
+    private function createDeliveries()
+    {
+        $deliveries = [];
+        $deliveries[] = (new Delivery())
+            ->setCost(1)
+            ->setDays(2)
+        ;
+
+        $deliveries[] = (new Delivery())
+            ->setCost(2)
+            ->setDays(1)
+            ->setOrderBefore(14)
+        ;
+
+        return $deliveries;
     }
 
     /**
