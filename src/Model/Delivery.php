@@ -45,7 +45,7 @@ class Delivery
      * @param int $cost
      * @return Delivery
      */
-    public function setId($cost)
+    public function setCost($cost)
     {
         $this->cost = $cost;
 
