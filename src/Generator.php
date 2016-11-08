@@ -13,6 +13,7 @@ namespace blainerohmer\YmlGenerator;
 
 use blainerohmer\YmlGenerator\Model\Category;
 use blainerohmer\YmlGenerator\Model\Currency;
+use blainerohmer\YmlGenerator\Model\Delivery;
 use blainerohmer\YmlGenerator\Model\Offer\OfferInterface;
 use blainerohmer\YmlGenerator\Model\Offer\OfferParam;
 use blainerohmer\YmlGenerator\Model\ShopInfo;
@@ -61,13 +62,14 @@ class Generator
      * @param ShopInfo $shopInfo
      * @param array    $currencies
      * @param array    $categories
+     * @param array    $deliveries
      * @param array    $offers
      *
      * @return bool
      *
      * @throws \RuntimeException
      */
-    public function generate(ShopInfo $shopInfo, array $currencies, array $categories, array $offers)
+    public function generate(ShopInfo $shopInfo, array $deliveries, array $currencies, array $categories, array $offers)
     {
         try {
             $this->addHeader();
@@ -75,6 +77,7 @@ class Generator
             $this->addShopInfo($shopInfo);
             $this->addCurrencies($currencies);
             $this->addCategories($categories);
+            $this->addDeliveries($deliveries);
             $this->addOffers($offers);
 
             $this->addFooter();
@@ -153,6 +156,23 @@ class Generator
     }
 
     /**
+     * @param Delivery $delivery
+     */
+    protected function addDelivery(Delivery $delivery)
+    {
+        $this->writer->startElement('option');
+        $this->writer->writeAttribute('cost', $delivery->getCost());
+        $this->writer->writeAttribute('days', $delivery->getDays());
+
+        if ($delivery->getOrderBefore() !== null) {
+            $this->writer->writeAttribute('order-before', $delivery->getOrderBefore());
+        }
+
+        //$this->writer->text($delivery->getName());
+        $this->writer->fullEndElement();
+    }
+
+    /**
      * @param OfferInterface $offer
      */
     protected function addOffer(OfferInterface $offer)
@@ -203,6 +223,24 @@ class Generator
         foreach ($categories as $category) {
             if ($category instanceof Category) {
                 $this->addCategory($category);
+            }
+        }
+
+        $this->writer->fullEndElement();
+    }
+
+    /**
+     * Adds <delivery-option> element. (See https://yandex.ru/support/partnermarket/elements/delivery-options.xml)
+     * @param array $deliveries
+     */
+    private function addDeliveries(array $deliveries)
+    {
+        $this->writer->startElement('delivery-options');
+
+        /** @var Delivery $delivery */
+        foreach ($deliveries as $delivery) {
+            if ($delivery instanceof Delivery) {
+                $this->addDelivery($delivery);
             }
         }
 
