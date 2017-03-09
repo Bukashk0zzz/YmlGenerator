@@ -1,50 +1,42 @@
 {
-    "name": "bukashk0zzz/yml-generator",
-    "description": "YML (Yandex Market Language) file generator",
-    "keywords": ["yml", "yandex", "market", "yml-generator"],
-    "homepage": "https://github.com/Bukashk0zzz/YmlGenerator",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Denis Golubovskiy",
-            "email": "bukashk0zzz@gmail.com",
-            "role": "Creator"
-        }
-    ],
-    "support": {
-        "email": "bukashk0zzz@gmail.com",
-        "issues": "https://github.com/Bukashk0zzz/YmlGenerator/issues"
-    },
-    "require": {
-        "php": ">=5.5.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~5.0",
-        "fzaninotto/faker": "^1.6",
-        "squizlabs/php_codesniffer": "^2.5",
-        "escapestudios/symfony2-coding-standard": "~2.9",
-        "wimg/php-compatibility": "^7.0"
-    },
-    "scripts": {
-        "default-scripts": [
-            "rm -rf vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility; cp -rp vendor/wimg/php-compatibility vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility"
-        ],
-        "post-update-cmd": [
-            "@default-scripts"
-        ],
-        "post-install-cmd": [
-            "@default-scripts"
-        ]
-    },
-    "autoload": {
-        "psr-4": {
-            "Bukashk0zzz\\YmlGenerator\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Bukashk0zzz\\YmlGenerator\\Tests\\": "tests/"
-        }
+  "name": "professionalweb/yml-generator",
+  "description": "YML (Yandex Market Language) file generator",
+  "version": "1.1.0",
+  "keywords": [
+    "yml",
+    "yandex",
+    "market",
+    "yml-generator"
+  ],
+  "homepage": "https://github.com/Bukashk0zzz/YmlGenerator",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Denis Golubovskiy",
+      "email": "bukashk0zzz@gmail.com",
+      "role": "Creator"
     }
+  ],
+  "support": {
+    "email": "bukashk0zzz@gmail.com",
+    "issues": "https://github.com/Bukashk0zzz/YmlGenerator/issues"
+  },
+  "require": {
+    "php": ">=5.5.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~5.0",
+    "fzaninotto/faker": "^1.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bukashk0zzz\\YmlGenerator\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Bukashk0zzz\\YmlGenerator\\Tests\\": "tests/"
+    }
+  }
 }
