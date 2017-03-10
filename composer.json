@@ -1,7 +1,7 @@
 {
   "name": "professionalweb/yml-generator",
   "description": "YML (Yandex Market Language) file generator",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "keywords": [
     "yml",
     "yandex",
@@ -16,6 +16,11 @@
       "name": "Denis Golubovskiy",
       "email": "bukashk0zzz@gmail.com",
       "role": "Creator"
+    },
+    {
+      "name": "Sergey Zinchenko",
+      "email": "zinchenko@web-development.pw",
+      "role": "Developer"
     }
   ],
   "support": {
