@@ -94,6 +94,11 @@ abstract class AbstractOffer implements OfferInterface
     private $params = [];
 
     /**
+     * @var array
+     */
+    private $pictures = [];
+
+    /**
      * @return array
      */
     public function toArray()
@@ -111,6 +116,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param string $id
+     *
      * @return $this
      */
     public function setId($id)
@@ -130,6 +136,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param boolean $available
+     *
      * @return $this
      */
     public function setAvailable($available)
@@ -149,6 +156,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param string $url
+     *
      * @return $this
      */
     public function setUrl($url)
@@ -168,6 +176,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param float $price
+     *
      * @return $this
      */
     public function setPrice($price)
@@ -187,6 +196,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param string $currencyId
+     *
      * @return $this
      */
     public function setCurrencyId($currencyId)
@@ -206,6 +216,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param int $categoryId
+     *
      * @return $this
      */
     public function setCategoryId($categoryId)
@@ -225,6 +236,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param boolean $adult
+     *
      * @return $this
      */
     public function setAdult($adult)
@@ -244,6 +256,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param string $salesNotes
+     *
      * @return $this
      */
     public function setSalesNotes($salesNotes)
@@ -263,6 +276,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param boolean $manufacturerWarranty
+     *
      * @return $this
      */
     public function setManufacturerWarranty($manufacturerWarranty)
@@ -282,6 +296,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param boolean $downloadable
+     *
      * @return $this
      */
     public function setDownloadable($downloadable)
@@ -301,6 +316,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param boolean $delivery
+     *
      * @return $this
      */
     public function setDelivery($delivery)
@@ -320,6 +336,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param float $localDeliveryCost
+     *
      * @return $this
      */
     public function setLocalDeliveryCost($localDeliveryCost)
@@ -339,6 +356,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param string $description
+     *
      * @return $this
      */
     public function setDescription($description)
@@ -358,6 +376,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param string $countryOfOrigin
+     *
      * @return $this
      */
     public function setCountryOfOrigin($countryOfOrigin)
@@ -377,6 +396,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param OfferParam $param
+     *
      * @return $this
      */
     public function addParam(OfferParam $param)
@@ -397,11 +417,12 @@ abstract class AbstractOffer implements OfferInterface
     private function getHeaderOptions()
     {
         return [
-            'url' => $this->getUrl(),
-            'price' => $this->getPrice(),
-            'currencyId' => $this->getCurrencyId(),
-            'categoryId' => $this->getCategoryId(),
-            'delivery' => $this->isDelivery(),
+            'url'                 => $this->getUrl(),
+            'price'               => $this->getPrice(),
+            'currencyId'          => $this->getCurrencyId(),
+            'picture'             => $this->getPictures(),
+            'categoryId'          => $this->getCategoryId(),
+            'delivery'            => $this->isDelivery(),
             'local_delivery_cost' => $this->getLocalDeliveryCost(),
         ];
     }
@@ -412,12 +433,52 @@ abstract class AbstractOffer implements OfferInterface
     private function getFooterOptions()
     {
         return [
-            'description' => $this->getDescription(),
-            'sales_notes' => $this->getSalesNotes(),
+            'description'           => $this->getDescription(),
+            'sales_notes'           => $this->getSalesNotes(),
             'manufacturer_warranty' => $this->isManufacturerWarranty(),
-            'country_of_origin' => $this->getCountryOfOrigin(),
-            'downloadable' => $this->isDownloadable(),
-            'adult' => $this->isAdult(),
+            'country_of_origin'     => $this->getCountryOfOrigin(),
+            'downloadable'          => $this->isDownloadable(),
+            'adult'                 => $this->isAdult(),
         ];
+    }
+
+    /**
+     * Add picture
+     *
+     * @param string $url
+     *
+     * @return $this
+     */
+    public function addPicture($url)
+    {
+        if (count($this->pictures) < 6) {
+            $this->pictures[] = $url;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set pictures
+     *
+     * @param array $pictures
+     *
+     * @return $this
+     */
+    public function setPictures(array $pictures)
+    {
+        $this->pictures = $pictures;
+
+        return $this;
+    }
+
+    /**
+     * Get picture list
+     *
+     * @return array
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
     }
 }

@@ -24,10 +24,10 @@ use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
  */
 class Generator
 {
-    /**
-     * @var string
-     */
-    private $tmpFile;
+//    /**
+//     * @var string
+//     */
+//    private $tmpFile;
 
     /**
      * @var \XMLWriter
@@ -41,15 +41,17 @@ class Generator
 
     /**
      * Generator constructor.
+     *
      * @param Settings $settings
      */
     public function __construct($settings = null)
     {
-        $this->settings = $settings instanceof Settings ? $settings: new Settings();
-        $this->tmpFile = $this->settings->getOutputFile() !== null ? tempnam(sys_get_temp_dir(), 'YMLGenerator') : 'php://output';
+        $this->settings = $settings instanceof Settings ? $settings : new Settings();
+//        $this->tmpFile = $this->settings->getOutputFile() !== null ? tempnam(sys_get_temp_dir(), 'YMLGenerator') : 'php://output';
 
         $this->writer = new \XMLWriter();
-        $this->writer->openUri($this->tmpFile);
+        $outputFile = $this->settings->getOutputFile();
+        $this->writer->openUri( !empty($outputFile) ? $this->settings->getOutputFile() : 'php://output');
 
         if ($this->settings->getIndentString()) {
             $this->writer->setIndentString($this->settings->getIndentString());
@@ -79,13 +81,13 @@ class Generator
 
             $this->addFooter();
 
-            if (null !== $this->settings->getOutputFile()) {
-                rename($this->tmpFile, $this->settings->getOutputFile());
-            }
+//            if (null !== $this->settings->getOutputFile()) {
+//                rename($this->tmpFile, $this->settings->getOutputFile());
+//            }
 
             return true;
         } catch (\Exception $exception) {
-            throw new \RuntimeException('Problem with generating YML file: '.$exception->getMessage(), 0, $exception);
+            throw new \RuntimeException('Problem with generating YML file: ' . $exception->getMessage(), 0, $exception);
         }
     }
 
@@ -95,8 +97,8 @@ class Generator
     protected function addHeader()
     {
         $this->writer->startDocument('1.0', $this->settings->getEncoding());
-        $this->writer->startDtd('yml_catalog', null, 'shops.dtd');
-        $this->writer->endDtd();
+//        $this->writer->startDtd('yml_catalog', null, 'shops.dtd');
+//        $this->writer->endDtd();
         $this->writer->startElement('yml_catalog');
         $this->writer->writeAttribute('date', date('Y-m-d H:i'));
         $this->writer->startElement('shop');
@@ -114,6 +116,7 @@ class Generator
 
     /**
      * Adds shop element data. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#shop)
+     *
      * @param ShopInfo $shopInfo
      */
     protected function addShopInfo(ShopInfo $shopInfo)
@@ -166,7 +169,13 @@ class Generator
         }
 
         foreach ($offer->toArray() as $name => $value) {
-            $this->addOfferElement($name, $value);
+            if(is_array($value)) {
+                foreach ($value as $itemValue) {
+                    $this->addOfferElement($name, $itemValue);
+                }
+            } else {
+                $this->addOfferElement($name, $value);
+            }
         }
         $this->addOfferParams($offer);
 
@@ -175,6 +184,7 @@ class Generator
 
     /**
      * Adds <currencies> element. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#currencies)
+     *
      * @param array $currencies
      */
     private function addCurrencies(array $currencies)
@@ -193,6 +203,7 @@ class Generator
 
     /**
      * Adds <categories> element. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#categories)
+     *
      * @param array $categories
      */
     private function addCategories(array $categories)
@@ -211,6 +222,7 @@ class Generator
 
     /**
      * Adds <offers> element. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#offers)
+     *
      * @param array $offers
      */
     private function addOffers(array $offers)
@@ -251,6 +263,7 @@ class Generator
     /**
      * @param string $name
      * @param mixed  $value
+     *
      * @return bool
      */
     private function addOfferElement($name, $value)
@@ -261,7 +274,7 @@ class Generator
 
         if (is_array($value)) {
             /** @var string $v */
-            foreach ((array) $value as $v) {
+            foreach ((array)$value as $v) {
                 $this->writer->writeElement($name, $v);
             }
 
