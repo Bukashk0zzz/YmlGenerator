@@ -1,13 +1,13 @@
 #YML (Yandex Market Language) file generator
 
-[![Build Status](https://img.shields.io/scrutinizer/build/g/Bukashk0zzz/YmlGenerator.svg?style=flat-square)](https://travis-ci.org/Bukashk0zzz/YmlGenerator)
-[![Code Coverage](https://img.shields.io/codecov/c/github/Bukashk0zzz/YmlGenerator.svg?style=flat-square)](https://codecov.io/github/Bukashk0zzz/YmlGenerator)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/Bukashk0zzz/YmlGenerator.svg?style=flat-square)](https://scrutinizer-ci.com/g/Bukashk0zzz/YmlGenerator/?branch=master)
+[![Build Status](https://img.shields.io/scrutinizer/build/g/blainerohmer/YmlGenerator.svg?style=flat-square)](https://travis-ci.org/blainerohmer/YmlGenerator)
+[![Code Coverage](https://img.shields.io/codecov/c/github/blainerohmer/YmlGenerator.svg?style=flat-square)](https://codecov.io/github/blainerohmer/YmlGenerator)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/blainerohmer/YmlGenerator.svg?style=flat-square)](https://scrutinizer-ci.com/g/blainerohmer/YmlGenerator/?branch=master)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/a7b93e1f-5f09-436a-bb45-0eb37b3e6110.svg)](https://insight.sensiolabs.com/projects/a7b93e1f-5f09-436a-bb45-0eb37b3e6110)
 [![Dependency Status](https://www.versioneye.com/user/projects/5804e504c3e528003dbfac37/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5804e504c3e528003dbfac37)
-[![License](https://img.shields.io/packagist/l/Bukashk0zzz/yml-generator.svg?style=flat-square)](https://packagist.org/packages/Bukashk0zzz/yml-generator)
-[![Latest Stable Version](https://img.shields.io/packagist/v/Bukashk0zzz/yml-generator.svg?style=flat-square)](https://packagist.org/packages/Bukashk0zzz/yml-generator)
-[![Total Downloads](https://img.shields.io/packagist/dt/Bukashk0zzz/yml-generator.svg?style=flat-square)](https://packagist.org/packages/Bukashk0zzz/yml-generator)
+[![License](https://img.shields.io/packagist/l/blainerohmer/yml-generator.svg?style=flat-square)](https://packagist.org/packages/blainerohmer/yml-generator)
+[![Latest Stable Version](https://img.shields.io/packagist/v/blainerohmer/yml-generator.svg?style=flat-square)](https://packagist.org/packages/blainerohmer/yml-generator)
+[![Total Downloads](https://img.shields.io/packagist/dt/blainerohmer/yml-generator.svg?style=flat-square)](https://packagist.org/packages/blainerohmer/yml-generator)
 
 About
 -----
@@ -47,12 +47,12 @@ Usage example
 ```php
 <?php
 
-use Bukashk0zzz\YmlGenerator\Model\Offer\OfferSimple;
-use Bukashk0zzz\YmlGenerator\Model\Category;
-use Bukashk0zzz\YmlGenerator\Model\Currency;
-use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
-use Bukashk0zzz\YmlGenerator\Settings;
-use Bukashk0zzz\YmlGenerator\Generator;
+use blainerohmer\YmlGenerator\Model\Offer\OfferSimple;
+use blainerohmer\YmlGenerator\Model\Category;
+use blainerohmer\YmlGenerator\Model\Currency;
+use blainerohmer\YmlGenerator\Model\ShopInfo;
+use blainerohmer\YmlGenerator\Settings;
+use blainerohmer\YmlGenerator\Generator;
 
 $file = tempnam(sys_get_temp_dir(), 'YMLGenerator');
 $settings = (new Settings())

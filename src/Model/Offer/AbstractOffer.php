@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Bukashk0zzzYmlGenerator
+ * This file is part of the blainerohmerYmlGenerator
  *
  * (c) Denis Golubovskiy <bukashk0zzz@gmail.com>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Bukashk0zzz\YmlGenerator\Model\Offer;
+namespace blainerohmer\YmlGenerator\Model\Offer;
 
 /**
  * Abstract Class Offer
@@ -62,6 +62,11 @@ abstract class AbstractOffer implements OfferInterface
      * @var bool
      */
     private $manufacturerWarranty;
+
+    /**
+     * @var bool
+     */
+    private $pickup;
 
     /**
      * @var bool
@@ -262,12 +267,31 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
+     * @return boolean
+     */
+    public function isPickup()
+    {
+        return $this->pickup;
+    }
+
+    /**
      * @param boolean $manufacturerWarranty
      * @return $this
      */
     public function setManufacturerWarranty($manufacturerWarranty)
     {
         $this->manufacturerWarranty = $manufacturerWarranty;
+
+        return $this;
+    }
+
+    /**
+     * @param boolean $pickup
+     * @return $this
+     */
+    public function setPickup($pickup)
+    {
+        $this->pickup = $pickup;
 
         return $this;
     }
@@ -343,7 +367,9 @@ abstract class AbstractOffer implements OfferInterface
      */
     public function setDescription($description)
     {
-        $this->description = $description;
+        if ($description != '') {
+            $this->description = $description;
+        }
 
         return $this;
     }
@@ -362,8 +388,10 @@ abstract class AbstractOffer implements OfferInterface
      */
     public function setCountryOfOrigin($countryOfOrigin)
     {
-        $this->countryOfOrigin = $countryOfOrigin;
-
+        if ($countryOfOrigin != '') {
+            $this->countryOfOrigin = $countryOfOrigin;
+        }
+        
         return $this;
     }
 
@@ -401,6 +429,7 @@ abstract class AbstractOffer implements OfferInterface
             'price' => $this->getPrice(),
             'currencyId' => $this->getCurrencyId(),
             'categoryId' => $this->getCategoryId(),
+            'pickup' => $this->isPickup(),
             'delivery' => $this->isDelivery(),
             'local_delivery_cost' => $this->getLocalDeliveryCost(),
         ];

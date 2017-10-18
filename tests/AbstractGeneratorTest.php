@@ -1,27 +1,28 @@
 <?php
 
 /*
- * This file is part of the Bukashk0zzzYmlGenerator
+ * This file is part of the blainerohmerYmlGenerator
  *
- * (c) Denis Golubovskiy <bukashk0zzz@gmail.com>
+ * (c) Denis Golubovskiy <blainerohmer@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Bukashk0zzz\YmlGenerator\Tests;
+namespace blainerohmer\YmlGenerator\Tests;
 
 use Faker\Factory as Faker;
-use Bukashk0zzz\YmlGenerator\Model\Category;
-use Bukashk0zzz\YmlGenerator\Model\Currency;
-use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
-use Bukashk0zzz\YmlGenerator\Settings;
-use Bukashk0zzz\YmlGenerator\Generator;
+use blainerohmer\YmlGenerator\Model\Category;
+use blainerohmer\YmlGenerator\Model\Currency;
+use blainerohmer\YmlGenerator\Model\ShopInfo;
+use blainerohmer\YmlGenerator\Model\Delivery;
+use blainerohmer\YmlGenerator\Settings;
+use blainerohmer\YmlGenerator\Generator;
 
 /**
  * Abstract Generator test
  *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
+ * @author Denis Golubovskiy <blainerohmer@gmail.com>
  */
 abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
 {
@@ -51,12 +52,17 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
     protected $categories;
 
     /**
+     * @var array
+     */
+    protected $deliveries;
+
+    /**
      * @var string
      */
     protected $offerType;
 
     /**
-     * @return \Bukashk0zzz\YmlGenerator\Model\Offer\AbstractOffer
+     * @return \blainerohmer\YmlGenerator\Model\Offer\AbstractOffer
      */
     abstract protected function createOffer();
 
@@ -71,6 +77,7 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->shopInfo = $this->createShopInfo();
         $this->currencies = $this->createCurrencies();
         $this->categories = $this->createCategories();
+        $this->deliveries = $this->createDeliveries();
     }
 
     /**
@@ -80,6 +87,7 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
     {
         static::assertTrue((new Generator($this->settings))->generate(
             $this->shopInfo,
+            $this->deliveries,
             $this->currencies,
             $this->categories,
             $this->createOffers()
@@ -175,6 +183,26 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
         ;
 
         return $categories;
+    }
+
+    /**
+     * @return array
+     */
+    private function createDeliveries()
+    {
+        $deliveries = [];
+        $deliveries[] = (new Delivery())
+            ->setCost(1)
+            ->setDays(2)
+        ;
+
+        $deliveries[] = (new Delivery())
+            ->setCost(2)
+            ->setDays(1)
+            ->setOrderBefore(14)
+        ;
+
+        return $deliveries;
     }
 
     /**

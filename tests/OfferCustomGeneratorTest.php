@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Bukashk0zzzYmlGenerator
+ * This file is part of the blainerohmerYmlGenerator
  *
  * (c) Denis Golubovskiy <bukashk0zzz@gmail.com>
  *
@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Bukashk0zzz\YmlGenerator\Tests;
+namespace blainerohmer\YmlGenerator\Tests;
 
-use Bukashk0zzz\YmlGenerator\Model\Offer\OfferCustom;
-use Bukashk0zzz\YmlGenerator\Model\Offer\OfferParam;
+use blainerohmer\YmlGenerator\Model\Offer\OfferCustom;
+use blainerohmer\YmlGenerator\Model\Offer\OfferParam;
 
 /**
  * Generator test

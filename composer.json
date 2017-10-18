@@ -1,8 +1,8 @@
 {
-    "name": "bukashk0zzz/yml-generator",
+    "name": "blainerohmer/yml-generator",
     "description": "YML (Yandex Market Language) file generator",
     "keywords": ["yml", "yandex", "market", "yml-generator"],
-    "homepage": "https://github.com/Bukashk0zzz/YmlGenerator",
+    "homepage": "https://github.com/blainerohmer/YmlGenerator",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -14,7 +14,7 @@
     ],
     "support": {
         "email": "bukashk0zzz@gmail.com",
-        "issues": "https://github.com/Bukashk0zzz/YmlGenerator/issues"
+        "issues": "https://github.com/blainerohmer/YmlGenerator/issues"
     },
     "require": {
         "php": ">=5.5.0"
@@ -39,12 +39,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Bukashk0zzz\\YmlGenerator\\": "src/"
+            "blainerohmer\\YmlGenerator\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Bukashk0zzz\\YmlGenerator\\Tests\\": "tests/"
+            "blainerohmer\\YmlGenerator\\Tests\\": "tests/"
         }
     }
 }

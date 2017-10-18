@@ -12,42 +12,42 @@
 namespace blainerohmer\YmlGenerator\Model;
 
 /**
- * Class Category
+ * Class Delivery
  *
  * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
-class Category
+class Delivery
 {
     /**
      * @var int
      */
-    private $id;
+    private $cost;
 
     /**
      * @var int
      */
-    private $parentId;
+    private $days;
 
     /**
-     * @var string
+     * @var int
      */
-    private $name;
+    private $order_before;
 
     /**
      * @return int
      */
-    public function getId()
+    public function getCost()
     {
-        return $this->id;
+        return $this->cost;
     }
 
     /**
-     * @param int $id
-     * @return Category
+     * @param int $cost
+     * @return Delivery
      */
-    public function setId($id)
+    public function setCost($cost)
     {
-        $this->id = $id;
+        $this->cost = $cost;
 
         return $this;
     }
@@ -55,18 +55,18 @@ class Category
     /**
      * @return int
      */
-    public function getParentId()
+    public function getDays()
     {
-        return $this->parentId;
+        return $this->days;
     }
 
     /**
-     * @param int $parentId
-     * @return Category
+     * @param int $days
+     * @return Delivery
      */
-    public function setParentId($parentId)
+    public function setDays($days)
     {
-        $this->parentId = $parentId;
+        $this->days = $days;
 
         return $this;
     }
@@ -74,18 +74,20 @@ class Category
     /**
      * @return string
      */
-    public function getName()
+    public function getOrderBefore()
     {
-        return $this->name;
+        return $this->order_before;
     }
 
     /**
-     * @param string $name
-     * @return Category
+     * @param string $order_before
+     * @return Delivery
      */
-    public function setName($name)
+    public function setOrderBefore($order_before)
     {
-        $this->name = $name;
+        if ($order_before != '') {
+            $this->order_before = $order_before;
+        }
 
         return $this;
     }
