@@ -413,7 +413,7 @@ abstract class AbstractOffer implements OfferInterface
      */
     public function addPicture($url)
     {
-        if (\count($this->pictures) < 6) {
+        if (\count($this->pictures) < 10) {
             $this->pictures[] = $url;
         }
 
