@@ -166,7 +166,13 @@ class Generator
         }
 
         foreach ($offer->toArray() as $name => $value) {
-            $this->addOfferElement($name, $value);
+            if (is_array($value)) {
+                foreach ($value as $itemValue) {
+                    $this->addOfferElement($name, $itemValue);
+                }
+            } else {
+                $this->addOfferElement($name, $value);
+            }
         }
         $this->addOfferParams($offer);
 

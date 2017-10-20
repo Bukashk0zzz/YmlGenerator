@@ -88,6 +88,12 @@ abstract class AbstractOffer implements OfferInterface
      */
     private $countryOfOrigin;
 
+
+    /**
+     * @var array
+     */
+    private $pictures = [];
+
     /**
      * @var array
      */
@@ -387,6 +393,46 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
+     * Add picture
+     *
+     * @param string $url
+     *
+     * @return $this
+     */
+    public function addPicture($url)
+    {
+        if (count($this->pictures) < 6) {
+            $this->pictures[] = $url;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set pictures
+     *
+     * @param array $pictures
+     *
+     * @return $this
+     */
+    public function setPictures(array $pictures)
+    {
+        $this->pictures = $pictures;
+
+        return $this;
+    }
+
+    /**
+     * Get picture list
+     *
+     * @return array
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
+    }
+
+    /**
      * @return array
      */
     abstract protected function getOptions();
@@ -401,6 +447,7 @@ abstract class AbstractOffer implements OfferInterface
             'price' => $this->getPrice(),
             'currencyId' => $this->getCurrencyId(),
             'categoryId' => $this->getCategoryId(),
+            'picture' => $this->getPictures(),
             'delivery' => $this->isDelivery(),
             'local_delivery_cost' => $this->getLocalDeliveryCost(),
         ];
