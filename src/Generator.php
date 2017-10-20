@@ -19,8 +19,6 @@ use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
 
 /**
  * Class Generator
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 class Generator
 {
@@ -41,12 +39,13 @@ class Generator
 
     /**
      * Generator constructor.
+     *
      * @param Settings $settings
      */
     public function __construct($settings = null)
     {
-        $this->settings = $settings instanceof Settings ? $settings: new Settings();
-        $this->tmpFile = $this->settings->getOutputFile() !== null ? tempnam(sys_get_temp_dir(), 'YMLGenerator') : 'php://output';
+        $this->settings = $settings instanceof Settings ? $settings : new Settings();
+        $this->tmpFile = $this->settings->getOutputFile() !== null ? \tempnam(\sys_get_temp_dir(), 'YMLGenerator') : 'php://output';
 
         $this->writer = new \XMLWriter();
         $this->writer->openUri($this->tmpFile);
@@ -64,8 +63,6 @@ class Generator
      * @param array    $offers
      *
      * @return bool
-     *
-     * @throws \RuntimeException
      */
     public function generate(ShopInfo $shopInfo, array $currencies, array $categories, array $offers)
     {
@@ -80,12 +77,12 @@ class Generator
             $this->addFooter();
 
             if (null !== $this->settings->getOutputFile()) {
-                rename($this->tmpFile, $this->settings->getOutputFile());
+                \rename($this->tmpFile, $this->settings->getOutputFile());
             }
 
             return true;
         } catch (\Exception $exception) {
-            throw new \RuntimeException('Problem with generating YML file: '.$exception->getMessage(), 0, $exception);
+            throw new \RuntimeException(\sprintf('Problem with generating YML file: %s', $exception->getMessage()), 0, $exception);
         }
     }
 
@@ -98,7 +95,7 @@ class Generator
         $this->writer->startDtd('yml_catalog', null, 'shops.dtd');
         $this->writer->endDtd();
         $this->writer->startElement('yml_catalog');
-        $this->writer->writeAttribute('date', date('Y-m-d H:i'));
+        $this->writer->writeAttribute('date', \date('Y-m-d H:i'));
         $this->writer->startElement('shop');
     }
 
@@ -114,6 +111,7 @@ class Generator
 
     /**
      * Adds shop element data. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#shop)
+     *
      * @param ShopInfo $shopInfo
      */
     protected function addShopInfo(ShopInfo $shopInfo)
@@ -166,7 +164,7 @@ class Generator
         }
 
         foreach ($offer->toArray() as $name => $value) {
-            if (is_array($value)) {
+            if (\is_array($value)) {
                 foreach ($value as $itemValue) {
                     $this->addOfferElement($name, $itemValue);
                 }
@@ -181,6 +179,7 @@ class Generator
 
     /**
      * Adds <currencies> element. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#currencies)
+     *
      * @param array $currencies
      */
     private function addCurrencies(array $currencies)
@@ -199,6 +198,7 @@ class Generator
 
     /**
      * Adds <categories> element. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#categories)
+     *
      * @param array $categories
      */
     private function addCategories(array $categories)
@@ -217,6 +217,7 @@ class Generator
 
     /**
      * Adds <offers> element. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#offers)
+     *
      * @param array $offers
      */
     private function addOffers(array $offers)
@@ -257,6 +258,7 @@ class Generator
     /**
      * @param string $name
      * @param mixed  $value
+     *
      * @return bool
      */
     private function addOfferElement($name, $value)
@@ -265,7 +267,7 @@ class Generator
             return false;
         }
 
-        if (is_array($value)) {
+        if (\is_array($value)) {
             /** @var string $v */
             foreach ((array) $value as $v) {
                 $this->writer->writeElement($name, $v);
@@ -274,7 +276,7 @@ class Generator
             return true;
         }
 
-        if (is_bool($value)) {
+        if (\is_bool($value)) {
             $value = $value ? 'true' : 'false';
         }
         $this->writer->writeElement($name, $value);

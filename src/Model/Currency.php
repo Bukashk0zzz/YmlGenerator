@@ -13,8 +13,6 @@ namespace Bukashk0zzz\YmlGenerator\Model;
 
 /**
  * Class Currency
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 class Currency
 {
@@ -38,6 +36,7 @@ class Currency
 
     /**
      * @param string $id
+     *
      * @return Currency
      */
     public function setId($id)
@@ -57,6 +56,7 @@ class Currency
 
     /**
      * @param string $rate
+     *
      * @return Currency
      */
     public function setRate($rate)

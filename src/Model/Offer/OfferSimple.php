@@ -13,8 +13,6 @@ namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
 /**
  * Class OfferSimple
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 class OfferSimple extends AbstractOffer
 {
@@ -51,6 +49,7 @@ class OfferSimple extends AbstractOffer
 
     /**
      * @param string $name
+     *
      * @return $this
      */
     public function setName($name)
@@ -70,6 +69,7 @@ class OfferSimple extends AbstractOffer
 
     /**
      * @param string $vendor
+     *
      * @return $this
      */
     public function setVendor($vendor)
@@ -89,6 +89,7 @@ class OfferSimple extends AbstractOffer
 
     /**
      * @param string $vendorCode
+     *
      * @return $this
      */
     public function setVendorCode($vendorCode)

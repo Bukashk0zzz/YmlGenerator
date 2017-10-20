@@ -13,8 +13,6 @@ namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
 /**
  * Abstract Class Offer
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 abstract class AbstractOffer implements OfferInterface
 {
@@ -88,7 +86,6 @@ abstract class AbstractOffer implements OfferInterface
      */
     private $countryOfOrigin;
 
-
     /**
      * @var array
      */
@@ -104,7 +101,7 @@ abstract class AbstractOffer implements OfferInterface
      */
     public function toArray()
     {
-        return array_merge($this->getHeaderOptions(), $this->getOptions(), $this->getFooterOptions());
+        return \array_merge($this->getHeaderOptions(), $this->getOptions(), $this->getFooterOptions());
     }
 
     /**
@@ -117,6 +114,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param string $id
+     *
      * @return $this
      */
     public function setId($id)
@@ -127,7 +125,7 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isAvailable()
     {
@@ -135,7 +133,8 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
-     * @param boolean $available
+     * @param bool $available
+     *
      * @return $this
      */
     public function setAvailable($available)
@@ -155,6 +154,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param string $url
+     *
      * @return $this
      */
     public function setUrl($url)
@@ -174,6 +174,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param float $price
+     *
      * @return $this
      */
     public function setPrice($price)
@@ -193,6 +194,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param string $currencyId
+     *
      * @return $this
      */
     public function setCurrencyId($currencyId)
@@ -212,6 +214,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param int $categoryId
+     *
      * @return $this
      */
     public function setCategoryId($categoryId)
@@ -222,7 +225,7 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isAdult()
     {
@@ -230,7 +233,8 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
-     * @param boolean $adult
+     * @param bool $adult
+     *
      * @return $this
      */
     public function setAdult($adult)
@@ -250,6 +254,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param string $salesNotes
+     *
      * @return $this
      */
     public function setSalesNotes($salesNotes)
@@ -260,7 +265,7 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isManufacturerWarranty()
     {
@@ -268,7 +273,8 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
-     * @param boolean $manufacturerWarranty
+     * @param bool $manufacturerWarranty
+     *
      * @return $this
      */
     public function setManufacturerWarranty($manufacturerWarranty)
@@ -279,7 +285,7 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isDownloadable()
     {
@@ -287,7 +293,8 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
-     * @param boolean $downloadable
+     * @param bool $downloadable
+     *
      * @return $this
      */
     public function setDownloadable($downloadable)
@@ -298,7 +305,7 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isDelivery()
     {
@@ -306,7 +313,8 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
-     * @param boolean $delivery
+     * @param bool $delivery
+     *
      * @return $this
      */
     public function setDelivery($delivery)
@@ -326,6 +334,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param float $localDeliveryCost
+     *
      * @return $this
      */
     public function setLocalDeliveryCost($localDeliveryCost)
@@ -345,6 +354,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param string $description
+     *
      * @return $this
      */
     public function setDescription($description)
@@ -364,6 +374,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param string $countryOfOrigin
+     *
      * @return $this
      */
     public function setCountryOfOrigin($countryOfOrigin)
@@ -383,6 +394,7 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param OfferParam $param
+     *
      * @return $this
      */
     public function addParam(OfferParam $param)
@@ -401,7 +413,7 @@ abstract class AbstractOffer implements OfferInterface
      */
     public function addPicture($url)
     {
-        if (count($this->pictures) < 6) {
+        if (\count($this->pictures) < 6) {
             $this->pictures[] = $url;
         }
 

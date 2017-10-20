@@ -13,8 +13,6 @@ namespace Bukashk0zzz\YmlGenerator\Model;
 
 /**
  * Class ShopInfo
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 class ShopInfo
 {
@@ -79,6 +77,7 @@ class ShopInfo
 
     /**
      * @param string $name
+     *
      * @return ShopInfo
      */
     public function setName($name)
@@ -98,6 +97,7 @@ class ShopInfo
 
     /**
      * @param string $company
+     *
      * @return ShopInfo
      */
     public function setCompany($company)
@@ -117,6 +117,7 @@ class ShopInfo
 
     /**
      * @param string $url
+     *
      * @return ShopInfo
      */
     public function setUrl($url)
@@ -136,6 +137,7 @@ class ShopInfo
 
     /**
      * @param string $platform
+     *
      * @return ShopInfo
      */
     public function setPlatform($platform)
@@ -155,6 +157,7 @@ class ShopInfo
 
     /**
      * @param string $version
+     *
      * @return ShopInfo
      */
     public function setVersion($version)
@@ -174,6 +177,7 @@ class ShopInfo
 
     /**
      * @param string $agency
+     *
      * @return ShopInfo
      */
     public function setAgency($agency)
@@ -193,6 +197,7 @@ class ShopInfo
 
     /**
      * @param string $email
+     *
      * @return ShopInfo
      */
     public function setEmail($email)

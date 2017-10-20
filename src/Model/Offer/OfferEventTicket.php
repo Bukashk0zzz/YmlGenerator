@@ -13,8 +13,6 @@ namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
 /**
  * Class OfferEventTicket
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 class OfferEventTicket extends AbstractOffer
 {
@@ -61,6 +59,7 @@ class OfferEventTicket extends AbstractOffer
 
     /**
      * @param string $name
+     *
      * @return $this
      */
     public function setName($name)
@@ -80,6 +79,7 @@ class OfferEventTicket extends AbstractOffer
 
     /**
      * @param string $place
+     *
      * @return $this
      */
     public function setPlace($place)
@@ -99,6 +99,7 @@ class OfferEventTicket extends AbstractOffer
 
     /**
      * @param string $date
+     *
      * @return $this
      */
     public function setDate($date)
@@ -118,6 +119,7 @@ class OfferEventTicket extends AbstractOffer
 
     /**
      * @param int $premiere
+     *
      * @return $this
      */
     public function setPremiere($premiere)
@@ -137,6 +139,7 @@ class OfferEventTicket extends AbstractOffer
 
     /**
      * @param int $kids
+     *
      * @return $this
      */
     public function setKids($kids)

@@ -13,25 +13,26 @@ namespace Bukashk0zzz\YmlGenerator;
 
 /**
  * Class Settings
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 class Settings
 {
     /**
      * Xml file encoding
+     *
      * @var string
      */
     protected $encoding = 'windows-1251';
 
     /**
      * Output file name. If null 'php://output' is used.
+     *
      * @var string
      */
     protected $outputFile;
 
     /**
      * Indent string in xml file. False or null means no indent;
+     *
      * @var string
      */
     protected $indentString = "\t";
@@ -46,6 +47,7 @@ class Settings
 
     /**
      * @param string $encoding
+     *
      * @return Settings
      */
     public function setEncoding($encoding)
@@ -65,6 +67,7 @@ class Settings
 
     /**
      * @param string $outputFile
+     *
      * @return Settings
      */
     public function setOutputFile($outputFile)
@@ -84,6 +87,7 @@ class Settings
 
     /**
      * @param string $indentString
+     *
      * @return Settings
      */
     public function setIndentString($indentString)

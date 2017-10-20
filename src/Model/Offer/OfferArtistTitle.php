@@ -13,8 +13,6 @@ namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
 /**
  * Class OfferArtistTitle
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 class OfferArtistTitle extends AbstractOffer
 {
@@ -56,6 +54,7 @@ class OfferArtistTitle extends AbstractOffer
 
     /**
      * @param string $artist
+     *
      * @return OfferArtistTitle
      */
     public function setArtist($artist)
@@ -75,6 +74,7 @@ class OfferArtistTitle extends AbstractOffer
 
     /**
      * @param string $title
+     *
      * @return OfferArtistTitle
      */
     public function setTitle($title)
@@ -94,6 +94,7 @@ class OfferArtistTitle extends AbstractOffer
 
     /**
      * @param int $year
+     *
      * @return OfferArtistTitle
      */
     public function setYear($year)
@@ -113,6 +114,7 @@ class OfferArtistTitle extends AbstractOffer
 
     /**
      * @param string $media
+     *
      * @return OfferArtistTitle
      */
     public function setMedia($media)

@@ -16,8 +16,6 @@ use Bukashk0zzz\YmlGenerator\Model\Offer\OfferParam;
 
 /**
  * Generator test
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 class OfferCustomGeneratorTest extends AbstractGeneratorTest
 {

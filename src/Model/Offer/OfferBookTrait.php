@@ -13,8 +13,6 @@ namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
 /**
  * Trait OfferBook
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 trait OfferBookTrait
 {
@@ -78,6 +76,7 @@ trait OfferBookTrait
 
     /**
      * @param string $author
+     *
      * @return $this
      */
     public function setAuthor($author)
@@ -97,6 +96,7 @@ trait OfferBookTrait
 
     /**
      * @param string $name
+     *
      * @return $this
      */
     public function setName($name)
@@ -116,6 +116,7 @@ trait OfferBookTrait
 
     /**
      * @param string $publisher
+     *
      * @return $this
      */
     public function setPublisher($publisher)
@@ -135,6 +136,7 @@ trait OfferBookTrait
 
     /**
      * @param string $series
+     *
      * @return $this
      */
     public function setSeries($series)
@@ -154,6 +156,7 @@ trait OfferBookTrait
 
     /**
      * @param int $year
+     *
      * @return $this
      */
     public function setYear($year)
@@ -173,6 +176,7 @@ trait OfferBookTrait
 
     /**
      * @param string $ISBN
+     *
      * @return $this
      */
     public function setISBN($ISBN)
@@ -192,6 +196,7 @@ trait OfferBookTrait
 
     /**
      * @param int $volume
+     *
      * @return $this
      */
     public function setVolume($volume)
@@ -211,6 +216,7 @@ trait OfferBookTrait
 
     /**
      * @param int $part
+     *
      * @return $this
      */
     public function setPart($part)
@@ -230,6 +236,7 @@ trait OfferBookTrait
 
     /**
      * @param string $language
+     *
      * @return $this
      */
     public function setLanguage($language)
@@ -249,6 +256,7 @@ trait OfferBookTrait
 
     /**
      * @param string $tableOfContents
+     *
      * @return $this
      */
     public function setTableOfContents($tableOfContents)

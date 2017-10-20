@@ -15,8 +15,6 @@ use Bukashk0zzz\YmlGenerator\Model\Offer\OfferTour;
 
 /**
  * Generator test
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 class OfferTourGeneratorTest extends AbstractGeneratorTest
 {

@@ -13,8 +13,6 @@ namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
 /**
  * Interface Offer
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 interface OfferInterface
 {

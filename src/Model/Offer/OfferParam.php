@@ -13,8 +13,6 @@ namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
 /**
  * Class OfferParam
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 class OfferParam
 {
@@ -43,6 +41,7 @@ class OfferParam
 
     /**
      * @param string $name
+     *
      * @return OfferParam
      */
     public function setName($name)
@@ -62,6 +61,7 @@ class OfferParam
 
     /**
      * @param string $unit
+     *
      * @return OfferParam
      */
     public function setUnit($unit)
@@ -81,6 +81,7 @@ class OfferParam
 
     /**
      * @param string $value
+     *
      * @return OfferParam
      */
     public function setValue($value)

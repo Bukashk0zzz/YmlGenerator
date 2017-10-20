@@ -12,13 +12,11 @@
 namespace Bukashk0zzz\YmlGenerator\Tests;
 
 use Bukashk0zzz\YmlGenerator\Generator;
-use Bukashk0zzz\YmlGenerator\Settings;
 use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
+use Bukashk0zzz\YmlGenerator\Settings;
 
 /**
  * Generator test
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 class GeneratorTest extends \PHPUnit_Framework_TestCase
 {

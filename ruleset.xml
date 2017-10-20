@@ -4,8 +4,10 @@
 
     <exclude-pattern>vendor/</exclude-pattern>
 
-    <rule ref="vendor/escapestudios/symfony2-coding-standard/Symfony2"/>
-    <rule ref="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility" />
+    <rule ref="vendor/wimg/php-compatibility/PHPCompatibility" />
+    <rule ref="./vendor/escapestudios/symfony2-coding-standard/Symfony">
+        <exclude name="Symfony.ControlStructure.YodaConditions.Invalid"/>
+    </rule>
 
     <config name="testVersion" value="5.5-7.1"/>
 

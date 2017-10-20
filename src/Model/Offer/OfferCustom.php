@@ -13,8 +13,6 @@ namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
 /**
  * Class OfferCustom
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 class OfferCustom extends AbstractOffer
 {
@@ -56,6 +54,7 @@ class OfferCustom extends AbstractOffer
 
     /**
      * @param string $typePrefix
+     *
      * @return $this
      */
     public function setTypePrefix($typePrefix)
@@ -75,6 +74,7 @@ class OfferCustom extends AbstractOffer
 
     /**
      * @param string $model
+     *
      * @return $this
      */
     public function setModel($model)
@@ -94,6 +94,7 @@ class OfferCustom extends AbstractOffer
 
     /**
      * @param string $vendor
+     *
      * @return $this
      */
     public function setVendor($vendor)
@@ -113,6 +114,7 @@ class OfferCustom extends AbstractOffer
 
     /**
      * @param string $vendorCode
+     *
      * @return $this
      */
     public function setVendorCode($vendorCode)

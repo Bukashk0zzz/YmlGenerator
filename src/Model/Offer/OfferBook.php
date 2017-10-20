@@ -13,8 +13,6 @@ namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
 /**
  * Class OfferBook
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 class OfferBook extends AbstractOffer
 {
@@ -48,6 +46,7 @@ class OfferBook extends AbstractOffer
 
     /**
      * @param string $binding
+     *
      * @return $this
      */
     public function setBinding($binding)
@@ -67,6 +66,7 @@ class OfferBook extends AbstractOffer
 
     /**
      * @param int $pageExtent
+     *
      * @return $this
      */
     public function setPageExtent($pageExtent)

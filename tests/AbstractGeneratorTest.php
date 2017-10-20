@@ -11,17 +11,15 @@
 
 namespace Bukashk0zzz\YmlGenerator\Tests;
 
-use Faker\Factory as Faker;
+use Bukashk0zzz\YmlGenerator\Generator;
 use Bukashk0zzz\YmlGenerator\Model\Category;
 use Bukashk0zzz\YmlGenerator\Model\Currency;
 use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
 use Bukashk0zzz\YmlGenerator\Settings;
-use Bukashk0zzz\YmlGenerator\Generator;
+use Faker\Factory as Faker;
 
 /**
  * Abstract Generator test
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
 {
@@ -56,11 +54,6 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
     protected $offerType;
 
     /**
-     * @return \Bukashk0zzz\YmlGenerator\Model\Offer\AbstractOffer
-     */
-    abstract protected function createOffer();
-
-    /**
      * Test setup
      */
     public function setUp()
@@ -72,6 +65,11 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->currencies = $this->createCurrencies();
         $this->categories = $this->createCategories();
     }
+
+    /**
+     * @return \Bukashk0zzz\YmlGenerator\Model\Offer\AbstractOffer
+     */
+    abstract protected function createOffer();
 
     /**
      * Test generation
@@ -93,11 +91,11 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     private function validateFileWithDtd()
     {
-        $systemId = 'data://text/plain;base64,'.base64_encode(file_get_contents(__DIR__.'/dtd/'.$this->offerType.'.dtd'));
+        $systemId = 'data://text/plain;base64,'.\base64_encode(\file_get_contents(__DIR__.'/dtd/'.$this->offerType.'.dtd'));
         $root = 'yml_catalog';
 
         $ymlFile = new \DOMDocument();
-        $ymlFile->loadXML(file_get_contents($this->settings->getOutputFile()));
+        $ymlFile->loadXML(\file_get_contents($this->settings->getOutputFile()));
 
         $creator = new \DOMImplementation();
         $ymlFileWithDtd = $creator->createDocument(null, null, $creator->createDocumentType($root, null, $systemId));
@@ -121,7 +119,7 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
     private function createSettings()
     {
         return (new Settings())
-            ->setOutputFile(tempnam(sys_get_temp_dir(), 'YMLGeneratorTest'))
+            ->setOutputFile(\tempnam(\sys_get_temp_dir(), 'YMLGeneratorTest'))
             ->setEncoding('utf-8')
             ->setIndentString("\t")
         ;
@@ -183,7 +181,7 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
     private function createOffers()
     {
         $offers = [];
-        foreach (range(1, 2) as $id) {
+        foreach (\range(1, 2) as $id) {
             $offers[] = $this
                 ->createOffer()
                 ->setId($id)

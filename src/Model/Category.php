@@ -13,8 +13,6 @@ namespace Bukashk0zzz\YmlGenerator\Model;
 
 /**
  * Class Category
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 class Category
 {
@@ -43,6 +41,7 @@ class Category
 
     /**
      * @param int $id
+     *
      * @return Category
      */
     public function setId($id)
@@ -62,6 +61,7 @@ class Category
 
     /**
      * @param int $parentId
+     *
      * @return Category
      */
     public function setParentId($parentId)
@@ -81,6 +81,7 @@ class Category
 
     /**
      * @param string $name
+     *
      * @return Category
      */
     public function setName($name)

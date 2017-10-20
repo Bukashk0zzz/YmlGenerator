@@ -13,8 +13,6 @@ namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
 /**
  * Class OfferTour
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 class OfferTour extends AbstractOffer
 {
@@ -91,6 +89,7 @@ class OfferTour extends AbstractOffer
 
     /**
      * @param string $worldRegion
+     *
      * @return $this
      */
     public function setWorldRegion($worldRegion)
@@ -110,6 +109,7 @@ class OfferTour extends AbstractOffer
 
     /**
      * @param string $country
+     *
      * @return $this
      */
     public function setCountry($country)
@@ -129,6 +129,7 @@ class OfferTour extends AbstractOffer
 
     /**
      * @param string $region
+     *
      * @return $this
      */
     public function setRegion($region)
@@ -148,6 +149,7 @@ class OfferTour extends AbstractOffer
 
     /**
      * @param int $days
+     *
      * @return $this
      */
     public function setDays($days)
@@ -167,6 +169,7 @@ class OfferTour extends AbstractOffer
 
     /**
      * @param string $dataTour
+     *
      * @return $this
      */
     public function addDataTour($dataTour)
@@ -186,6 +189,7 @@ class OfferTour extends AbstractOffer
 
     /**
      * @param string $name
+     *
      * @return $this
      */
     public function setName($name)
@@ -205,6 +209,7 @@ class OfferTour extends AbstractOffer
 
     /**
      * @param string $hotelStars
+     *
      * @return $this
      */
     public function setHotelStars($hotelStars)
@@ -224,6 +229,7 @@ class OfferTour extends AbstractOffer
 
     /**
      * @param string $room
+     *
      * @return $this
      */
     public function setRoom($room)
@@ -243,6 +249,7 @@ class OfferTour extends AbstractOffer
 
     /**
      * @param string $meal
+     *
      * @return $this
      */
     public function setMeal($meal)
@@ -262,6 +269,7 @@ class OfferTour extends AbstractOffer
 
     /**
      * @param string $included
+     *
      * @return $this
      */
     public function setIncluded($included)
@@ -281,6 +289,7 @@ class OfferTour extends AbstractOffer
 
     /**
      * @param string $transport
+     *
      * @return $this
      */
     public function setTransport($transport)

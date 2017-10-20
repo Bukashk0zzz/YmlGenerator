@@ -13,8 +13,6 @@ namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
 /**
  * Class OfferAudiobook
- *
- * @author Denis Golubovskiy <bukashk0zzz@gmail.com>
  */
 class OfferAudiobook extends AbstractOffer
 {
@@ -63,6 +61,7 @@ class OfferAudiobook extends AbstractOffer
 
     /**
      * @param string $performedBy
+     *
      * @return $this
      */
     public function setPerformedBy($performedBy)
@@ -82,6 +81,7 @@ class OfferAudiobook extends AbstractOffer
 
     /**
      * @param string $performanceType
+     *
      * @return $this
      */
     public function setPerformanceType($performanceType)
@@ -101,6 +101,7 @@ class OfferAudiobook extends AbstractOffer
 
     /**
      * @param string $format
+     *
      * @return $this
      */
     public function setFormat($format)
@@ -120,6 +121,7 @@ class OfferAudiobook extends AbstractOffer
 
     /**
      * @param string $storage
+     *
      * @return $this
      */
     public function setStorage($storage)
@@ -139,6 +141,7 @@ class OfferAudiobook extends AbstractOffer
 
     /**
      * @param string $recordingLength
+     *
      * @return $this
      */
     public function setRecordingLength($recordingLength)
