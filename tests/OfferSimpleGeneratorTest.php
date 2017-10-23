@@ -36,6 +36,7 @@ class OfferSimpleGeneratorTest extends AbstractGeneratorTest
             ->setName($this->faker->name)
             ->setVendor($this->faker->company)
             ->setVendorCode(null)
+            ->setPickup(true)
             ->addPicture('http://example.com/example.jpeg')
         ;
     }

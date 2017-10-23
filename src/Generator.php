@@ -13,6 +13,7 @@ namespace Bukashk0zzz\YmlGenerator;
 
 use Bukashk0zzz\YmlGenerator\Model\Category;
 use Bukashk0zzz\YmlGenerator\Model\Currency;
+use Bukashk0zzz\YmlGenerator\Model\Delivery;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferInterface;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferParam;
 use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
@@ -48,7 +49,7 @@ class Generator
         $this->tmpFile = $this->settings->getOutputFile() !== null ? \tempnam(\sys_get_temp_dir(), 'YMLGenerator') : 'php://output';
 
         $this->writer = new \XMLWriter();
-        $this->writer->openUri($this->tmpFile);
+        $this->writer->openURI($this->tmpFile);
 
         if ($this->settings->getIndentString()) {
             $this->writer->setIndentString($this->settings->getIndentString());
@@ -61,10 +62,11 @@ class Generator
      * @param array    $currencies
      * @param array    $categories
      * @param array    $offers
+     * @param array    $deliveries
      *
      * @return bool
      */
-    public function generate(ShopInfo $shopInfo, array $currencies, array $categories, array $offers)
+    public function generate(ShopInfo $shopInfo, array $currencies, array $categories, array $offers, array $deliveries = [])
     {
         try {
             $this->addHeader();
@@ -72,12 +74,17 @@ class Generator
             $this->addShopInfo($shopInfo);
             $this->addCurrencies($currencies);
             $this->addCategories($categories);
-            $this->addOffers($offers);
 
+            if (\count($deliveries) !== 0) {
+                $this->addDeliveries($deliveries);
+            }
+
+            $this->addOffers($offers);
             $this->addFooter();
 
             if (null !== $this->settings->getOutputFile()) {
-                \rename($this->tmpFile, $this->settings->getOutputFile());
+                \copy($this->tmpFile, $this->settings->getOutputFile());
+                @\unlink($this->tmpFile);
             }
 
             return true;
@@ -92,8 +99,8 @@ class Generator
     protected function addHeader()
     {
         $this->writer->startDocument('1.0', $this->settings->getEncoding());
-        $this->writer->startDtd('yml_catalog', null, 'shops.dtd');
-        $this->writer->endDtd();
+        $this->writer->startDTD('yml_catalog', null, 'shops.dtd');
+        $this->writer->endDTD();
         $this->writer->startElement('yml_catalog');
         $this->writer->writeAttribute('date', \date('Y-m-d H:i'));
         $this->writer->startElement('shop');
@@ -148,6 +155,20 @@ class Generator
 
         $this->writer->text($category->getName());
         $this->writer->fullEndElement();
+    }
+
+    /**
+     * @param Delivery $delivery
+     */
+    protected function addDelivery(Delivery $delivery)
+    {
+        $this->writer->startElement('option');
+        $this->writer->writeAttribute('cost', $delivery->getCost());
+        $this->writer->writeAttribute('days', $delivery->getDays());
+        if ($delivery->getOrderBefore() !== null) {
+            $this->writer->writeAttribute('order-before', $delivery->getOrderBefore());
+        }
+        $this->writer->endElement();
     }
 
     /**
@@ -216,6 +237,25 @@ class Generator
     }
 
     /**
+     * Adds <delivery-option> element. (See https://yandex.ru/support/partnermarket/elements/delivery-options.xml)
+     *
+     * @param array $deliveries
+     */
+    private function addDeliveries(array $deliveries)
+    {
+        $this->writer->startElement('delivery-options');
+
+        /** @var Delivery $delivery */
+        foreach ($deliveries as $delivery) {
+            if ($delivery instanceof Delivery) {
+                $this->addDelivery($delivery);
+            }
+        }
+
+        $this->writer->fullEndElement();
+    }
+
+    /**
      * Adds <offers> element. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#offers)
      *
      * @param array $offers
@@ -265,15 +305,6 @@ class Generator
     {
         if ($value === null) {
             return false;
-        }
-
-        if (\is_array($value)) {
-            /** @var string $v */
-            foreach ((array) $value as $v) {
-                $this->writer->writeElement($name, $v);
-            }
-
-            return true;
         }
 
         if (\is_bool($value)) {

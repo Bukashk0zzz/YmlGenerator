@@ -50,6 +50,7 @@ Usage example
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferSimple;
 use Bukashk0zzz\YmlGenerator\Model\Category;
 use Bukashk0zzz\YmlGenerator\Model\Currency;
+use Bukashk0zzz\YmlGenerator\Model\Delivery;
 use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
 use Bukashk0zzz\YmlGenerator\Settings;
 use Bukashk0zzz\YmlGenerator\Generator;
@@ -93,11 +94,20 @@ $offers[] = (new OfferSimple())
     ->setName('Best product ever')
 ;
 
+// Optional creating deliveries array (https://yandex.ru/support/partnermarket/elements/delivery-options.xml)
+$deliveries = [];
+$deliveries[] = (new Delivery())
+    ->setCost(2)
+    ->setDays(1)
+    ->setOrderBefore(14)
+;
+
 (new Generator($settings))->generate(
     $shopInfo,
     $currencies,
     $categories,
-    $offers
+    $offers,
+    $deliveries
 );
 ```
 

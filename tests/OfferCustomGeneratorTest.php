@@ -44,6 +44,7 @@ class OfferCustomGeneratorTest extends AbstractGeneratorTest
                     ->setUnit($this->faker->text(5))
                     ->setValue($this->faker->text(10))
             )
+            ->setPictures(['http://example.com/example.jpeg', 'http://example.com/example2.jpeg'])
         ;
     }
 }

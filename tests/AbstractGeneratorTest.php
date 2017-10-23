@@ -14,6 +14,7 @@ namespace Bukashk0zzz\YmlGenerator\Tests;
 use Bukashk0zzz\YmlGenerator\Generator;
 use Bukashk0zzz\YmlGenerator\Model\Category;
 use Bukashk0zzz\YmlGenerator\Model\Currency;
+use Bukashk0zzz\YmlGenerator\Model\Delivery;
 use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
 use Bukashk0zzz\YmlGenerator\Settings;
 use Faker\Factory as Faker;
@@ -49,6 +50,11 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
     protected $categories;
 
     /**
+     * @var array
+     */
+    protected $deliveries;
+
+    /**
      * @var string
      */
     protected $offerType;
@@ -64,6 +70,7 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->shopInfo = $this->createShopInfo();
         $this->currencies = $this->createCurrencies();
         $this->categories = $this->createCategories();
+        $this->deliveries = $this->createDeliveries();
     }
 
     /**
@@ -80,7 +87,8 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
             $this->shopInfo,
             $this->currencies,
             $this->categories,
-            $this->createOffers()
+            $this->createOffers(),
+            $this->deliveries
         ));
 
         $this->validateFileWithDtd();
@@ -173,6 +181,24 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
         ;
 
         return $categories;
+    }
+
+    /**
+     * @return array
+     */
+    private function createDeliveries()
+    {
+        $deliveries = [];
+        $deliveries[] = (new Delivery())
+            ->setCost(1)
+            ->setDays(2);
+
+        $deliveries[] = (new Delivery())
+            ->setCost(2)
+            ->setDays(1)
+            ->setOrderBefore(14);
+
+        return $deliveries;
     }
 
     /**

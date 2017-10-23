@@ -64,6 +64,11 @@ abstract class AbstractOffer implements OfferInterface
     /**
      * @var bool
      */
+    private $pickup;
+
+    /**
+     * @var bool
+     */
     private $downloadable;
 
     /**
@@ -287,6 +292,26 @@ abstract class AbstractOffer implements OfferInterface
     /**
      * @return bool
      */
+    public function isPickup()
+    {
+        return $this->pickup;
+    }
+
+    /**
+     * @param bool $pickup
+     *
+     * @return $this
+     */
+    public function setPickup($pickup)
+    {
+        $this->pickup = $pickup;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
     public function isDownloadable()
     {
         return $this->downloadable;
@@ -460,6 +485,7 @@ abstract class AbstractOffer implements OfferInterface
             'currencyId' => $this->getCurrencyId(),
             'categoryId' => $this->getCategoryId(),
             'picture' => $this->getPictures(),
+            'pickup' => $this->isPickup(),
             'delivery' => $this->isDelivery(),
             'local_delivery_cost' => $this->getLocalDeliveryCost(),
         ];
