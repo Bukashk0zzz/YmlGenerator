@@ -41,6 +41,7 @@ class Delivery
 
     /**
      * @param int $cost
+     *
      * @return Delivery
      */
     public function setCost($cost)
@@ -60,6 +61,7 @@ class Delivery
 
     /**
      * @param int $days
+     *
      * @return Delivery
      */
     public function setDays($days)
@@ -70,7 +72,7 @@ class Delivery
     }
 
     /**
-     * @return string|null
+     * @return int|null
      */
     public function getOrderBefore()
     {
@@ -78,7 +80,7 @@ class Delivery
     }
 
     /**
-     * @param string|null $orderBefore
+     * @param int|null $orderBefore
      *
      * @return Delivery
      */
