@@ -14,6 +14,7 @@ namespace Bukashk0zzz\YmlGenerator;
 use Bukashk0zzz\YmlGenerator\Model\Category;
 use Bukashk0zzz\YmlGenerator\Model\Currency;
 use Bukashk0zzz\YmlGenerator\Model\Delivery;
+use Bukashk0zzz\YmlGenerator\Model\Offer\OfferGroupAwareInterface;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferInterface;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferParam;
 use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
@@ -182,6 +183,10 @@ class Generator
 
         if ($offer->getType() !== null) {
             $this->writer->writeAttribute('type', $offer->getType());
+        }
+
+        if ($offer instanceof OfferGroupAwareInterface && $offer->getGroupId() !== null) {
+            $this->writer->writeAttribute('group_id', $offer->getGroupId());
         }
 
         foreach ($offer->toArray() as $name => $value) {

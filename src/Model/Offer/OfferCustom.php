@@ -14,8 +14,10 @@ namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 /**
  * Class OfferCustom
  */
-class OfferCustom extends AbstractOffer
+class OfferCustom extends AbstractOffer implements OfferGroupAwareInterface
 {
+    use OfferGroupTrait;
+
     /**
      * @var string
      */
