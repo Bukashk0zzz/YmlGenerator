@@ -45,5 +45,5 @@ trait OfferGroupTrait
         $this->groupId = $groupId;
 
         return $this;
-}
+    }
 }
