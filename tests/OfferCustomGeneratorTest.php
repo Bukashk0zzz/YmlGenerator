@@ -38,6 +38,7 @@ class OfferCustomGeneratorTest extends AbstractGeneratorTest
             ->setVendor($this->faker->company)
             ->setVendorCode($this->faker->companySuffix)
             ->setModel($this->faker->userName)
+            ->setGroupId($this->faker->numberBetween())
             ->addParam(
                 (new OfferParam())
                     ->setName($this->faker->name)

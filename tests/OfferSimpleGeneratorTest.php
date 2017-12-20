@@ -37,6 +37,7 @@ class OfferSimpleGeneratorTest extends AbstractGeneratorTest
             ->setVendor($this->faker->company)
             ->setVendorCode(null)
             ->setPickup(true)
+            ->setGroupId($this->faker->numberBetween())
             ->addPicture('http://example.com/example.jpeg')
         ;
     }
