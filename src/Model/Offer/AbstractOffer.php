@@ -47,6 +47,11 @@ abstract class AbstractOffer implements OfferInterface
     private $categoryId;
 
     /**
+     * @var string
+     */
+    private $marketCategory;
+
+    /**
      * @var bool
      */
     private $adult;
@@ -225,6 +230,26 @@ abstract class AbstractOffer implements OfferInterface
     public function setCategoryId($categoryId)
     {
         $this->categoryId = $categoryId;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMarketCategory()
+    {
+        return $this->marketCategory;
+    }
+
+    /**
+     * @param string $marketCategory
+     *
+     * @return $this
+     */
+    public function setMarketCategory($marketCategory)
+    {
+        $this->marketCategory = $marketCategory;
 
         return $this;
     }
@@ -484,6 +509,7 @@ abstract class AbstractOffer implements OfferInterface
             'price' => $this->getPrice(),
             'currencyId' => $this->getCurrencyId(),
             'categoryId' => $this->getCategoryId(),
+            'market_category' => $this->getMarketCategory(),
             'picture' => $this->getPictures(),
             'pickup' => $this->isPickup(),
             'delivery' => $this->isDelivery(),
