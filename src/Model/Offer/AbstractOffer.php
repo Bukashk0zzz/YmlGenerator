@@ -208,7 +208,7 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
-     * @param $oldPrice
+     * @param float $oldPrice
      *
      * @return $this
      */
