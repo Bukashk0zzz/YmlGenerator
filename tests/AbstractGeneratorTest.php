@@ -224,6 +224,7 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
                 ->setCountryOfOrigin('Украина')
                 ->setDownloadable($this->faker->boolean)
                 ->setAdult($this->faker->boolean)
+                ->setMarketCategory($this->faker->word)
             ;
         }
 
