@@ -37,6 +37,11 @@ abstract class AbstractOffer implements OfferInterface
     private $price;
 
     /**
+     * @var float
+     */
+    private $oldPrice;
+
+    /**
      * @var string
      */
     private $currencyId;
@@ -190,6 +195,26 @@ abstract class AbstractOffer implements OfferInterface
     public function setPrice($price)
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getOldPrice()
+    {
+        return $this->oldPrice;
+    }
+
+    /**
+     * @param float $oldPrice
+     *
+     * @return $this
+     */
+    public function setOldPrice($oldPrice)
+    {
+        $this->oldPrice = $oldPrice;
 
         return $this;
     }
@@ -507,6 +532,7 @@ abstract class AbstractOffer implements OfferInterface
         return [
             'url' => $this->getUrl(),
             'price' => $this->getPrice(),
+            'oldprice' => $this->getOldPrice(),
             'currencyId' => $this->getCurrencyId(),
             'categoryId' => $this->getCategoryId(),
             'market_category' => $this->getMarketCategory(),
