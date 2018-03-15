@@ -34,7 +34,7 @@
                  picture*, store?, pickup?, delivery?, deliveryIncluded?, local_delivery_cost?, orderingTime?,
                  name, vendor?, vendorCode?,
                  aliases?, additional*, description?, sales_notes?, promo?,
-                 manufacturer_warranty?, country_of_origin?, downloadable?, adult?,
+                 manufacturer_warranty?, country_of_origin?, downloadable?, adult?, cpa?,
                  age?,
                  barcode*,
                  param*,
