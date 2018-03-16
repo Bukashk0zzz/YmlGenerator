@@ -145,5 +145,5 @@
 <!ELEMENT is_premiere (#PCDATA)>
 <!ELEMENT is_kids (#PCDATA)>
 <!ELEMENT date (#PCDATA)>
-
+<!ELEMENT cpa (#PCDATA)>
 
