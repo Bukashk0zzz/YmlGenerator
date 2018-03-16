@@ -34,7 +34,7 @@
                  picture*, store?, pickup?, delivery?, deliveryIncluded?, local_delivery_cost?, orderingTime?,
                  worldRegion?, country?, region?, days, dataTour*, name, hotel_stars?, room?, meal?, included, transport, price_min?, price_max?, options?,
                  aliases?, additional*, description?, sales_notes?, promo?,
-                 manufacturer_warranty?, country_of_origin?, downloadable?, adult?,
+                 manufacturer_warranty?, country_of_origin?, downloadable?, adult?, cpa?,
                  age?,
                  barcode*,
                  param*,
@@ -145,5 +145,5 @@
 <!ELEMENT is_premiere (#PCDATA)>
 <!ELEMENT is_kids (#PCDATA)>
 <!ELEMENT date (#PCDATA)>
-
+<!ELEMENT cpa (#PCDATA)>
 

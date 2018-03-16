@@ -102,6 +102,11 @@ abstract class AbstractOffer implements OfferInterface
     private $countryOfOrigin;
 
     /**
+     * @var int
+     */
+    private $cpa;
+
+    /**
      * @var array
      */
     private $pictures = [];
@@ -460,6 +465,26 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
+     * @return int
+     */
+    public function getCpa()
+    {
+        return $this->cpa;
+    }
+
+    /**
+     * @param int $cpa
+     *
+     * @return $this
+     */
+    public function setCpa($cpa)
+    {
+        $this->cpa = $cpa;
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function getParams()
@@ -555,6 +580,7 @@ abstract class AbstractOffer implements OfferInterface
             'country_of_origin' => $this->getCountryOfOrigin(),
             'downloadable' => $this->isDownloadable(),
             'adult' => $this->isAdult(),
+            'cpa' => $this->getCpa(),
         ];
     }
 }
