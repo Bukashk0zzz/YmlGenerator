@@ -58,6 +58,7 @@ use Bukashk0zzz\YmlGenerator\Generator;
 $file = tempnam(sys_get_temp_dir(), 'YMLGenerator');
 $settings = (new Settings())
     ->setOutputFile($file)
+    ->setEncoding('UTF-8')
 ;
 
 // Creating ShopInfo object (https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#shop)
