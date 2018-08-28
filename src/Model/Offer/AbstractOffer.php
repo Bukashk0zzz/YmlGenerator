@@ -106,6 +106,9 @@ abstract class AbstractOffer implements OfferInterface
      */
     private $cpa;
 
+    /** @var string[] */
+    private $barcodes;
+
     /**
      * @var array
      */
@@ -545,6 +548,39 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
+     * Get list of barcodes of the offer
+     *
+     * @return string[]
+     */
+    public function getBarcodes()
+    {
+        return $this->barcodes;
+    }
+
+    /**
+     * Set list of barcodes for that offer
+     *
+     * @param string[] $barcodes
+     * @return $this
+     */
+    public function setBarcodes(array $barcodes = [])
+    {
+        $this->barcodes = $barcodes;
+
+        return $this;
+    }
+
+    /**
+     * Add one barcode to the collection of barcodes of this offer
+     *
+     * @param $barcode
+     */
+    public function addBarcode($barcode)
+    {
+        $this->barcodes[] = $barcode;
+    }
+
+    /**
      * @return array
      */
     abstract protected function getOptions();
@@ -581,6 +617,7 @@ abstract class AbstractOffer implements OfferInterface
             'downloadable' => $this->isDownloadable(),
             'adult' => $this->isAdult(),
             'cpa' => $this->getCpa(),
+            'barcode' => $this->getBarcodes(),
         ];
     }
 }

@@ -227,6 +227,7 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
                 ->setAdult($this->faker->boolean)
                 ->setMarketCategory($this->faker->word)
                 ->setCpa($this->faker->numberBetween(0, 1))
+                ->setBarcodes([$this->faker->ean13, $this->faker->ean13])
             ;
         }
 
