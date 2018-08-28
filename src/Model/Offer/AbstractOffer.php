@@ -561,6 +561,7 @@ abstract class AbstractOffer implements OfferInterface
      * Set list of barcodes for that offer
      *
      * @param string[] $barcodes
+     *
      * @return $this
      */
     public function setBarcodes(array $barcodes = [])
@@ -573,11 +574,15 @@ abstract class AbstractOffer implements OfferInterface
     /**
      * Add one barcode to the collection of barcodes of this offer
      *
-     * @param $barcode
+     * @param string $barcode
+     *
+     * @return AbstractOffer
      */
     public function addBarcode($barcode)
     {
         $this->barcodes[] = $barcode;
+
+        return $this;
     }
 
     /**
