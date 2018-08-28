@@ -39,6 +39,7 @@ class OfferSimpleGeneratorTest extends AbstractGeneratorTest
             ->setPickup(true)
             ->setGroupId($this->faker->numberBetween())
             ->addPicture('http://example.com/example.jpeg')
+            ->addBarcode($this->faker->ean13)
         ;
     }
 }
