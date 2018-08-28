@@ -20,6 +20,7 @@
         "php": ">=5.6.1"
     },
     "require-dev": {
+        "ext-dom": "*",
         "phpunit/phpunit": "^5.0",
         "fzaninotto/faker": "^1.6",
         "friendsofphp/php-cs-fixer": "^2.3",
