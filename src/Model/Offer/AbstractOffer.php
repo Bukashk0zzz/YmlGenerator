@@ -120,6 +120,11 @@ abstract class AbstractOffer implements OfferInterface
     private $params = [];
 
     /**
+     * @var bool
+     */
+    private $store;
+
+    /**
      * @return array
      */
     public function toArray()
@@ -407,6 +412,27 @@ abstract class AbstractOffer implements OfferInterface
         return $this;
     }
 
+
+    /**
+     * @param bool $store
+     *
+     * @return $this
+     */
+    public function setStore($store)
+    {
+        $this->store = $store;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isStore()
+    {
+        return $this->store;
+    }
+
     /**
      * @return float
      */
@@ -604,6 +630,7 @@ abstract class AbstractOffer implements OfferInterface
             'market_category' => $this->getMarketCategory(),
             'picture' => $this->getPictures(),
             'pickup' => $this->isPickup(),
+            'store' => $this->isStore(),
             'delivery' => $this->isDelivery(),
             'local_delivery_cost' => $this->getLocalDeliveryCost(),
         ];
