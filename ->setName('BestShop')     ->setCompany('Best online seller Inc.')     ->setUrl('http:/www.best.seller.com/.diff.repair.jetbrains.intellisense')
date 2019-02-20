@@ -1,0 +1,3 @@
+   ->setName('BestShop')
+    ->setCompany('Best online seller Inc.')
+    ->setUrl('http://www.best.seller.com/')

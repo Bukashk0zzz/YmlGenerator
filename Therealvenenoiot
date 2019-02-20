@@ -1,0 +1,122 @@
+Skip to content
+Your account has been flagged.
+Because of that, your profile is hidden from the public. If you believe this is a mistake, contact support to have your account status reviewed.
+
+blue tooth satellite
+Repositories0
+Code58K+
+Commits8
+Issues6
+Marketplace0
+Topics0
+Wikis11
+Users0
+Languages
+25,393 Text
+4,519 CSV
+2,888 JSON
+1,853 XML
+1,575 HTML
+560 CSS
+448 JavaScript
+306 YAML
+291 Markdown
+287 Python
+Advanced search 
+58,881 code results
+@Erfanehgh
+Erfanehgh/RNN – 12357_2.txt.bracketsTxt
+Showing the top two matches Last indexed on Jul 10, 2018
+((8, 8), [(8, "when they're using this so called hi-tech stuffs like the this Motorola blue-tooth headset they're using")], 'Nucleus', 'span')
+((9, 9), [(9, 'to eliminate the use of a walkie talkie')], 'Nucleus', 'span')
+((8, 18), [(8, "when they're using this so called hi-tech stuffs like the this Motorola blue-tooth headset they're using"), (9, 'to eliminate the use of a walkie talkie'), (10, 'it was just so'), (11, 'funny.. they look like amateurs. And they where like advertising those badly designed alien-ware Laptops'), (12, 'that could link up to a satellite'), (13, 'to find people..'), (14, "I couldn't say more"), (15, 'about this TV-movie..'), (16, 'The ending was bad'), (17, 'that it looks like they cut'), (18, 'it short eliminating the use of rescue helicopters and etc.. */**********')], 'Satellite', 'circumstance')
+@objectyan
+objectyan/Demo – BNavigator$1.java
+Showing the top two matches Last indexed on Jul 26, 2018
+Java
+import com.baidu.navisdk.util.common.LogUtil;
+import com.baidu.navisdk.util.listener.BlueToothListener;
+
+class BNavigator$1 extends Handler {
+                    return;
+                }
+            case BlueToothListener.MSG_TYPE_BT_CHANGE /*10601*/:
+                LogUtil.m15791e(ModuleName.ROUTEGUIDE, "BlueToothListener.MSG_TYPE_BT_CHANGE");
+@yifatPhytech
+yifatPhytech/WirelessLogger – RTS23.c
+Showing the top two matches Last indexed on Jul 9, 2018
+C
+                    #endif DebugMode
+                }
+            break;
+            #ifdef BlueToothOption
+            case TASK_BLUETOOTH:
+                BlueToothMain();
+                if (bEndOfBTTask == TRUE)
+@MLDroid
+MLDroid/clustering_aspect_detection – aspectCluster_GPS.txt
+Showing the top two matches Last indexed on Jul 10, 2018
+Text
+feature	[advanced, alarm_clock_feature, alot, audible_book, audio_book, audio_books, audiobooks_feature, auto-adjust_mode, bluetooth_feature, bluetooth_phone_feature, bluetooth_push_feature, book_reading, books_on_tape, combo, detour_feature, extra_features, favorite_places, favorites, feature, feature_of_lane_specific_directions, feature_set, features, go_home_feature, hands_free_feature, handsfree, location_feature, lock_feature, lock_mode, mp3_player_feature, msn_direct, msn_direct_feature, nagivation_features, numerous, option, options, packed, pedestrian_feature, pedestrian_mode, pedestrian_navigation_function, pedestrians, poi_feature, rich, safe_mode, safety_feature, talking_street_name_feature, text-to-speech_feature, text_to_speech_feature, text_to_voice_feature, tons, touch_screen_feature, traffic_feature, traffic_features, wanted]
+blue tooth	[blue, blue_tooth, blue_tooth_speaking_phone, blue_tooth_technology, bluetooth, bluetooth_audio, bluetooth_capability, bluetooth_functionality, bluetooth_headset, bluetooth_integration, bluetooth_phone_integration, bluetooth_stereo_music, bluetooth_sync, tooth]
+@MLDroid
+MLDroid/ABSA – aspectCluster_GPS.txt
+Showing the top two matches Last indexed on Jul 4, 2018
+Text
+feature	[advanced, alarm_clock_feature, alot, audible_book, audio_book, audio_books, audiobooks_feature, auto-adjust_mode, bluetooth_feature, bluetooth_phone_feature, bluetooth_push_feature, book_reading, books_on_tape, combo, detour_feature, extra_features, favorite_places, favorites, feature, feature_of_lane_specific_directions, feature_set, features, go_home_feature, hands_free_feature, handsfree, location_feature, lock_feature, lock_mode, mp3_player_feature, msn_direct, msn_direct_feature, nagivation_features, numerous, option, options, packed, pedestrian_feature, pedestrian_mode, pedestrian_navigation_function, pedestrians, poi_feature, rich, safe_mode, safety_feature, talking_street_name_feature, text-to-speech_feature, text_to_speech_feature, text_to_voice_feature, tons, touch_screen_feature, traffic_feature, traffic_features, wanted]
+blue tooth	[blue, blue_tooth, blue_tooth_speaking_phone, blue_tooth_technology, bluetooth, bluetooth_audio, bluetooth_capability, bluetooth_functionality, bluetooth_headset, bluetooth_integration, bluetooth_phone_integration, bluetooth_stereo_music, bluetooth_sync, tooth]
+@Basanti-xian
+Basanti-xian/Data – aspectCluster_GPS.txt
+Showing the top two matches Last indexed on Jul 11, 2018
+Text
+feature	[advanced, alarm_clock_feature, alot, audible_book, audio_book, audio_books, audiobooks_feature, auto-adjust_mode, bluetooth_feature, bluetooth_phone_feature, bluetooth_push_feature, book_reading, books_on_tape, combo, detour_feature, extra_features, favorite_places, favorites, feature, feature_of_lane_specific_directions, feature_set, features, go_home_feature, hands_free_feature, handsfree, location_feature, lock_feature, lock_mode, mp3_player_feature, msn_direct, msn_direct_feature, nagivation_features, numerous, option, options, packed, pedestrian_feature, pedestrian_mode, pedestrian_navigation_function, pedestrians, poi_feature, rich, safe_mode, safety_feature, talking_street_name_feature, text-to-speech_feature, text_to_speech_feature, text_to_voice_feature, tons, touch_screen_feature, traffic_feature, traffic_features, wanted]
+blue tooth	[blue, blue_tooth, blue_tooth_speaking_phone, blue_tooth_technology, bluetooth, bluetooth_audio, bluetooth_capability, bluetooth_functionality, bluetooth_headset, bluetooth_integration, bluetooth_phone_integration, bluetooth_stereo_music, bluetooth_sync, tooth]
+@Arjun-Arora
+Arjun-Arora/codenames_project – board_list.json
+Showing the top six matches Last indexed on Dec 14, 2018
+JSON
+{"blue": ["board", "net", "genius", "suit", "amazon", "thief", "state", "water", "whale"], "red": ["conductor", "mint", "chick", "lock", "london", "staff", "fork", "calf"], "assassin": ["press"], "neutral": ["foot", "contract", "hand", "tooth", "europe", "belt", "death"]}
+{"blue": ["satellite", "heart", "embassy", "scuba", "kiwi", "lock", "helicopter", "mine", "hospital"], "red": ["ship", "ghost", "gold", "water", "fan", "chair", "cover", "jam"], "assassin": ["pass"], "neutral": ["field", "maple", "cook", "vet", "slip", "cap", "code"]}
+{"blue": ["match", "maple", "novel", "berry", "lawyer", "luck", "center", "gas", "screen"], "red": ["mass", "plate", "table", "check", "battery", "circle", "washington", "part"], "assassin": ["angel"], "neutral": ["switch", "marble", "code", "server", "satellite", "strike", "card"]}
+{"blue": ["glove", "queen", "hollywood", "van", "net", "tooth", "seal", "chick", "drop"], "red": ["stick", "stadium", "marble", "slug", "hood", "bond", "calf", "log"], "assassin": ["key"], "neutral": ["spell", "nail", "air", "press", "mercury", "school", "strike"]}
+@ever-who
+ever-who/NewComer – day34
+Showing the top two matches Last indexed on Dec 8, 2018
+蓝牙设备发现广播接收器：private BluetoothDiscoveryReceiver btDiscoveryReceiver;
+蓝牙适配器状态广播接收器：private BlueToothStateReceiver btStateReceiver;
+    private class BlueToothStateReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+@fengrui358
+fengrui358/Labs – AssemblyInfo.cs
+Showing the top two matches Last indexed on Jul 3, 2018
+C#
+// 与程序集关联的信息。
+[assembly: AssemblyTitle("WpfBlueToothLab")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("WpfBlueToothLab")]
+@hou2
+hou2/BlueToothTool – AssemblyInfo.cs
+Showing the top two matches Last indexed on Jul 11, 2018
+C#
+// 与程序集关联的信息。
+[assembly: AssemblyTitle("BlueToothTool")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyProduct("BlueToothTool")]
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Press h to open a hovercard with more details.
