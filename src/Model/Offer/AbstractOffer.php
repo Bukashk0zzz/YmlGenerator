@@ -101,10 +101,10 @@ abstract class AbstractOffer implements OfferInterface
      */
     private $countryOfOrigin;
 
-	/**
-	 * @var string
-	 */
-	private $weight;
+    /**
+     * @var string
+     */
+    private $weight;
 
     /**
      * @var int
@@ -616,23 +616,23 @@ abstract class AbstractOffer implements OfferInterface
         return $this;
     }
 
-	/**
-	 * @return string
-	 */
-	public function getWeight()
-	{
-		return $this->weight;
-	}
+    /**
+     * @return string
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
 
-	/**
-	 * @param string $weight
-	 * @return AbstractOffer
-	 */
-	public function setWeight(string $weight)
-	{
-		$this->weight = $weight;
-		return $this;
-	}
+    /**
+     * @param string $weight
+     * @return AbstractOffer
+     */
+    public function setWeight(string $weight)
+    {
+        $this->weight = $weight;
+        return $this;
+    }
 
     /**
      * @return array
@@ -655,7 +655,7 @@ abstract class AbstractOffer implements OfferInterface
             'pickup' => $this->isPickup(),
             'store' => $this->isStore(),
             'delivery' => $this->isDelivery(),
-			'weight' => $this->getWeight(),
+            'weight' => $this->getWeight(),
             'local_delivery_cost' => $this->getLocalDeliveryCost(),
         ];
     }
