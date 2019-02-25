@@ -626,11 +626,13 @@ abstract class AbstractOffer implements OfferInterface
 
     /**
      * @param string $weight
+     *
      * @return AbstractOffer
      */
-    public function setWeight(string $weight)
+    public function setWeight($weight)
     {
         $this->weight = $weight;
+
         return $this;
     }
 
