@@ -40,6 +40,8 @@ class OfferSimpleGeneratorTest extends AbstractGeneratorTest
             ->setGroupId($this->faker->numberBetween())
             ->addPicture('http://example.com/example.jpeg')
             ->addBarcode($this->faker->ean13)
+            ->setCategoriesId([1, 2, 3])
+            ->setCategoryId(999)
         ;
     }
 }

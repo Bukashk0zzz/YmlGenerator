@@ -52,6 +52,11 @@ abstract class AbstractOffer implements OfferInterface
     private $categoryId;
 
     /**
+     * @var array
+     */
+    private $categoriesId = [];
+
+    /**
      * @var string
      */
     private $marketCategory;
@@ -268,6 +273,26 @@ abstract class AbstractOffer implements OfferInterface
     public function setCategoryId($categoryId)
     {
         $this->categoryId = $categoryId;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCategoriesId()
+    {
+        return $this->categoriesId;
+    }
+
+    /**
+     * @param array $categoriesId
+     *
+     * @return $this
+     */
+    public function setCategoriesId(array $categoriesId)
+    {
+        $this->categoriesId = $categoriesId;
 
         return $this;
     }
@@ -626,13 +651,16 @@ abstract class AbstractOffer implements OfferInterface
             'price' => $this->getPrice(),
             'oldprice' => $this->getOldPrice(),
             'currencyId' => $this->getCurrencyId(),
-            'categoryId' => $this->getCategoryId(),
+            'categoryId' => array_merge(
+                [$this->getCategoryId()],
+                $this->getCategoriesId()
+            ),
             'market_category' => $this->getMarketCategory(),
             'picture' => $this->getPictures(),
             'pickup' => $this->isPickup(),
             'store' => $this->isStore(),
             'delivery' => $this->isDelivery(),
-            'local_delivery_cost' => $this->getLocalDeliveryCost(),
+            'local_delivery_cost' => $this->getLocalDeliveryCost()
         ];
     }
 
@@ -649,7 +677,7 @@ abstract class AbstractOffer implements OfferInterface
             'downloadable' => $this->isDownloadable(),
             'adult' => $this->isAdult(),
             'cpa' => $this->getCpa(),
-            'barcode' => $this->getBarcodes(),
+            'barcode' => $this->getBarcodes()
         ];
     }
 }
