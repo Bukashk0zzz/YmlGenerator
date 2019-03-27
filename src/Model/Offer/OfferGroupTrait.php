@@ -13,8 +13,6 @@ namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
 /**
  * Trait OfferGroupTrait
- *
- * @author Gennady Knyazkin <dev@gennadyx.tech>
  */
 trait OfferGroupTrait
 {

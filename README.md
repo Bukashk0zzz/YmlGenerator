@@ -1,4 +1,4 @@
-#YML (Yandex Market Language) file generator
+# YML (Yandex Market Language) file generator
 
 [![Build Status](https://img.shields.io/scrutinizer/build/g/Bukashk0zzz/YmlGenerator.svg?style=flat-square)](https://travis-ci.org/Bukashk0zzz/YmlGenerator)
 [![Code Coverage](https://img.shields.io/codecov/c/github/Bukashk0zzz/YmlGenerator.svg?style=flat-square)](https://codecov.io/github/Bukashk0zzz/YmlGenerator)

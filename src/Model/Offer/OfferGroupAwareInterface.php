@@ -13,8 +13,6 @@ namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
 /**
  * Interface OfferGroupAwareInterface
- *
- * @author Gennady Knyazkin <dev@gennadyx.tech>
  */
 interface OfferGroupAwareInterface
 {
