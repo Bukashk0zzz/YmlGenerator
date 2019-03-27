@@ -31,7 +31,7 @@
 
 <!ELEMENT offers (offer+)>
         <!ELEMENT offer (url?, buyurl?, price, oldprice?, wprice?, currencyId, xCategory?, categoryId+, market_category?,
-                picture*, store?, pickup?, delivery?, deliveryIncluded?, local_delivery_cost?, orderingTime?,
+                picture*, store?, pickup?, delivery?, weight?, deliveryIncluded?, local_delivery_cost?, orderingTime?,
                 typePrefix?, vendor, vendorCode?, model, (provider, tarifplan?)?,
                 aliases?, additional*, description?, sales_notes?, promo?,
                 manufacturer_warranty?, country_of_origin?, downloadable?, adult?, cpa?,
@@ -129,6 +129,7 @@
 <!ELEMENT downloadable (#PCDATA)>
 <!ELEMENT adult (#PCDATA)>
 <!ELEMENT age (#PCDATA)>
+<!ELEMENT weight (#PCDATA)>
 <!ELEMENT barcode (#PCDATA)>
 <!ELEMENT param (#PCDATA)>
 <!ATTLIST param

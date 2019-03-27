@@ -107,6 +107,11 @@ abstract class AbstractOffer implements OfferInterface
     private $countryOfOrigin;
 
     /**
+     * @var string
+     */
+    private $weight;
+
+    /**
      * @var int
      */
     private $cpa;
@@ -459,6 +464,26 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
+     * @param bool $store
+     *
+     * @return $this
+     */
+    public function setStore($store)
+    {
+        $this->store = $store;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isStore()
+    {
+        return $this->store;
+    }
+
+    /**
      * @return float
      */
     public function getLocalDeliveryCost()
@@ -514,6 +539,26 @@ abstract class AbstractOffer implements OfferInterface
     public function setCountryOfOrigin($countryOfOrigin)
     {
         $this->countryOfOrigin = $countryOfOrigin;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * @param string $weight
+     *
+     * @return $this
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
 
         return $this;
     }
@@ -660,7 +705,8 @@ abstract class AbstractOffer implements OfferInterface
             'pickup' => $this->isPickup(),
             'store' => $this->isStore(),
             'delivery' => $this->isDelivery(),
-            'local_delivery_cost' => $this->getLocalDeliveryCost()
+            'weight' => $this->getWeight(),
+            'local_delivery_cost' => $this->getLocalDeliveryCost(),
         ];
     }
 
