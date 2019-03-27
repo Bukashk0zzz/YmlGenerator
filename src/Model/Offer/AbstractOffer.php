@@ -465,27 +465,6 @@ abstract class AbstractOffer implements OfferInterface
         return $this;
     }
 
-
-    /**
-     * @param bool $store
-     *
-     * @return $this
-     */
-    public function setStore($store)
-    {
-        $this->store = $store;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isStore()
-    {
-        return $this->store;
-    }
-
     /**
      * @param bool $store
      *
