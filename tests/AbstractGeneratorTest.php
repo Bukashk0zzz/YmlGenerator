@@ -204,7 +204,7 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    private function createOffers()
+    protected function createOffers()
     {
         $offers = [];
         foreach (\range(1, 2) as $id) {
