@@ -95,6 +95,40 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @return array
+     */
+    protected function createOffers()
+    {
+        $offers = [];
+        foreach (\range(1, 2) as $id) {
+            $offers[] = $this
+                ->createOffer()
+                ->setId($id)
+                ->setAvailable($this->faker->boolean)
+                ->setUrl($this->faker->url)
+                ->setPrice($this->faker->numberBetween(1, 9999))
+                ->setOldPrice($this->faker->numberBetween(1, 9999))
+                ->setWeight($this->faker->numberBetween(1, 9999))
+                ->setCurrencyId('UAH')
+                ->setCategoryId($id)
+                ->setDelivery($this->faker->boolean)
+                ->setLocalDeliveryCost($this->faker->numberBetween(1, 9999))
+                ->setDescription($this->faker->sentence)
+                ->setSalesNotes($this->faker->text(45))
+                ->setManufacturerWarranty($this->faker->boolean)
+                ->setCountryOfOrigin('Украина')
+                ->setDownloadable($this->faker->boolean)
+                ->setAdult($this->faker->boolean)
+                ->setMarketCategory($this->faker->word)
+                ->setCpa($this->faker->numberBetween(0, 1))
+                ->setBarcodes([$this->faker->ean13, $this->faker->ean13])
+            ;
+        }
+
+        return $offers;
+    }
+
+    /**
      * Validate yml file using dtd
      */
     private function validateFileWithDtd()
@@ -199,39 +233,5 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
             ->setOrderBefore(14);
 
         return $deliveries;
-    }
-
-    /**
-     * @return array
-     */
-    protected function createOffers()
-    {
-        $offers = [];
-        foreach (\range(1, 2) as $id) {
-            $offers[] = $this
-                ->createOffer()
-                ->setId($id)
-                ->setAvailable($this->faker->boolean)
-                ->setUrl($this->faker->url)
-                ->setPrice($this->faker->numberBetween(1, 9999))
-                ->setOldPrice($this->faker->numberBetween(1, 9999))
-                ->setWeight($this->faker->numberBetween(1, 9999))
-                ->setCurrencyId('UAH')
-                ->setCategoryId($id)
-                ->setDelivery($this->faker->boolean)
-                ->setLocalDeliveryCost($this->faker->numberBetween(1, 9999))
-                ->setDescription($this->faker->sentence)
-                ->setSalesNotes($this->faker->text(45))
-                ->setManufacturerWarranty($this->faker->boolean)
-                ->setCountryOfOrigin('Украина')
-                ->setDownloadable($this->faker->boolean)
-                ->setAdult($this->faker->boolean)
-                ->setMarketCategory($this->faker->word)
-                ->setCpa($this->faker->numberBetween(0, 1))
-                ->setBarcodes([$this->faker->ean13, $this->faker->ean13])
-            ;
-        }
-
-        return $offers;
     }
 }

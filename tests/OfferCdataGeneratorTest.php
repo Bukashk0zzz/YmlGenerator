@@ -21,6 +21,16 @@ class OfferCdataGeneratorTest extends AbstractGeneratorTest
     const OFFER_COUNT = 2;
 
     /**
+     * Test generate
+     */
+    public function testGenerate()
+    {
+        $this->offerType = 'Simple';
+        $this->runGeneratorTest();
+        $this->checkCdata();
+    }
+
+    /**
      * Need to override parent::createOffers() in order to avoid setting description
      * after calling self::createOffer()
      *
@@ -41,7 +51,14 @@ class OfferCdataGeneratorTest extends AbstractGeneratorTest
         return $offers;
     }
 
-    protected function createOffer() {
+    /**
+     * Set the test description with CDATA here
+     *
+     * {@inheritDoc}
+     * @see \Bukashk0zzz\YmlGenerator\Tests\AbstractGeneratorTest::createOffer()
+     */
+    protected function createOffer()
+    {
         return (new OfferSimple())
             ->setAvailable($this->faker->boolean)
             ->setUrl($this->faker->url)
@@ -71,7 +88,11 @@ class OfferCdataGeneratorTest extends AbstractGeneratorTest
         ;
     }
 
-    private function checkCdata() {
+    /**
+     * Retreive and check CDATA from the generated file
+     */
+    private function checkCdata()
+    {
         $ymlFile = new \DOMDocument();
         $ymlFile->loadXML(\file_get_contents($this->settings->getOutputFile()));
 
@@ -90,17 +111,12 @@ class OfferCdataGeneratorTest extends AbstractGeneratorTest
     }
 
     /**
-     * Test generate
+     * Create instance of Cdata class with a predefined test string
+     *
+     * @return \Bukashk0zzz\YmlGenerator\Cdata
      */
-    public function testGenerate()
+    private function makeDescription()
     {
-        $this->offerType = 'Simple';
-        $this->runGeneratorTest();
-        $this->checkCdata();
-    }
-
-    private function makeDescription() {
         return new Cdata(self::CDATA_TEST_STRING);
     }
-
 }
