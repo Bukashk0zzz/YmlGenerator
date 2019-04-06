@@ -1,12 +1,20 @@
 <?php
 
+/*
+ * This file is part of the Bukashk0zzzYmlGenerator
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Bukashk0zzz\YmlGenerator;
 
 /**
  * Represents a value that should be written to XML as CDATA
  * @author zyura (https://github.com/zyura)
  */
-class Cdata {
+class Cdata
+{
     /**
      * @var string
      */
@@ -20,6 +28,11 @@ class Cdata {
         $this->value = $value;
     }
 
+    /**
+     * Allows to get the wrapped value by casting an instance to string
+     *
+     * @return string
+     */
     public function __toString()
     {
         return $this->value;
