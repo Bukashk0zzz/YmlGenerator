@@ -312,6 +312,14 @@ class Generator
             return false;
         }
 
+        if ($value instanceof Cdata) {
+            $this->writer->startElement($name);
+            $this->writer->writeCdata((string) $value);
+            $this->writer->endElement();
+
+            return true;
+        }
+
         if (\is_bool($value)) {
             $value = $value ? 'true' : 'false';
         }
