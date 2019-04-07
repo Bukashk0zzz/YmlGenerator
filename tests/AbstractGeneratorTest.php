@@ -79,9 +79,9 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
     abstract protected function createOffer();
 
     /**
-     * Test generation
+     * Produces an XML file and writes to $this->settings->getOutputFile()
      */
-    protected function runGeneratorTest()
+    protected function generateFile()
     {
         static::assertTrue((new Generator($this->settings))->generate(
             $this->shopInfo,
@@ -90,7 +90,14 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
             $this->createOffers(),
             $this->deliveries
         ));
+    }
 
+    /**
+     * Test generation
+     */
+    protected function runGeneratorTest()
+    {
+        $this->generateFile();
         $this->validateFileWithDtd();
     }
 

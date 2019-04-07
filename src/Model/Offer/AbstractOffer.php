@@ -111,7 +111,9 @@ abstract class AbstractOffer implements OfferInterface
      */
     private $cpa;
 
-    /** @var string[] */
+    /**
+     * @var string[]
+     */
     private $barcodes;
 
     /**
@@ -128,6 +130,13 @@ abstract class AbstractOffer implements OfferInterface
      * @var bool
      */
     private $store;
+
+    /**
+     * Array of custom elements (element types are keys) of arrays of element values
+     * There may be multiple elements of the same type
+     * @var array[]
+     */
+    private $customElements;
 
     /**
      * @return array
@@ -636,6 +645,66 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
+     * Sets list of custom elements
+     *
+     * @param array $customElements Array (keys are element types) of arrays (element values)
+     *
+     * @return $this
+     */
+    public function setCustomElements(array $customElements = [])
+    {
+        $this->customElements = $customElements;
+
+        return $this;
+    }
+
+    /**
+     * Add a custom element with given type and value
+     * Multiple elements of the same type are supported
+     *
+     * @param string $elementType
+     * @param mixed  $value
+     *
+     * @return $this
+     */
+    public function addCustomElement($elementType, $value)
+    {
+        // Add value to the list of values of the given element type creating array when needed
+        $this->customElements[$elementType][] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Returns a list of custom elements
+     * Always returns an array even if no custom elements were added
+     *
+     * @return array
+     */
+    public function getCustomElements()
+    {
+        return $this->customElements ?: [];
+    }
+
+    /**
+     * Returns a list of values for the specified custom element type
+     * Always returns an array
+     *
+     * @param string $elementType
+     *
+     * @return array
+     */
+    public function getCustomElementByType($elementType)
+    {
+        // TODO: Use ?? operator when support for PHP 5.6 is no longer needed
+        if (isset($this->customElements[$elementType])) {
+            return $this->customElements[$elementType];
+        }
+
+        return [];
+    }
+
+    /**
      * @return array
      */
     abstract protected function getOptions();
@@ -645,7 +714,7 @@ abstract class AbstractOffer implements OfferInterface
      */
     private function getHeaderOptions()
     {
-        return [
+        $options = [
             'url' => $this->getUrl(),
             'price' => $this->getPrice(),
             'oldprice' => $this->getOldPrice(),
@@ -659,6 +728,13 @@ abstract class AbstractOffer implements OfferInterface
             'weight' => $this->getWeight(),
             'local_delivery_cost' => $this->getLocalDeliveryCost(),
         ];
+
+        // Merge custom elements with header options
+        if ($this->customElements) {
+            $options += $this->customElements;
+        }
+
+        return $options;
     }
 
     /**
