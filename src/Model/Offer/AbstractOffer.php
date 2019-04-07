@@ -714,7 +714,7 @@ abstract class AbstractOffer implements OfferInterface
      */
     private function getHeaderOptions()
     {
-        $options = [
+        return [
             'url' => $this->getUrl(),
             'price' => $this->getPrice(),
             'oldprice' => $this->getOldPrice(),
@@ -727,14 +727,7 @@ abstract class AbstractOffer implements OfferInterface
             'delivery' => $this->isDelivery(),
             'weight' => $this->getWeight(),
             'local_delivery_cost' => $this->getLocalDeliveryCost(),
-        ];
-
-        // Merge custom elements with header options
-        if ($this->customElements) {
-            $options += $this->customElements;
-        }
-
-        return $options;
+        ] + $this->getCustomElements();
     }
 
     /**

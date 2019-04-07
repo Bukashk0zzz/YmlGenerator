@@ -86,13 +86,12 @@ class OfferCustomElementsGeneratorTest extends AbstractGeneratorTest
             ->addPicture('http://example.com/example.jpeg')
             ->addBarcode($this->faker->ean13)
 
-            ->addCustomElement('stock_quantity', 100) // https://rozetka.com.ua/sellerinfo/pricelist/
-            ->addCustomElement('custom_element', 100500)
-            ->addCustomElement('custom_element', 'string value')
+            ->setCustomElements(['custom_element' => [100500, 'string value']])
             ->addCustomElement('custom_element', true)
             ->addCustomElement('custom_element', false)
             ->addCustomElement('custom_element', null) // Should not be written
             ->addCustomElement('custom_element', new Cdata(self::CDATA_TEST_STRING))
+            ->addCustomElement('stock_quantity', 100) // https://rozetka.com.ua/sellerinfo/pricelist/
         ;
     }
 
