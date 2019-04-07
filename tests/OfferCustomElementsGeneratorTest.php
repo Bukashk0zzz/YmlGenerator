@@ -59,7 +59,7 @@ class OfferCustomElementsGeneratorTest extends AbstractGeneratorTest
      */
     protected function createOffer()
     {
-        return (new OfferSimple())
+        $offer = (new OfferSimple())
             ->setAvailable($this->faker->boolean)
             ->setUrl($this->faker->url)
             ->setPrice($this->faker->numberBetween(1, 9999))
@@ -90,9 +90,15 @@ class OfferCustomElementsGeneratorTest extends AbstractGeneratorTest
             ->addCustomElement('custom_element', true)
             ->addCustomElement('custom_element', false)
             ->addCustomElement('custom_element', null) // Should not be written
-            ->addCustomElement('custom_element', new Cdata(self::CDATA_TEST_STRING))
+            ->addCustomElement('custom_element', $cdata = new Cdata(self::CDATA_TEST_STRING))
             ->addCustomElement('stock_quantity', 100) // https://rozetka.com.ua/sellerinfo/pricelist/
         ;
+
+
+        $this->assertSame([100500, 'string value', true, false, $cdata], $offer->getCustomElementByType('custom_element'));
+        $this->assertSame([100], $offer->getCustomElementByType('stock_quantity'));
+
+        return $offer;
     }
 
     /**

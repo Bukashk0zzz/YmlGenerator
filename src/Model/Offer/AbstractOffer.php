@@ -669,8 +669,10 @@ abstract class AbstractOffer implements OfferInterface
      */
     public function addCustomElement($elementType, $value)
     {
-        // Add value to the list of values of the given element type creating array when needed
-        $this->customElements[$elementType][] = $value;
+        if ($value !== null) {
+            // Add value to the list of values of the given element type creating array when needed
+            $this->customElements[$elementType][] = $value;
+        }
 
         return $this;
     }
