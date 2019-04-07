@@ -94,9 +94,9 @@ class OfferCustomElementsGeneratorTest extends AbstractGeneratorTest
             ->addCustomElement('stock_quantity', 100) // https://rozetka.com.ua/sellerinfo/pricelist/
         ;
 
-
         $this->assertSame([100500, 'string value', true, false, $cdata], $offer->getCustomElementByType('custom_element'));
         $this->assertSame([100], $offer->getCustomElementByType('stock_quantity'));
+        $this->assertSame([], $offer->getCustomElementByType('non_existent_element'));
 
         return $offer;
     }
