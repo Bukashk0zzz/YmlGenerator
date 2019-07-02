@@ -148,6 +148,12 @@ abstract class AbstractOffer implements OfferInterface
      */
     private $customElements;
 
+
+    /**
+     * @var OfferCondition
+     */
+    private $condition;
+
     /**
      * @return array
      */
@@ -325,7 +331,8 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
-     * @param string $name
+     * @param $name
+     * @return $this
      */
     public function setName($name)
     {
@@ -753,6 +760,29 @@ abstract class AbstractOffer implements OfferInterface
 
         return [];
     }
+
+
+    /**
+     * @return OfferCondition
+     */
+    public function getCondition()
+    {
+        return $this->condition;
+    }
+
+
+    /**
+     * @param OfferCondition $condition
+     *
+     * @return $this
+     */
+    public function addCondition(OfferCondition $condition)
+    {
+        $this->condition = $condition;
+
+        return $this;
+    }
+
 
     /**
      * @return array
