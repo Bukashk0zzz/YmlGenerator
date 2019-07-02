@@ -144,10 +144,10 @@ abstract class AbstractOffer implements OfferInterface
     /**
      * Array of custom elements (element types are keys) of arrays of element values
      * There may be multiple elements of the same type
+     *
      * @var array[]
      */
     private $customElements;
-
 
     /**
      * @var OfferCondition
@@ -331,7 +331,8 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
-     * @param $name
+     * @param string $name
+     *
      * @return $this
      */
     public function setName($name)
@@ -761,7 +762,6 @@ abstract class AbstractOffer implements OfferInterface
         return [];
     }
 
-
     /**
      * @return OfferCondition
      */
@@ -769,7 +769,6 @@ abstract class AbstractOffer implements OfferInterface
     {
         return $this->condition;
     }
-
 
     /**
      * @param OfferCondition $condition
@@ -783,7 +782,6 @@ abstract class AbstractOffer implements OfferInterface
         return $this;
     }
 
-
     /**
      * @return array
      */
@@ -795,23 +793,23 @@ abstract class AbstractOffer implements OfferInterface
     private function getHeaderOptions()
     {
         return [
-            'url' => $this->getUrl(),
-            'price' => $this->getPrice(),
-            'oldprice' => $this->getOldPrice(),
-            'currencyId' => $this->getCurrencyId(),
-            'categoryId' => array_merge(
-                [$this->getCategoryId()],
-                $this->getCategoriesId()
-            ),
-            'market_category' => $this->getMarketCategory(),
-            'picture' => $this->getPictures(),
-            'pickup' => $this->isPickup(),
-            'store' => $this->isStore(),
-            'delivery' => $this->isDelivery(),
-            'local_delivery_cost' => $this->getLocalDeliveryCost(),
-            'weight' => $this->getWeight(),
-            'name' => $this->getName()
-        ] + $this->getCustomElements();
+                'url' => $this->getUrl(),
+                'price' => $this->getPrice(),
+                'oldprice' => $this->getOldPrice(),
+                'currencyId' => $this->getCurrencyId(),
+                'categoryId' => \array_merge(
+                    [$this->getCategoryId()],
+                    $this->getCategoriesId()
+                ),
+                'market_category' => $this->getMarketCategory(),
+                'picture' => $this->getPictures(),
+                'pickup' => $this->isPickup(),
+                'store' => $this->isStore(),
+                'delivery' => $this->isDelivery(),
+                'local_delivery_cost' => $this->getLocalDeliveryCost(),
+                'weight' => $this->getWeight(),
+                'name' => $this->getName(),
+            ] + $this->getCustomElements();
     }
 
     /**
@@ -827,7 +825,7 @@ abstract class AbstractOffer implements OfferInterface
             'downloadable' => $this->isDownloadable(),
             'adult' => $this->isAdult(),
             'cpa' => $this->getCpa(),
-            'barcode' => $this->getBarcodes()
+            'barcode' => $this->getBarcodes(),
         ];
     }
 }

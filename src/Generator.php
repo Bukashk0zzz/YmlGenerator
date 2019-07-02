@@ -302,7 +302,6 @@ class Generator
         }
     }
 
-
     /**
      * @param OfferInterface $offer
      */
@@ -316,7 +315,6 @@ class Generator
             $this->writer->endElement();
         }
     }
-
 
     /**
      * @param string $name

@@ -9,8 +9,8 @@
 
 namespace Bukashk0zzz\YmlGenerator\Tests;
 
-use Bukashk0zzz\YmlGenerator\Model\Offer\OfferSimple;
 use Bukashk0zzz\YmlGenerator\Cdata;
+use Bukashk0zzz\YmlGenerator\Model\Offer\OfferSimple;
 
 /**
  * Generator test
@@ -34,7 +34,8 @@ class OfferCdataGeneratorTest extends AbstractGeneratorTest
      * Need to override parent::createOffers() in order to avoid setting description
      * after calling self::createOffer()
      *
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @see \Bukashk0zzz\YmlGenerator\Tests\AbstractGeneratorTest::createOffers()
      */
     protected function createOffers()
@@ -54,7 +55,8 @@ class OfferCdataGeneratorTest extends AbstractGeneratorTest
     /**
      * Set the test description with CDATA here
      *
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @see \Bukashk0zzz\YmlGenerator\Tests\AbstractGeneratorTest::createOffer()
      */
     protected function createOffer()
