@@ -17,7 +17,8 @@
         "issues": "https://github.com/Bukashk0zzz/YmlGenerator/issues"
     },
     "require": {
-        "php": ">=5.6.1"
+        "php": ">=5.6.1",
+        "ext-simplexml": "*"
     },
     "require-dev": {
         "ext-dom": "*",
