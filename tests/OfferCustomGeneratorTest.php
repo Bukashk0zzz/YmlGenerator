@@ -13,6 +13,7 @@ namespace Bukashk0zzz\YmlGenerator\Tests;
 
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferCustom;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferParam;
+use Bukashk0zzz\YmlGenerator\Model\Offer\OfferCondition;
 
 /**
  * Generator test
@@ -47,6 +48,11 @@ class OfferCustomGeneratorTest extends AbstractGeneratorTest
                     ->setValue($this->faker->text(10))
             )
             ->setPictures(['http://example.com/example.jpeg', 'http://example.com/example2.jpeg'])
+            ->addCondition(
+                (new OfferCondition())
+                    ->setType($this->faker->text(5))
+                    ->setReasonText($this->faker->text(10))
+            )
         ;
     }
 }

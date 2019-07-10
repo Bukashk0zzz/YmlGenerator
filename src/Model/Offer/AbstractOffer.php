@@ -52,6 +52,16 @@ abstract class AbstractOffer implements OfferInterface
     private $categoryId;
 
     /**
+     * @var array
+     */
+    private $categoriesId = [];
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
      * @var string
      */
     private $marketCategory;
@@ -134,9 +144,15 @@ abstract class AbstractOffer implements OfferInterface
     /**
      * Array of custom elements (element types are keys) of arrays of element values
      * There may be multiple elements of the same type
+     *
      * @var array[]
      */
     private $customElements;
+
+    /**
+     * @var OfferCondition
+     */
+    private $condition;
 
     /**
      * @return array
@@ -282,6 +298,46 @@ abstract class AbstractOffer implements OfferInterface
     public function setCategoryId($categoryId)
     {
         $this->categoryId = $categoryId;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCategoriesId()
+    {
+        return $this->categoriesId;
+    }
+
+    /**
+     * @param array $categoriesId
+     *
+     * @return $this
+     */
+    public function setCategoriesId(array $categoriesId)
+    {
+        $this->categoriesId = $categoriesId;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
 
         return $this;
     }
@@ -707,6 +763,26 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
+     * @return OfferCondition
+     */
+    public function getCondition()
+    {
+        return $this->condition;
+    }
+
+    /**
+     * @param OfferCondition $condition
+     *
+     * @return $this
+     */
+    public function addCondition(OfferCondition $condition)
+    {
+        $this->condition = $condition;
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     abstract protected function getOptions();
@@ -717,19 +793,23 @@ abstract class AbstractOffer implements OfferInterface
     private function getHeaderOptions()
     {
         return [
-            'url' => $this->getUrl(),
-            'price' => $this->getPrice(),
-            'oldprice' => $this->getOldPrice(),
-            'currencyId' => $this->getCurrencyId(),
-            'categoryId' => $this->getCategoryId(),
-            'market_category' => $this->getMarketCategory(),
-            'picture' => $this->getPictures(),
-            'pickup' => $this->isPickup(),
-            'store' => $this->isStore(),
-            'delivery' => $this->isDelivery(),
-            'weight' => $this->getWeight(),
-            'local_delivery_cost' => $this->getLocalDeliveryCost(),
-        ] + $this->getCustomElements();
+                'url' => $this->getUrl(),
+                'price' => $this->getPrice(),
+                'oldprice' => $this->getOldPrice(),
+                'currencyId' => $this->getCurrencyId(),
+                'categoryId' => \array_merge(
+                    [$this->getCategoryId()],
+                    $this->getCategoriesId()
+                ),
+                'market_category' => $this->getMarketCategory(),
+                'picture' => $this->getPictures(),
+                'pickup' => $this->isPickup(),
+                'store' => $this->isStore(),
+                'delivery' => $this->isDelivery(),
+                'local_delivery_cost' => $this->getLocalDeliveryCost(),
+                'weight' => $this->getWeight(),
+                'name' => $this->getName(),
+            ] + $this->getCustomElements();
     }
 
     /**

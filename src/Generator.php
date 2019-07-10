@@ -14,6 +14,7 @@ namespace Bukashk0zzz\YmlGenerator;
 use Bukashk0zzz\YmlGenerator\Model\Category;
 use Bukashk0zzz\YmlGenerator\Model\Currency;
 use Bukashk0zzz\YmlGenerator\Model\Delivery;
+use Bukashk0zzz\YmlGenerator\Model\Offer\OfferCondition;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferGroupAwareInterface;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferInterface;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferParam;
@@ -199,6 +200,7 @@ class Generator
             }
         }
         $this->addOfferParams($offer);
+        $this->addOfferCondition($offer);
 
         $this->writer->fullEndElement();
     }
@@ -297,6 +299,20 @@ class Generator
 
                 $this->writer->endElement();
             }
+        }
+    }
+
+    /**
+     * @param OfferInterface $offer
+     */
+    private function addOfferCondition(OfferInterface $offer)
+    {
+        $params = $offer->getCondition();
+        if ($params instanceof OfferCondition) {
+            $this->writer->startElement('condition');
+            $this->writer->writeAttribute('type', $params->getType());
+            $this->writer->writeElement('reason', $params->getReasonText());
+            $this->writer->endElement();
         }
     }
 
