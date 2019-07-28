@@ -33,9 +33,9 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test not empty result for case with true return param
+     * Test not empty result for case with false echoOutput param
      */
-    public function testGenerationReturnNotEmptyValue()
+    public function testGenerationReturnNotEmptyStringValue()
     {
         $value = (new Generator(new Settings()))
             ->generate(new ShopInfo(), [], [], [], [], false);
