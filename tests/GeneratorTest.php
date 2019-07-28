@@ -42,4 +42,21 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $this->assertNotEmpty($value, 'Return empty value');
         $this->assertInternalType('string', $value, 'Returned value is not string');
     }
+
+    /**
+     * Test equal returned value and printed
+     */
+    public function testGenerationEchoValueEqualsReturnValue()
+    {
+        $value = (new Generator(new Settings()))
+            ->generate(new ShopInfo(), [], [], [], [], false);
+
+        ob_start();
+        (new Generator(new Settings()))
+            ->generate(new ShopInfo(), [], [], [], []);
+        $value2 = ob_get_contents();
+        ob_end_clean();
+
+        $this->assertEquals($value, $value2);
+    }
 }
