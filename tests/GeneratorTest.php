@@ -31,4 +31,15 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
             ->generate(new ShopInfo(), [], [], [])
         ;
     }
+
+    /**
+     * Test not empty result for case with true return param
+     */
+    public function testGenerationReturnNotEmptyValue()
+    {
+        $value = (new Generator(new Settings()))
+            ->generate(new ShopInfo(), [], [], [], [], false);
+        $this->assertNotEmpty($value, 'Return empty value');
+        $this->assertInternalType('string', $value, 'Returned value is not string');
+    }
 }

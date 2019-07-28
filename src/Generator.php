@@ -48,10 +48,15 @@ class Generator
     public function __construct($settings = null)
     {
         $this->settings = $settings instanceof Settings ? $settings : new Settings();
-        $this->tmpFile = $this->settings->getOutputFile() !== null ? \tempnam(\sys_get_temp_dir(), 'YMLGenerator') : 'php://output';
 
         $this->writer = new \XMLWriter();
-        $this->writer->openURI($this->tmpFile);
+
+        if ($this->settings->getOutputFile()) {
+            $this->tmpFile = \tempnam(\sys_get_temp_dir(), 'YMLGenerator');
+            $this->writer->openURI($this->tmpFile);
+        } else {
+            $this->writer->openMemory();
+        }
 
         if ($this->settings->getIndentString()) {
             $this->writer->setIndentString($this->settings->getIndentString());
@@ -65,10 +70,11 @@ class Generator
      * @param array    $categories
      * @param array    $offers
      * @param array    $deliveries
+     * @param bool     $echoOutput
      *
      * @return bool
      */
-    public function generate(ShopInfo $shopInfo, array $currencies, array $categories, array $offers, array $deliveries = [])
+    public function generate( ShopInfo $shopInfo, array $currencies, array $categories, array $offers, array $deliveries = [], bool $echoOutput = true)
     {
         try {
             $this->addHeader();
@@ -87,9 +93,19 @@ class Generator
             if (null !== $this->settings->getOutputFile()) {
                 \copy($this->tmpFile, $this->settings->getOutputFile());
                 @\unlink($this->tmpFile);
+
+                return true;
             }
 
-            return true;
+            $result = $this->writer->flush();
+
+            if ($echoOutput) {
+                echo $result;
+
+                return true;
+            }
+
+            return $result;
         } catch (\Exception $exception) {
             throw new \RuntimeException(\sprintf('Problem with generating YML file: %s', $exception->getMessage()), 0, $exception);
         }

@@ -18,7 +18,8 @@
     },
     "require": {
         "php": ">=5.6.1",
-        "ext-simplexml": "*"
+        "ext-simplexml": "*",
+        "ext-xmlwriter": "*"
     },
     "require-dev": {
         "ext-dom": "*",
