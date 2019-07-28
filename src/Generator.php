@@ -72,9 +72,9 @@ class Generator
      * @param array    $deliveries
      * @param bool     $echoOutput
      *
-     * @return bool
+     * @return bool|string
      */
-    public function generate( ShopInfo $shopInfo, array $currencies, array $categories, array $offers, array $deliveries = [], bool $echoOutput = true)
+    public function generate(ShopInfo $shopInfo, array $currencies, array $categories, array $offers, array $deliveries = [], bool $echoOutput = true)
     {
         try {
             $this->addHeader();
