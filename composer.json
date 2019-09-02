@@ -26,7 +26,8 @@
         "fzaninotto/faker": "^1.6",
         "friendsofphp/php-cs-fixer": "^2.3",
         "escapestudios/symfony2-coding-standard": "^3.0",
-        "wimg/php-compatibility": "^8.0"
+        "phpcompatibility/php-compatibility": "^9.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.5"
     },
     "autoload": {
         "psr-4": {
