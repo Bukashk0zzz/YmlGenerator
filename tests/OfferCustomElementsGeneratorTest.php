@@ -9,8 +9,8 @@
 
 namespace Bukashk0zzz\YmlGenerator\Tests;
 
-use Bukashk0zzz\YmlGenerator\Cdata;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferSimple;
+use Bukashk0zzz\YmlGenerator\Cdata;
 
 /**
  * Generator test
@@ -34,8 +34,7 @@ class OfferCustomElementsGeneratorTest extends AbstractGeneratorTest
      * Need to override parent::createOffers() in order to avoid setting description
      * after calling self::createOffer()
      *
-     * {@inheritdoc}
-     *
+     * {@inheritDoc}
      * @see \Bukashk0zzz\YmlGenerator\Tests\AbstractGeneratorTest::createOffers()
      */
     protected function createOffers()
@@ -55,8 +54,7 @@ class OfferCustomElementsGeneratorTest extends AbstractGeneratorTest
     /**
      * Set the test description with CDATA here
      *
-     * {@inheritdoc}
-     *
+     * {@inheritDoc}
      * @see \Bukashk0zzz\YmlGenerator\Tests\AbstractGeneratorTest::createOffer()
      */
     protected function createOffer()
@@ -113,7 +111,7 @@ class OfferCustomElementsGeneratorTest extends AbstractGeneratorTest
 
         $offers = $yml->shop->offers->offer;
         $this->assertNotEmpty($offers);
-        $this->assertEquals(self::OFFER_COUNT, \count($offers));
+        $this->assertEquals(self::OFFER_COUNT, count($offers));
 
         foreach ($offers as $offer) {
             $prop = 'stock_quantity';
