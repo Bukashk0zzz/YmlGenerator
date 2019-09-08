@@ -37,11 +37,6 @@ interface OfferInterface
     public function getParams();
 
     /**
-     * @return object
-     */
-    public function getCondition();
-
-    /**
      * @return array
      */
     public function toArray();
