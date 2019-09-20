@@ -11,6 +11,8 @@
 
 namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
+use Bukashk0zzz\YmlGenerator\Model\Delivery;
+
 /**
  * Abstract Class Offer
  */
@@ -100,6 +102,11 @@ abstract class AbstractOffer implements OfferInterface
      * @var float
      */
     private $localDeliveryCost;
+
+    /**
+     * @var array
+     */
+    private $deliveryOptions = [];
 
     /**
      * @var string
@@ -478,6 +485,26 @@ abstract class AbstractOffer implements OfferInterface
     public function setDelivery($delivery)
     {
         $this->delivery = $delivery;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDeliveryOptions()
+    {
+        return $this->deliveryOptions;
+    }
+
+    /**
+     * @param Delivery $option
+     *
+     * @return $this
+     */
+    public function addDeliveryOption(Delivery $option)
+    {
+        $this->deliveryOptions[] = $option;
 
         return $this;
     }

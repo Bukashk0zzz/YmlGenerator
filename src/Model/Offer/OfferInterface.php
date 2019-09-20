@@ -34,6 +34,11 @@ interface OfferInterface
     /**
      * @return array
      */
+    public function getDeliveryOptions();
+
+    /**
+     * @return array
+     */
     public function getParams();
 
     /**

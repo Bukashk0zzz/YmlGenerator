@@ -200,6 +200,7 @@ class Generator
             }
         }
         $this->addOfferParams($offer);
+        $this->addOfferDeliveryOptions($offer);
         $this->addOfferCondition($offer);
 
         $this->writer->fullEndElement();
@@ -279,6 +280,17 @@ class Generator
         }
 
         $this->writer->fullEndElement();
+    }
+
+    /**
+     * @param OfferInterface $offer
+     */
+    private function addOfferDeliveryOptions(OfferInterface $offer)
+    {
+        $options = $offer->getDeliveryOptions();
+        if (!empty($options)) {
+            $this->addDeliveries($options);
+        }
     }
 
     /**
