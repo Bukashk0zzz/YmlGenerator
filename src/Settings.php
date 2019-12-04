@@ -26,9 +26,17 @@ class Settings
     /**
      * Output file name. If null 'php://output' is used.
      *
-     * @var string
+     * @var string|null
      */
     protected $outputFile;
+
+    /**
+     * If true Generator will return generated YML string.
+     * Not recommended to use this for big catalogs because of heavy memory usage.
+     *
+     * @var bool
+     */
+    protected $returnResultYMLString = false;
 
     /**
      * Indent string in xml file. False or null means no indent;
@@ -58,7 +66,7 @@ class Settings
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getOutputFile()
     {
@@ -66,7 +74,7 @@ class Settings
     }
 
     /**
-     * @param string $outputFile
+     * @param string|null $outputFile
      *
      * @return Settings
      */
@@ -95,5 +103,25 @@ class Settings
         $this->indentString = $indentString;
 
         return $this;
+    }
+
+    /**
+     * @param bool $returnResultYMLString
+     *
+     * @return Settings
+     */
+    public function setReturnResultYMLString($returnResultYMLString)
+    {
+        $this->returnResultYMLString = $returnResultYMLString;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getReturnResultYMLString()
+    {
+        return $this->returnResultYMLString;
     }
 }

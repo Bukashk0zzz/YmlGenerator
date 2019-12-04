@@ -21,8 +21,6 @@ use Bukashk0zzz\YmlGenerator\Settings;
 class GeneratorTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test exception
-     *
      * @expectedException \RuntimeException
      */
     public function testExceptionForIncompatibleAnnotations()
@@ -30,5 +28,39 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         (new Generator((new Settings())->setOutputFile('')))
             ->generate(new ShopInfo(), [], [], [])
         ;
+    }
+
+    /**
+     * @expectedException \LogicException
+     */
+    public function testExceptionIfManyDestinationUsed()
+    {
+        $settings = (new Settings())
+            ->setOutputFile('')
+            ->setReturnResultYMLString(true)
+        ;
+
+        (new Generator($settings))
+            ->generate(new ShopInfo(), [], [], [])
+        ;
+    }
+
+    /**
+     * Test equal returned value and printed
+     */
+    public function testGenerationEchoValueEqualsReturnValue()
+    {
+        $settings = (new Settings())
+            ->setReturnResultYMLString(true)
+        ;
+        $value = (new Generator($settings))
+            ->generate(new ShopInfo(), [], [], [], []);
+
+        ob_start();
+        (new Generator(new Settings()))
+            ->generate(new ShopInfo(), [], [], [], []);
+        $value2 = ob_get_clean();
+
+        $this->assertEquals($value, $value2);
     }
 }

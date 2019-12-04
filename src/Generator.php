@@ -48,10 +48,18 @@ class Generator
     public function __construct($settings = null)
     {
         $this->settings = $settings instanceof Settings ? $settings : new Settings();
-        $this->tmpFile = $this->settings->getOutputFile() !== null ? \tempnam(\sys_get_temp_dir(), 'YMLGenerator') : 'php://output';
-
         $this->writer = new \XMLWriter();
-        $this->writer->openURI($this->tmpFile);
+
+        if ($this->settings->getOutputFile() !== null && $this->settings->getReturnResultYMLString()) {
+            throw new \LogicException('Only one destination need to be used ReturnResultYMLString or OutputFile');
+        }
+
+        if ($this->settings->getReturnResultYMLString()) {
+            $this->writer->openMemory();
+        } else {
+            $this->tmpFile = $this->settings->getOutputFile() !== null ? \tempnam(\sys_get_temp_dir(), 'YMLGenerator') : 'php://output';
+            $this->writer->openURI($this->tmpFile);
+        }
 
         if ($this->settings->getIndentString()) {
             $this->writer->setIndentString($this->settings->getIndentString());
@@ -83,6 +91,10 @@ class Generator
 
             $this->addOffers($offers);
             $this->addFooter();
+
+            if ($this->settings->getReturnResultYMLString()) {
+                return $this->writer->flush();
+            }
 
             if (null !== $this->settings->getOutputFile()) {
                 \copy($this->tmpFile, $this->settings->getOutputFile());
