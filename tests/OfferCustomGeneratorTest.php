@@ -11,9 +11,9 @@
 
 namespace Bukashk0zzz\YmlGenerator\Tests;
 
+use Bukashk0zzz\YmlGenerator\Model\Offer\OfferCondition;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferCustom;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferParam;
-use Bukashk0zzz\YmlGenerator\Model\Offer\OfferCondition;
 
 /**
  * Generator test

@@ -56,10 +56,10 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $value = (new Generator($settings))
             ->generate(new ShopInfo(), [], [], [], []);
 
-        ob_start();
+        \ob_start();
         (new Generator(new Settings()))
             ->generate(new ShopInfo(), [], [], [], []);
-        $value2 = ob_get_clean();
+        $value2 = \ob_get_clean();
 
         $this->assertEquals($value, $value2);
     }

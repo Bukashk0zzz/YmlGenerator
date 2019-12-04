@@ -11,7 +11,6 @@ namespace Bukashk0zzz\YmlGenerator;
 
 /**
  * Represents a value that should be written to XML as CDATA
- * @author zyura (https://github.com/zyura)
  */
 class Cdata
 {
