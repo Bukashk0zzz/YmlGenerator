@@ -28,17 +28,17 @@ class Generator
     /**
      * @var string
      */
-    private $tmpFile;
+    protected $tmpFile;
 
     /**
      * @var \XMLWriter
      */
-    private $writer;
+    protected $writer;
 
     /**
      * @var Settings
      */
-    private $settings;
+    protected $settings;
 
     /**
      * Generator constructor.
