@@ -52,6 +52,11 @@ class ShopInfo
     private $email;
 
     /**
+     * @var bool
+     */
+    private $autoDiscount;
+
+    /**
      * @return array
      */
     public function toArray()
@@ -64,6 +69,7 @@ class ShopInfo
             'version' => $this->getVersion(),
             'agency' => $this->getAgency(),
             'email' => $this->getEmail(),
+            'enable_auto_discounts' => $this->getAutoDiscount(),
         ];
     }
 
@@ -203,6 +209,26 @@ class ShopInfo
     public function setEmail($email)
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getAutoDiscount()
+    {
+        return $this->autoDiscount;
+    }
+
+    /**
+     * @param bool $autoDiscount
+     *
+     * @return ShopInfo
+     */
+    public function setAutoDiscount($autoDiscount)
+    {
+        $this->autoDiscount = $autoDiscount;
 
         return $this;
     }
