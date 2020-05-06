@@ -149,6 +149,11 @@ abstract class AbstractOffer implements OfferInterface
     private $store;
 
     /**
+     * @var bool
+     */
+    private $autoDiscount;
+
+    /**
      * Array of custom elements (element types are keys) of arrays of element values
      * There may be multiple elements of the same type
      *
@@ -718,7 +723,7 @@ abstract class AbstractOffer implements OfferInterface
      *
      * @param string $barcode
      *
-     * @return AbstractOffer
+     * @return $this
      */
     public function addBarcode($barcode)
     {
@@ -810,6 +815,26 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
+     * @return bool
+     */
+    public function getAutoDiscount()
+    {
+        return $this->autoDiscount;
+    }
+
+    /**
+     * @param bool $autoDiscount
+     *
+     * @return $this
+     */
+    public function setAutoDiscount($autoDiscount)
+    {
+        $this->autoDiscount = $autoDiscount;
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     abstract protected function getOptions();
@@ -836,6 +861,7 @@ abstract class AbstractOffer implements OfferInterface
                 'local_delivery_cost' => $this->getLocalDeliveryCost(),
                 'weight' => $this->getWeight(),
                 'name' => $this->getName(),
+                'enable_auto_discounts' => $this->getAutoDiscount(),
             ] + $this->getCustomElements();
     }
 

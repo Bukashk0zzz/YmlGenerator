@@ -129,6 +129,7 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
                 ->setMarketCategory($this->faker->word)
                 ->setCpa($this->faker->numberBetween(0, 1))
                 ->setBarcodes([$this->faker->ean13, $this->faker->ean13])
+                ->setAutoDiscount($this->faker->boolean)
             ;
         }
 
@@ -187,6 +188,7 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
             ->setVersion($this->faker->numberBetween(1, 999))
             ->setAgency($this->faker->name)
             ->setEmail($this->faker->email)
+            ->setAutoDiscount($this->faker->boolean)
         ;
     }
 

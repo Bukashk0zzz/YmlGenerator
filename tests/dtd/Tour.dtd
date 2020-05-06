@@ -2,7 +2,7 @@
 <!ATTLIST yml_catalog
     date CDATA #REQUIRED>
 
-<!ELEMENT shop (name, company, url, phone?, platform?, version?, agency?, email*, currencies, categories, delivery-options, store?, pickup?, delivery?, deliveryIncluded?, local_delivery_cost?, adult?, offers)>
+<!ELEMENT shop (name, company, url, phone?, platform?, version?, agency?, email*, enable_auto_discounts?, currencies, categories, delivery-options, store?, pickup?, delivery?, deliveryIncluded?, local_delivery_cost?, adult?, offers)>
 <!ELEMENT company (#PCDATA)>
 <!ELEMENT phone (#PCDATA)>
 
@@ -44,6 +44,7 @@
         local_delivery_cost?,
         weight?,
         name,
+        enable_auto_discounts?,
         worldRegion?,
         country?,
         region?,
@@ -173,6 +174,7 @@
     name CDATA #REQUIRED
     unit CDATA #IMPLIED>
 <!ELEMENT related_offer (#PCDATA)>
+<!ELEMENT enable_auto_discounts (#PCDATA)>
 
 <!ELEMENT place (#PCDATA)>
 <!ELEMENT hall (#PCDATA)>
