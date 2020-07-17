@@ -167,6 +167,12 @@ class Generator
             $this->writer->writeAttribute('parentId', $category->getParentId());
         }
 
+        if (!empty($category->getAttributes())) {
+            foreach ($category->getAttributes() as $attribute) {
+                $this->writer->writeAttribute($attribute['name'], $attribute['value']);
+            }
+        }
+
         $this->writer->text($category->getName());
         $this->writer->fullEndElement();
     }

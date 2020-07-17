@@ -32,6 +32,11 @@ class Category
     private $name;
 
     /**
+     * @var array
+     */
+    private $attributes = [];
+
+    /**
      * @return int
      */
     public function getId()
@@ -87,6 +92,41 @@ class Category
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * Sets list of custom attributes (Array of arrays [['name' => ?, 'value' => ?]])
+     *
+     * @param array $attributes
+     *
+     * @return Category
+     */
+    public function setAttributes(array $attributes)
+    {
+        $this->attributes = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * @param string $attributeName
+     * @param mixed $value
+     *
+     * @return Category
+     */
+    public function pushAttribute(string $attributeName, $value)
+    {
+        array_push($this->attributes, ['name' => $attributeName, 'value' => $value]);
 
         return $this;
     }
