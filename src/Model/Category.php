@@ -120,13 +120,13 @@ class Category
 
     /**
      * @param string $attributeName
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return Category
      */
-    public function pushAttribute(string $attributeName, $value)
+    public function pushAttribute($attributeName, $value)
     {
-        array_push($this->attributes, ['name' => $attributeName, 'value' => $value]);
+        $this->attributes[] = ['name' => $attributeName, 'value' => $value];
 
         return $this;
     }

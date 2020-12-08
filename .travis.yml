@@ -5,6 +5,7 @@ php:
   - 5.6
   - 7.0
   - 7.4
+  - 8.0
 
 before_script:
   - composer self-update
@@ -12,6 +13,7 @@ before_script:
 
 script:
   - ./vendor/bin/phpcs
+  - ./vendor/bin/php-cs-fixer fix --config=.php_cs -v --dry-run
   - ./vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover=coverage.xml
 
 after_success:

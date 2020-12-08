@@ -62,7 +62,7 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * Test setup
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->faker = Faker::create();
 

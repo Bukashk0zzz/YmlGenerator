@@ -28,7 +28,7 @@
         "friendsofphp/php-cs-fixer": "^2.3",
         "escapestudios/symfony2-coding-standard": "^3.0",
         "phpcompatibility/php-compatibility": "^9.0",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.5"
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1"
     },
     "autoload": {
         "psr-4": {
