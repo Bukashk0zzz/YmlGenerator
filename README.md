@@ -39,7 +39,7 @@ Or add this to your `composer.json` file:
 }
 ```
 
-Usage example
+Usage examples
 -------------
 
 ```php
@@ -108,6 +108,21 @@ $deliveries[] = (new Delivery())
     $offers,
     $deliveries
 );
+```
+### Adding custom elements
+if you need additional offers elements in your yml file using method addCustomElement('type','value'). For example:
+```php
+$offers[] = (new OfferSimple())
+    ->setId(12346)
+    ->setAvailable(true)
+    ->setUrl('http://www.best.seller.com/product_page.php?pid=12348')
+    ->setPrice($this->faker->numberBetween(1, 9999))
+    ->setCurrencyId('USD')
+    ->setCategoryId(1)
+    ->setDelivery(false)
+    ->setName('Best product ever')
+    ->addCustomElement('type', 'value')
+;
 ```
 
 Copyright / License
