@@ -35,6 +35,7 @@
         buyurl?,
         price,
         oldprice?,
+        purchase_price?,
         wprice?,
         currencyId,
         xCategory?,
@@ -96,6 +97,7 @@
 <!ELEMENT deliveryTime EMPTY>
 <!ELEMENT price (#PCDATA)>
 <!ELEMENT oldprice (#PCDATA)>
+<!ELEMENT purchase_price (#PCDATA)>
 <!ELEMENT wprice (#PCDATA)>
 <!ELEMENT currencyId (#PCDATA)>
 <!ELEMENT categoryId (#PCDATA)>
