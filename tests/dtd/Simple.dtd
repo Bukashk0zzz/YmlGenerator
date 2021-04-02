@@ -46,6 +46,7 @@
         delivery?,
         local_delivery_cost?,
         weight?,
+        dimensions?,
         name,
         enable_auto_discounts?,
         vendor?,
@@ -159,6 +160,7 @@
 <!ELEMENT adult (#PCDATA)>
 <!ELEMENT age (#PCDATA)>
 <!ELEMENT weight (#PCDATA)>
+<!ELEMENT dimensions (#PCDATA)>
 <!ELEMENT barcode (#PCDATA)>
 <!ELEMENT param (#PCDATA)>
 <!ATTLIST param
