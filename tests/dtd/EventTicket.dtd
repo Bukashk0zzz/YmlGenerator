@@ -44,6 +44,7 @@
         delivery?,
         local_delivery_cost?,
         weight?,
+        dimensions?,
         name,
         enable_auto_discounts?,
         place,
@@ -103,6 +104,7 @@
 <!ELEMENT price (#PCDATA)>
 <!ELEMENT oldprice (#PCDATA)>
 <!ELEMENT purchase_price (#PCDATA)>
+<!ELEMENT dimensions (#PCDATA)>
 <!ELEMENT wprice (#PCDATA)>
 <!ELEMENT currencyId (#PCDATA)>
 <!ELEMENT categoryId (#PCDATA)>

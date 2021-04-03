@@ -129,6 +129,11 @@ abstract class AbstractOffer implements OfferInterface
     private $weight;
 
     /**
+     * @var string
+     */
+    private $dimensions;
+
+    /**
      * @var int
      */
     private $cpa;
@@ -640,6 +645,34 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
+     * @return string
+     */
+    public function getDimensions()
+    {
+        return $this->dimensions;
+    }
+
+    /**
+     * @param float $length
+     * @param float $width
+     * @param float $height
+     *
+     * @return $this
+     */
+    public function setDimensions($length, $width, $height)
+    {
+        $dimensions = [
+            \round((float) $length, 3),
+            \round((float) $width, 3),
+            \round((float) $height, 3),
+        ];
+
+        $this->dimensions = \implode('/', $dimensions);
+
+        return $this;
+    }
+
+    /**
      * @return int
      */
     public function getCpa()
@@ -886,6 +919,7 @@ abstract class AbstractOffer implements OfferInterface
                 'delivery' => $this->isDelivery(),
                 'local_delivery_cost' => $this->getLocalDeliveryCost(),
                 'weight' => $this->getWeight(),
+                'dimensions' => $this->getDimensions(),
                 'name' => $this->getName(),
                 'enable_auto_discounts' => $this->getAutoDiscount(),
             ] + $this->getCustomElements();

@@ -48,6 +48,7 @@
                 deliveryIncluded?,
                 local_delivery_cost?,
                 weight?,
+                dimensions?,
                 enable_auto_discounts?,
                 orderingTime?,
                 typePrefix?,
@@ -162,6 +163,7 @@
 <!ELEMENT adult (#PCDATA)>
 <!ELEMENT age (#PCDATA)>
 <!ELEMENT weight (#PCDATA)>
+<!ELEMENT dimensions (#PCDATA)>
 <!ELEMENT barcode (#PCDATA)>
 <!ELEMENT param (#PCDATA)>
 <!ATTLIST param
