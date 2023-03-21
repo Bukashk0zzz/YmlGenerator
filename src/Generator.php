@@ -218,6 +218,7 @@ class Generator
                 $this->addOfferElement($name, $value);
             }
         }
+        $this->addOfferOutlets($offer);
         $this->addOfferParams($offer);
         $this->addOfferDeliveryOptions($offer);
         $this->addOfferCondition($offer);
