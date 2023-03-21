@@ -42,6 +42,11 @@ interface OfferInterface
     public function getParams();
 
     /**
+     * @return array
+     */
+    public function getOutlets();
+
+    /**
      * @return object
      */
     public function getCondition();

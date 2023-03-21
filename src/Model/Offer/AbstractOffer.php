@@ -154,6 +154,11 @@ abstract class AbstractOffer implements OfferInterface
     private $params = [];
 
     /**
+     * @var array
+     */
+    private $outlets = [];
+
+    /**
      * @var bool
      */
     private $store;
@@ -710,6 +715,26 @@ abstract class AbstractOffer implements OfferInterface
         $this->params[] = $param;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOutlets()
+    {
+      return $this->outlets;
+    }
+
+    /**
+     * @param OfferOutlet $outlet
+     *
+     * @return $this
+     */
+    public function addOutlet(OfferOutlet $outlet)
+    {
+      $this->outlets[] = $outlet;
+
+      return $this;
     }
 
     /**
