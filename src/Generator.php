@@ -344,7 +344,6 @@ class Generator
         /** @var OfferOutlet $outlet */
         foreach ($offer->getOutlets() as $outlet) {
           if ($outlet instanceof OfferOutlet) {
-            // TODO: здесь я остановился
             $this->writer->startElement('outlet');
 
             $this->writer->writeAttribute('id', $outlet->getId());
