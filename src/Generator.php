@@ -17,6 +17,7 @@ use Bukashk0zzz\YmlGenerator\Model\Delivery;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferCondition;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferGroupAwareInterface;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferInterface;
+use Bukashk0zzz\YmlGenerator\Model\Offer\OfferOutlet;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferParam;
 use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
 
@@ -217,6 +218,7 @@ class Generator
                 $this->addOfferElement($name, $value);
             }
         }
+        $this->addOfferOutlets($offer);
         $this->addOfferParams($offer);
         $this->addOfferDeliveryOptions($offer);
         $this->addOfferCondition($offer);
@@ -330,6 +332,28 @@ class Generator
                 $this->writer->endElement();
             }
         }
+    }
+
+    /**
+     * @param OfferInterface $offer
+     */
+    private function addOfferOutlets(OfferInterface $offer)
+    {
+      if ($offer->getOutlets() && sizeof($offer->getOutlets())) {
+        $this->writer->startElement('outlets');
+        /** @var OfferOutlet $outlet */
+        foreach ($offer->getOutlets() as $outlet) {
+          if ($outlet instanceof OfferOutlet) {
+            $this->writer->startElement('outlet');
+
+            $this->writer->writeAttribute('id', $outlet->getId());
+            $this->writer->writeAttribute('instock', $outlet->getInStock());
+
+            $this->writer->endElement();
+          }
+        }
+        $this->writer->fullEndElement();
+      }
     }
 
     /**
