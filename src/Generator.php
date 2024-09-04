@@ -19,7 +19,26 @@ use Bukashk0zzz\YmlGenerator\Model\Offer\OfferGroupAwareInterface;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferInterface;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferOutlet;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferParam;
+use Bukashk0zzz\YmlGenerator\Model\Promo;
 use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
+
+use function copy;
+use function date;
+
+use Exception;
+
+use function is_array;
+use function is_bool;
+
+use LogicException;
+use RuntimeException;
+
+use function sprintf;
+use function sys_get_temp_dir;
+use function tempnam;
+use function unlink;
+
+use XMLWriter;
 
 /**
  * Class Generator
@@ -32,7 +51,7 @@ class Generator
     protected $tmpFile;
 
     /**
-     * @var \XMLWriter
+     * @var XMLWriter
      */
     protected $writer;
 
@@ -44,21 +63,21 @@ class Generator
     /**
      * Generator constructor.
      *
-     * @param Settings $settings
+     * @param  Settings  $settings
      */
     public function __construct($settings = null)
     {
-        $this->settings = $settings instanceof Settings ? $settings : new Settings();
-        $this->writer = new \XMLWriter();
+        $this->settings = $settings instanceof Settings ? $settings : new Settings;
+        $this->writer = new XMLWriter;
 
         if ($this->settings->getOutputFile() !== null && $this->settings->getReturnResultYMLString()) {
-            throw new \LogicException('Only one destination need to be used ReturnResultYMLString or OutputFile');
+            throw new LogicException('Only one destination need to be used ReturnResultYMLString or OutputFile');
         }
 
         if ($this->settings->getReturnResultYMLString()) {
             $this->writer->openMemory();
         } else {
-            $this->tmpFile = $this->settings->getOutputFile() !== null ? \tempnam(\sys_get_temp_dir(), 'YMLGenerator') : 'php://output';
+            $this->tmpFile = $this->settings->getOutputFile() !== null ? tempnam(sys_get_temp_dir(), 'YMLGenerator') : 'php://output';
             $this->writer->openURI($this->tmpFile);
         }
 
@@ -69,15 +88,9 @@ class Generator
     }
 
     /**
-     * @param ShopInfo $shopInfo
-     * @param array    $currencies
-     * @param array    $categories
-     * @param array    $offers
-     * @param array    $deliveries
-     *
      * @return bool
      */
-    public function generate(ShopInfo $shopInfo, array $currencies, array $categories, array $offers, array $deliveries = [])
+    public function generate(ShopInfo $shopInfo, array $currencies, array $categories, array $offers, array $deliveries = [], array $promos = [])
     {
         try {
             $this->addHeader();
@@ -90,6 +103,10 @@ class Generator
                 $this->addDeliveries($deliveries);
             }
 
+            if (\count($promos) !== 0) {
+                $this->addPromos($promos);
+            }
+
             $this->addOffers($offers);
             $this->addFooter();
 
@@ -97,14 +114,14 @@ class Generator
                 return $this->writer->flush();
             }
 
-            if (null !== $this->settings->getOutputFile()) {
-                \copy($this->tmpFile, $this->settings->getOutputFile());
-                @\unlink($this->tmpFile);
+            if ($this->settings->getOutputFile() !== null) {
+                copy($this->tmpFile, $this->settings->getOutputFile());
+                @unlink($this->tmpFile);
             }
 
             return true;
-        } catch (\Exception $exception) {
-            throw new \RuntimeException(\sprintf('Problem with generating YML file: %s', $exception->getMessage()), 0, $exception);
+        } catch (Exception $exception) {
+            throw new RuntimeException(sprintf('Problem with generating YML file: %s', $exception->getMessage()), 0, $exception);
         }
     }
 
@@ -117,7 +134,7 @@ class Generator
         $this->writer->startDTD('yml_catalog', null, 'shops.dtd');
         $this->writer->endDTD();
         $this->writer->startElement('yml_catalog');
-        $this->writer->writeAttribute('date', \date(DATE_RFC3339));
+        $this->writer->writeAttribute('date', date(DATE_RFC3339));
         $this->writer->startElement('shop');
     }
 
@@ -133,8 +150,6 @@ class Generator
 
     /**
      * Adds shop element data. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#shop)
-     *
-     * @param ShopInfo $shopInfo
      */
     protected function addShopInfo(ShopInfo $shopInfo)
     {
@@ -145,9 +160,6 @@ class Generator
         }
     }
 
-    /**
-     * @param Currency $currency
-     */
     protected function addCurrency(Currency $currency)
     {
         $this->writer->startElement('currency');
@@ -156,9 +168,6 @@ class Generator
         $this->writer->endElement();
     }
 
-    /**
-     * @param Category $category
-     */
     protected function addCategory(Category $category)
     {
         $this->writer->startElement('category');
@@ -168,7 +177,7 @@ class Generator
             $this->writer->writeAttribute('parentId', $category->getParentId());
         }
 
-        if (!empty($category->getAttributes())) {
+        if (! empty($category->getAttributes())) {
             foreach ($category->getAttributes() as $attribute) {
                 $this->writer->writeAttribute($attribute['name'], $attribute['value']);
             }
@@ -178,9 +187,6 @@ class Generator
         $this->writer->fullEndElement();
     }
 
-    /**
-     * @param Delivery $delivery
-     */
     protected function addDelivery(Delivery $delivery)
     {
         $this->writer->startElement('option');
@@ -192,9 +198,50 @@ class Generator
         $this->writer->endElement();
     }
 
-    /**
-     * @param OfferInterface $offer
-     */
+    protected function addPromo(Promo $promo)
+    {
+        $this->writer->startElement('promo');
+        $this->writer->writeAttribute('id', $promo->getId());
+        $this->writer->writeAttribute('type', $promo->getType());
+
+        $this->writer->writeElement('start-date', $promo->getStartDate());
+        $this->writer->writeElement('end-date', $promo->getEndDate());
+        $this->writer->writeElement('promo-code', $promo->getPromocode());
+
+        $discount = $promo->getDiscount();
+
+        $this->writer->startElement('discount');
+
+        if (isset($discount['unit']) && $discount['unit'] === 'percent') {
+
+            if ($discount['value'] < 5 || $discount['value'] > 95) {
+                throw new Exception('Percent should be 5-95', 1);
+            }
+
+            $this->writer->writeAttribute('unit', $discount['unit']);
+        } else {
+            $this->writer->writeAttribute('unit', $discount['unit']);
+
+            if (isset($discount['currency'])) {
+                $this->writer->writeAttribute('currency', $discount['currency']);
+            }
+        }
+
+        $this->writer->text($discount['value']);
+        $this->writer->endElement();
+        $this->writer->writeElement('url', $promo->getUrl());
+        $this->writer->startElement('purchase');
+
+        collect($promo->getPurchase())->each(function ($purchase) {
+            $this->writer->startElement('product');
+            $this->writer->writeAttribute('offer-id', $purchase);
+            $this->writer->endElement();
+        });
+
+        $this->writer->endElement();
+        $this->writer->endElement();
+    }
+
     protected function addOffer(OfferInterface $offer)
     {
         $this->writer->startElement('offer');
@@ -210,7 +257,7 @@ class Generator
         }
 
         foreach ($offer->toArray() as $name => $value) {
-            if (\is_array($value)) {
+            if (is_array($value)) {
                 foreach ($value as $itemValue) {
                     $this->addOfferElement($name, $itemValue);
                 }
@@ -228,8 +275,6 @@ class Generator
 
     /**
      * Adds <currencies> element. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#currencies)
-     *
-     * @param array $currencies
      */
     private function addCurrencies(array $currencies)
     {
@@ -247,8 +292,6 @@ class Generator
 
     /**
      * Adds <categories> element. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#categories)
-     *
-     * @param array $categories
      */
     private function addCategories(array $categories)
     {
@@ -266,8 +309,6 @@ class Generator
 
     /**
      * Adds <delivery-option> element. (See https://yandex.ru/support/partnermarket/elements/delivery-options.xml)
-     *
-     * @param array $deliveries
      */
     private function addDeliveries(array $deliveries)
     {
@@ -284,9 +325,24 @@ class Generator
     }
 
     /**
+     * Adds <promos> element. (See https://yandex.ru/support2/products/ru/promo-common)
+     */
+    private function addPromos(array $promos)
+    {
+        $this->writer->startElement('promos');
+
+        /** @var Promo $promo */
+        foreach ($promos as $promo) {
+            if ($promo instanceof Promo) {
+                $this->addPromo($promo);
+            }
+        }
+
+        $this->writer->fullEndElement();
+    }
+
+    /**
      * Adds <offers> element. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#offers)
-     *
-     * @param array $offers
      */
     private function addOffers(array $offers)
     {
@@ -302,20 +358,14 @@ class Generator
         $this->writer->fullEndElement();
     }
 
-    /**
-     * @param OfferInterface $offer
-     */
     private function addOfferDeliveryOptions(OfferInterface $offer)
     {
         $options = $offer->getDeliveryOptions();
-        if (!empty($options)) {
+        if (! empty($options)) {
             $this->addDeliveries($options);
         }
     }
 
-    /**
-     * @param OfferInterface $offer
-     */
     private function addOfferParams(OfferInterface $offer)
     {
         /** @var OfferParam $param */
@@ -334,31 +384,25 @@ class Generator
         }
     }
 
-    /**
-     * @param OfferInterface $offer
-     */
     private function addOfferOutlets(OfferInterface $offer)
     {
-      if ($offer->getOutlets() && sizeof($offer->getOutlets())) {
-        $this->writer->startElement('outlets');
-        /** @var OfferOutlet $outlet */
-        foreach ($offer->getOutlets() as $outlet) {
-          if ($outlet instanceof OfferOutlet) {
-            $this->writer->startElement('outlet');
+        if ($offer->getOutlets() && count($offer->getOutlets())) {
+            $this->writer->startElement('outlets');
+            /** @var OfferOutlet $outlet */
+            foreach ($offer->getOutlets() as $outlet) {
+                if ($outlet instanceof OfferOutlet) {
+                    $this->writer->startElement('outlet');
 
-            $this->writer->writeAttribute('id', $outlet->getId());
-            $this->writer->writeAttribute('instock', $outlet->getInStock());
+                    $this->writer->writeAttribute('id', $outlet->getId());
+                    $this->writer->writeAttribute('instock', $outlet->getInStock());
 
-            $this->writer->endElement();
-          }
+                    $this->writer->endElement();
+                }
+            }
+            $this->writer->fullEndElement();
         }
-        $this->writer->fullEndElement();
-      }
     }
 
-    /**
-     * @param OfferInterface $offer
-     */
     private function addOfferCondition(OfferInterface $offer)
     {
         $params = $offer->getCondition();
@@ -371,9 +415,8 @@ class Generator
     }
 
     /**
-     * @param string $name
-     * @param mixed  $value
-     *
+     * @param  string  $name
+     * @param  mixed  $value
      * @return bool
      */
     private function addOfferElement($name, $value)
@@ -390,7 +433,7 @@ class Generator
             return true;
         }
 
-        if (\is_bool($value)) {
+        if (is_bool($value)) {
             $value = $value ? 'true' : 'false';
         }
         $this->writer->writeElement($name, $value);
