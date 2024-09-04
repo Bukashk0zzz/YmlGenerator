@@ -121,7 +121,7 @@ class Promo
      */
     public function setStartDate($startDate)
     {
-        $this->startDate = $startDate->format('Y-m-d');
+        $this->startDate = $startDate;
 
         return $this;
     }
@@ -140,7 +140,7 @@ class Promo
      */
     public function setEndDate($endDate)
     {
-        $this->endDate = $endDate->format('Y-m-d');
+        $this->endDate = $endDate;
 
         return $this;
     }
