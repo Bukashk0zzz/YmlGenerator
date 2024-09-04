@@ -7,13 +7,14 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/Bukashk0zzz/yml-generator.svg?style=flat-square)](https://packagist.org/packages/Bukashk0zzz/yml-generator)
 [![Total Downloads](https://img.shields.io/packagist/dt/Bukashk0zzz/yml-generator.svg?style=flat-square)](https://packagist.org/packages/Bukashk0zzz/yml-generator)
 
-About
------
+## About
+
 [YML (Yandex Market Language)](https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml) generator.
-Uses standard XMLWriter for generating YML file. 
+Uses standard XMLWriter for generating YML file.
 Not required any other library you just need PHP 5.5.0 or >= version.
 
 Generator supports this offer types:
+
 - OfferCustom [(vendor.model)](https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#vendor-model)
 - OfferBook [(book)](https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#book)
 - OfferAudiobook [(audiobook)](https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#audiobook)
@@ -22,14 +23,13 @@ Generator supports this offer types:
 - OfferEventTicket [(event-ticket)](https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#event-ticket)
 - OfferSimple [(empty)](https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#base)
 
-Installation
-------------
+## Installation
+
 Run composer require
 
 ```bash
 composer require bukashk0zzz/yml-generator
 ```
-
 
 Or add this to your `composer.json` file:
 
@@ -39,8 +39,7 @@ Or add this to your `composer.json` file:
 }
 ```
 
-Usage examples
--------------
+## Usage examples
 
 ```php
 <?php
@@ -80,6 +79,19 @@ $categories[] = (new Category())
     ->setName($this->faker->name)
 ;
 
+// Creating promos array (https://yandex.ru/support2/products/ru/promo-common)
+$promos = [];
+$promos[] = (new Promo())
+    ->setId(1)
+    ->setType('promo code')
+    ->setStartDate(carbon('10-07-2024'))
+    ->setEndDate(carbon('10-07-2028'))
+    ->setPromocode('YANDEX')
+    ->setUrl("https://google.com")
+    ->setDiscount(['unit' => 'percent', 'value' => 5])
+    ->setPurchase([1 ,2 ,3]),
+;
+
 // Creating offers array (https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#offers)
 $offers = [];
 $offers[] = (new OfferSimple())
@@ -109,8 +121,11 @@ $deliveries[] = (new Delivery())
     $deliveries
 );
 ```
+
 ### Adding custom elements
+
 if you need additional offers elements in your yml file using method addCustomElement('type','value'). For example:
+
 ```php
 $offers[] = (new OfferSimple())
     ->setId(12346)
@@ -125,7 +140,6 @@ $offers[] = (new OfferSimple())
 ;
 ```
 
-Copyright / License
--------------------
+## Copyright / License
 
 See [LICENSE](https://github.com/bukashk0zzz/YmlGenerator/blob/master/LICENSE)
