@@ -11,8 +11,6 @@
 
 namespace Bukashk0zzz\YmlGenerator\Model;
 
-use Illuminate\Support\Carbon;
-
 /** USE*/
 //    $promos = collect([
 //     (new Promo)->setId(1)->setType('promo code')
@@ -116,7 +114,7 @@ class Promo
     }
 
     /**
-     * @param  Carbon  $startDate
+     * @param  string  $startDate
      * @return Promo
      */
     public function setStartDate($startDate)
@@ -135,7 +133,7 @@ class Promo
     }
 
     /**
-     * @param  Carbon  $endDate
+     * @param  string  $endDate
      * @return Promo
      */
     public function setEndDate($endDate)
