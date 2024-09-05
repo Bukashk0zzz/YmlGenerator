@@ -1,0 +1,58 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  tests:
+    name: PHPUnit PHP ${{ matrix.php }}
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        php:
+          - '5.6'
+          - '7.1'
+          - '8.1'
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: pcov
+
+      - name: Configure CS plugin
+        run: composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer "true"
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ matrix.php }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ matrix.php }}-composer-
+
+      - name: Update project dependencies
+        if: matrix.dependency == ''
+        run: composer update --no-progress --ansi --prefer-stable
+
+      - name: Validate composer
+        run: composer validate --strict --no-check-lock
+
+      - name: Run CS
+        run:  ./vendor/bin/phpcs
+
+      - name: Run CS Fixer
+        run:  ./vendor/bin/php-cs-fixer fix --config=./.php_cs -v --dry-run
+
+      - name: Run tests
+        run: ./vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover=coverage.xml
