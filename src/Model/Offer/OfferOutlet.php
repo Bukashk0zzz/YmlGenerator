@@ -65,5 +65,4 @@ class OfferOutlet
 
         return $this;
     }
-
 }

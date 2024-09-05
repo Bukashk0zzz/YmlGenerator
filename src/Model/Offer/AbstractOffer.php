@@ -722,7 +722,7 @@ abstract class AbstractOffer implements OfferInterface
      */
     public function getOutlets()
     {
-      return $this->outlets;
+        return $this->outlets;
     }
 
     /**
@@ -732,9 +732,9 @@ abstract class AbstractOffer implements OfferInterface
      */
     public function addOutlet(OfferOutlet $outlet)
     {
-      $this->outlets[] = $outlet;
+        $this->outlets[] = $outlet;
 
-      return $this;
+        return $this;
     }
 
     /**

@@ -39,5 +39,10 @@
         "psr-4": {
             "Bukashk0zzz\\YmlGenerator\\Tests\\": "tests/"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

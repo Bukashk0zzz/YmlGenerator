@@ -117,7 +117,7 @@ class Generator
         $this->writer->startDTD('yml_catalog', null, 'shops.dtd');
         $this->writer->endDTD();
         $this->writer->startElement('yml_catalog');
-        $this->writer->writeAttribute('date', \date(DATE_RFC3339));
+        $this->writer->writeAttribute('date', \date(\DATE_RFC3339));
         $this->writer->startElement('shop');
     }
 
@@ -339,21 +339,21 @@ class Generator
      */
     private function addOfferOutlets(OfferInterface $offer)
     {
-      if ($offer->getOutlets() && sizeof($offer->getOutlets())) {
-        $this->writer->startElement('outlets');
-        /** @var OfferOutlet $outlet */
-        foreach ($offer->getOutlets() as $outlet) {
-          if ($outlet instanceof OfferOutlet) {
-            $this->writer->startElement('outlet');
+        if ($offer->getOutlets() && \count($offer->getOutlets())) {
+            $this->writer->startElement('outlets');
+            /** @var OfferOutlet $outlet */
+            foreach ($offer->getOutlets() as $outlet) {
+                if ($outlet instanceof OfferOutlet) {
+                    $this->writer->startElement('outlet');
 
-            $this->writer->writeAttribute('id', $outlet->getId());
-            $this->writer->writeAttribute('instock', $outlet->getInStock());
+                    $this->writer->writeAttribute('id', $outlet->getId());
+                    $this->writer->writeAttribute('instock', $outlet->getInStock());
 
-            $this->writer->endElement();
-          }
+                    $this->writer->endElement();
+                }
+            }
+            $this->writer->fullEndElement();
         }
-        $this->writer->fullEndElement();
-      }
     }
 
     /**
