@@ -70,14 +70,14 @@ class Generator
 
     /**
      * @param ShopInfo $shopInfo
-     * @param array    $currencies
-     * @param array    $categories
-     * @param array    $offers
-     * @param array    $deliveries
+     * @param iterable $currencies
+     * @param iterable $categories
+     * @param iterable $offers
+     * @param iterable $deliveries
      *
      * @return bool
      */
-    public function generate(ShopInfo $shopInfo, array $currencies, array $categories, array $offers, array $deliveries = [])
+    public function generate(ShopInfo $shopInfo, iterable $currencies, iterable $categories, iterable $offers, iterable $deliveries = [])
     {
         try {
             $this->addHeader();
@@ -229,9 +229,9 @@ class Generator
     /**
      * Adds <currencies> element. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#currencies)
      *
-     * @param array $currencies
+     * @param iterable $currencies
      */
-    private function addCurrencies(array $currencies)
+    private function addCurrencies(iterable $currencies)
     {
         $this->writer->startElement('currencies');
 
@@ -248,9 +248,9 @@ class Generator
     /**
      * Adds <categories> element. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#categories)
      *
-     * @param array $categories
+     * @param iterable $categories
      */
-    private function addCategories(array $categories)
+    private function addCategories(iterable $categories)
     {
         $this->writer->startElement('categories');
 
@@ -267,9 +267,9 @@ class Generator
     /**
      * Adds <delivery-option> element. (See https://yandex.ru/support/partnermarket/elements/delivery-options.xml)
      *
-     * @param array $deliveries
+     * @param iterable $deliveries
      */
-    private function addDeliveries(array $deliveries)
+    private function addDeliveries(iterable $deliveries)
     {
         $this->writer->startElement('delivery-options');
 
@@ -286,9 +286,9 @@ class Generator
     /**
      * Adds <offers> element. (See https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#offers)
      *
-     * @param array $offers
+     * @param iterable $offers
      */
-    private function addOffers(array $offers)
+    private function addOffers(iterable $offers)
     {
         $this->writer->startElement('offers');
 
