@@ -18,11 +18,12 @@ use Bukashk0zzz\YmlGenerator\Model\Delivery;
 use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
 use Bukashk0zzz\YmlGenerator\Settings;
 use Faker\Factory as Faker;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Abstract Generator test
  */
-abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractGeneratorTest extends TestCase
 {
     /**
      * @var \Faker\Generator
@@ -62,7 +63,7 @@ abstract class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * Test setup
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->faker = Faker::create();
 

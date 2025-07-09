@@ -23,12 +23,12 @@
     },
     "require-dev": {
         "ext-dom": "*",
-        "phpunit/phpunit": "^5.0",
-        "fzaninotto/faker": "^1.6",
+        "phpunit/phpunit": ">=7.0,<10",
         "friendsofphp/php-cs-fixer": "^2.3",
         "escapestudios/symfony2-coding-standard": "^3.0",
         "phpcompatibility/php-compatibility": "^9.0",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1"
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+        "fakerphp/faker": "v1.20.0"
     },
     "autoload": {
         "psr-4": {

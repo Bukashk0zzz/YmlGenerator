@@ -14,27 +14,36 @@ namespace Bukashk0zzz\YmlGenerator\Tests;
 use Bukashk0zzz\YmlGenerator\Generator;
 use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
 use Bukashk0zzz\YmlGenerator\Settings;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Generator test
  */
-class GeneratorTest extends \PHPUnit_Framework_TestCase
+class GeneratorTest extends TestCase
 {
     /**
-     * @expectedException \RuntimeException
+     * Test exception if no output file used
      */
     public function testExceptionForIncompatibleAnnotations()
     {
+        // PHP 8.0+ throws ValueError
+        if (\PHP_VERSION > 8.0) {
+            $this->expectException(\ValueError::class);
+        } else {
+            $this->expectException(\RuntimeException::class);
+        }
+
         (new Generator((new Settings())->setOutputFile('')))
             ->generate(new ShopInfo(), [], [], [])
         ;
     }
 
     /**
-     * @expectedException \LogicException
+     * Test exception if no output file used
      */
     public function testExceptionIfManyDestinationUsed()
     {
+        $this->expectException(\LogicException::class);
         $settings = (new Settings())
             ->setOutputFile('')
             ->setReturnResultYMLString(true)
