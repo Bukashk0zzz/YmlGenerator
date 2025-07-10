@@ -9,7 +9,7 @@
         <exclude name="Symfony.ControlStructure.YodaConditions.Invalid"/>
     </rule>
 
-    <config name="testVersion" value="5.6-"/>
+    <config name="testVersion" value="7.1-"/>
 
     <arg name="colors"/>
     <arg name="encoding" value="utf-8"/>

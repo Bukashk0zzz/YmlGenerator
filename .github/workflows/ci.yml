@@ -9,16 +9,16 @@ on:
 jobs:
   tests:
     name: PHPUnit PHP ${{ matrix.php }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         php:
-          - '5.6'
           - '7.1'
+          - '8.4'
       fail-fast: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -34,7 +34,7 @@ jobs:
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ matrix.php }}-composer-${{ hashFiles('**/composer.json') }}
@@ -51,7 +51,7 @@ jobs:
         run:  ./vendor/bin/phpcs
 
       - name: Run CS Fixer
-        run:  ./vendor/bin/php-cs-fixer fix --config=./.php_cs -v --dry-run
+        run:  PHP_CS_FIXER_IGNORE_ENV=true ./vendor/bin/php-cs-fixer fix --config=./.php_cs -v --dry-run
 
       - name: Run tests
         run: ./vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover=coverage.xml
