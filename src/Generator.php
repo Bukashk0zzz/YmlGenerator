@@ -19,6 +19,7 @@ use Bukashk0zzz\YmlGenerator\Model\Offer\OfferGroupAwareInterface;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferInterface;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferOutlet;
 use Bukashk0zzz\YmlGenerator\Model\Offer\OfferParam;
+use Bukashk0zzz\YmlGenerator\Model\Set;
 use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
 
 /**
@@ -74,10 +75,11 @@ class Generator
      * @param iterable $categories
      * @param iterable $offers
      * @param iterable $deliveries
+     * @param iterable $sets
      *
      * @return bool
      */
-    public function generate(ShopInfo $shopInfo, iterable $currencies, iterable $categories, iterable $offers, iterable $deliveries = [])
+    public function generate(ShopInfo $shopInfo, iterable $currencies, iterable $categories, iterable $offers, iterable $deliveries = [], iterable $sets = [])
     {
         try {
             $this->addHeader();
@@ -85,6 +87,10 @@ class Generator
             $this->addShopInfo($shopInfo);
             $this->addCurrencies($currencies);
             $this->addCategories($categories);
+
+            if (\count($sets) !== 0) {
+                $this->addSets($sets);
+            }
 
             if (\count($deliveries) !== 0) {
                 $this->addDeliveries($deliveries);
@@ -154,6 +160,25 @@ class Generator
         $this->writer->writeAttribute('id', $currency->getId());
         $this->writer->writeAttribute('rate', $currency->getRate());
         $this->writer->endElement();
+    }
+
+    /**
+     * @param Set $set
+     */
+    protected function addSet(Set $set)
+    {
+        $this->writer->startElement('set');
+        $this->writer->writeAttribute('id', $set->getId());
+
+        if ($set->getName() !== null) {
+            $this->writer->writeElement('name', $set->getName());
+        }
+
+        if ($set->getUrl() !== null) {
+            $this->writer->writeElement('url', $set->getUrl());
+        }
+
+        $this->writer->fullEndElement();
     }
 
     /**
@@ -239,6 +264,25 @@ class Generator
         foreach ($currencies as $currency) {
             if ($currency instanceof Currency) {
                 $this->addCurrency($currency);
+            }
+        }
+
+        $this->writer->fullEndElement();
+    }
+
+    /**
+     * Adds <sets> element.
+     *
+     * @param iterable $sets
+     */
+    private function addSets(iterable $sets)
+    {
+        $this->writer->startElement('sets');
+
+        /** @var Set $set */
+        foreach ($sets as $set) {
+            if ($set instanceof Set) {
+                $this->addSet($set);
             }
         }
 

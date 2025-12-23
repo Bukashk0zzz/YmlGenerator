@@ -66,6 +66,16 @@ abstract class AbstractOffer implements OfferInterface
     /**
      * @var string
      */
+    private $setId;
+
+    /**
+     * @var array
+     */
+    private $setsId = [];
+
+    /**
+     * @var string
+     */
     private $name;
 
     /**
@@ -325,6 +335,46 @@ abstract class AbstractOffer implements OfferInterface
     public function setCurrencyId($currencyId)
     {
         $this->currencyId = $currencyId;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSetId()
+    {
+        return $this->setId;
+    }
+
+    /**
+     * @param string $setId
+     *
+     * @return $this
+     */
+    public function setSetId($setId)
+    {
+        $this->setId = $setId;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSetsId()
+    {
+        return $this->setsId;
+    }
+
+    /**
+     * @param array $setsId
+     *
+     * @return $this
+     */
+    public function setSetsId(array $setsId)
+    {
+        $this->setsId = $setsId;
 
         return $this;
     }
@@ -927,6 +977,11 @@ abstract class AbstractOffer implements OfferInterface
      */
     private function getHeaderOptions()
     {
+        $sets = \array_unique(\array_merge(
+            !empty($this->getSetId()) ? [$this->getSetId()] : [],
+            $this->getSetsId()
+        ));
+
         return [
                 'url' => $this->getUrl(),
                 'price' => $this->getPrice(),
@@ -937,6 +992,7 @@ abstract class AbstractOffer implements OfferInterface
                     [$this->getCategoryId()],
                     $this->getCategoriesId()
                 ),
+                'set-ids' => empty($sets) ? null : \implode(',', $sets),
                 'market_category' => $this->getMarketCategory(),
                 'picture' => $this->getPictures(),
                 'pickup' => $this->isPickup(),

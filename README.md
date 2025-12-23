@@ -78,6 +78,14 @@ $categories[] = (new Category())
     ->setName($this->faker->name)
 ;
 
+// Creating sets array
+$categories = [];
+$categories[] = (new Set())
+    ->setId('s1')
+    ->setName('Set name')
+    ->setUrl('https://google.com')
+;
+
 // Creating offers array (https://yandex.ru/support/webmaster/goods-prices/technical-requirements.xml#offers)
 $offers = [];
 $offers[] = (new OfferSimple())

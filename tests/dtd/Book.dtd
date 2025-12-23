@@ -2,7 +2,7 @@
 <!ATTLIST yml_catalog
     date CDATA #REQUIRED>
 
-<!ELEMENT shop (name, company, url, phone?, platform?, version?, agency?, email*, enable_auto_discounts?, currencies, categories, delivery-options, store?, pickup?, delivery?, deliveryIncluded?, local_delivery_cost?, adult?, offers)>
+<!ELEMENT shop (name, company, url, phone?, platform?, version?, agency?, email*, enable_auto_discounts?, currencies, categories, sets?, delivery-options, store?, pickup?, delivery?, deliveryIncluded?, local_delivery_cost?, adult?, offers)>
 <!ELEMENT company (#PCDATA)>
 <!ELEMENT phone (#PCDATA)>
 
@@ -12,6 +12,11 @@
     id (RUR|RUB|USD|BYR|KZT|EUR|UAH) #REQUIRED
     rate CDATA "1"
     plus CDATA "0">
+
+<!ELEMENT sets (set+)>
+<!ELEMENT set (name?, url?)>
+<!ATTLIST set
+        id CDATA #REQUIRED>
 
 
 <!ELEMENT categories (category+)>
@@ -41,6 +46,7 @@
         currencyId,
         xCategory?,
         categoryId+,
+        set-ids?,
         market_category?,
         delivery?,
         local_delivery_cost?,
@@ -148,6 +154,7 @@
 <!ELEMENT description (#PCDATA)>
 <!ELEMENT sales_notes (#PCDATA)>
 <!ELEMENT promo (#PCDATA)>
+<!ELEMENT set-ids (#PCDATA)>
 <!ELEMENT aliases (#PCDATA)>
 <!ELEMENT provider (#PCDATA)>
 <!ELEMENT tarifplan (#PCDATA)>

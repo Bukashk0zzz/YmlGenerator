@@ -15,6 +15,7 @@ use Bukashk0zzz\YmlGenerator\Generator;
 use Bukashk0zzz\YmlGenerator\Model\Category;
 use Bukashk0zzz\YmlGenerator\Model\Currency;
 use Bukashk0zzz\YmlGenerator\Model\Delivery;
+use Bukashk0zzz\YmlGenerator\Model\Set;
 use Bukashk0zzz\YmlGenerator\Model\ShopInfo;
 use Bukashk0zzz\YmlGenerator\Settings;
 use Faker\Factory as Faker;
@@ -48,6 +49,11 @@ abstract class AbstractGeneratorTest extends TestCase
     /**
      * @var array
      */
+    protected $sets;
+
+    /**
+     * @var array
+     */
     protected $categories;
 
     /**
@@ -72,6 +78,7 @@ abstract class AbstractGeneratorTest extends TestCase
         $this->currencies = $this->createCurrencies();
         $this->categories = $this->createCategories();
         $this->deliveries = $this->createDeliveries();
+        $this->sets = $this->createSets();
     }
 
     /**
@@ -89,7 +96,8 @@ abstract class AbstractGeneratorTest extends TestCase
             $this->currencies,
             $this->categories,
             $this->createOffers(),
-            $this->deliveries
+            $this->deliveries,
+            $this->sets
         ));
     }
 
@@ -125,6 +133,7 @@ abstract class AbstractGeneratorTest extends TestCase
                 )
                 ->setCurrencyId('UAH')
                 ->setCategoryId($id)
+                ->setSetsId(['setId1', 'setId2'])
                 ->setDelivery($this->faker->boolean)
                 ->setLocalDeliveryCost($this->faker->numberBetween(1, 9999))
                 ->setDescription($this->faker->sentence)
@@ -211,6 +220,27 @@ abstract class AbstractGeneratorTest extends TestCase
         ;
 
         return $currencies;
+    }
+
+    /**
+     * @return array
+     */
+    private function createSets()
+    {
+        $sets = [];
+        $sets[] = (new Set())
+            ->setId('setId1')
+            ->setName($this->faker->name)
+            ->setUrl($this->faker->url)
+        ;
+
+        $sets[] = (new Set())
+            ->setId('setId2')
+            ->setName($this->faker->name)
+            ->setName($this->faker->url)
+        ;
+
+        return $sets;
     }
 
     /**
